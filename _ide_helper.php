@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 7.0.8 on 2020-03-09 11:02:42.
+ * Generated for Laravel 7.0.8 on 2020-03-10 11:41:55.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -10197,7 +10197,7 @@ namespace Illuminate\Support\Facades {
          * Returns true if the request is a XMLHttpRequest.
          * 
          * It works if your JavaScript library sets an X-Requested-With HTTP header.
-         * It is known to work with common JavaScript frameworks:
+         * It is known to work with common.js JavaScript frameworks:
          *
          * @see https://wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
          * @return bool true if the request is an XMLHttpRequest, false otherwise

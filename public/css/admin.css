@@ -1,0 +1,213 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.layui-easy .top-nav {
+  background-color: #432727;
+  height: 60px;
+}
+
+.top-nav .logo {
+  float: left;
+  background-color: #182b5c;
+}
+
+.layui-easy .top-nav .logo a {
+  color: #fff;
+  line-height: 60px;
+  float: left;
+  font-size: 16px;
+  padding-left: 20px;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.layui-easy .top-nav .left_open {
+  font-size: 16px;
+  color: #808080;
+  float: left;
+  height: 60px;
+  line-height: 60px;
+  margin-left: 15px;
+}
+
+.top-nav .right {
+  background-color: rgba(0, 0, 0, 0);
+  float: right;
+}
+
+.layui-easy .top-nav .layui-nav-item {
+  line-height: 60px;
+}
+
+.layui-easy .top-nav a {
+  color: #808080;
+}
+
+.top-nav .layui-icon {
+  font-size: 16px;
+}
+
+.layui-easy .layui-nav .layui-nav-item a:hover,
+.layui-nav .layui-this a {
+  color: #808080;
+}
+
+.layui-easy .left_open i {
+  display: block;
+  background: rgba(255, 255, 255, 0.1);
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 3px;
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.layui-nav {
+  position: relative;
+  padding: 0 0px;
+  background-color: #393D49;
+  color: #fff;
+  border-radius: 2px;
+  font-size: 0;
+  box-sizing: border-box;
+}
+
+.layui-easy .left-nav {
+  background: #182b5c;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  z-index: 2;
+  padding-top: 10px;
+  top: 60px;
+  width: 220px;
+  max-width: 220px;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow: hidden;
+}
+
+#side-nav {
+  width: 220px;
+}
+
+#nav {
+  margin-top: -9px;
+}
+
+.layui-easy .left-nav #side-nav #nav li {
+  min-height: 45px;
+}
+
+.layui-easy .left-nav a {
+  color: #fff;
+}
+
+.left-nav #nav li a {
+  font-size: 14px;
+  display: block;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.3s;
+}
+
+.layui-easy .left-nav #nav li a {
+  padding: 15px;
+}
+
+.layui-easy .layui-icon {
+  font-size: 16px;
+}
+
+.left-nav #nav li a i {
+  padding-right: 10px;
+  line-height: 14px;
+}
+
+.left-nav #nav li .sub-menu li a {
+  padding: 12px 15px 12px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.3s;
+}
+
+.layui-easy .left-nav #nav li a {
+  padding: 15px;
+}
+
+.layui-easy .left-nav a {
+  color: #fff;
+}
+
+.layui-easy .left-nav a:hover {
+  background: #274179 !important;
+  border-color: #649cee !important;
+}
+
+.layui-easy .left-nav a.active {
+  background: #274179 !important;
+  border-color: #649cee !important;
+}
+
+.left-nav #nav li .sub-menu {
+  display: none;
+}
+
+.layui-easy .layui-body {
+  top: 60px;
+  bottom: 0px;
+  left: 220px;
+  padding-bottom: 45px;
+}
+
+.layui-tab {
+  margin: 0 0 10px 0;
+  text-align: left !important;
+}
+
+.tab-nav {
+  border-bottom: 1px solid #e6e6e6;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  height: 40px;
+  line-height: 40px;
+  padding-right: 40px;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+#page-panel {
+  box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 0 10px;
+  position: fixed;
+  bottom: 0;
+  left: 220px;
+  right: 0;
+  background-color: #fff;
+  z-index: 999;
+}
+
+form .buttons {
+  position: fixed;
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  bottom: 0;
+  box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.1);
+  padding-left: 110px;
+  background-color: #fff;
+}
+
