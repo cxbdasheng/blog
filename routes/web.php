@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// 后台登录页面
+Route::namespace('Admin')->prefix('admin')->group(function () {
+    Route::redirect('/', url('admin/login/index'));
+    Route::prefix('login')->group(function () {
+        // 登录页面
+        Route::get('index', 'LoginController@index');
+    });
+});
 // Admin 模块
 Route::namespace('Admin')->prefix('admin')->group(function () {
     // 首页控制器
@@ -24,4 +32,5 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('index', 'IndexController@index')->name('admin.index');
         Route::get('test', 'IndexController@test')->name('admin.test');
     });
+
 });

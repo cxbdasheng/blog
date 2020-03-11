@@ -13,10 +13,8 @@
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     @yield('css')
 </head>
-<body class="layui-easy layui-layout-body" style="overflow: auto;">
 @yield('body')
 <script src="{{asset('lib/layui/layui.js')}}"></script>
 <script src="{{ mix('js/admin.js') }}"></script>
 @yield('js')
-</body>
 </html>

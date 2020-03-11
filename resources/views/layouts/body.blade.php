@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('body')
+    <body class="layui-easy layui-layout-body" style="overflow: auto;">
     <div class="top-nav ">
         <div class="logo">
             <a href="{{route('admin.index')}}">easy-blog
@@ -28,6 +29,7 @@
     </div>
     @include('layouts.nav')
     @yield('content')
+    </body>
 @endsection
 @section('js')
     <script>
@@ -35,4 +37,5 @@
             var element = layui.element;
         });
     </script>
+
 @endsection
