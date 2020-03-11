@@ -1,6 +1,6 @@
 @extends('layouts.gentelella')
 @section('body')
-    <div class="top-nav">
+    <div class="top-nav ">
         <div class="logo">
             <a href="{{route('admin.index')}}">X-admin v2.2
             </a>
@@ -16,14 +16,15 @@
                 <dl class="layui-nav-child layui-anim layui-anim-upbit">
                     <!-- 二级菜单 -->
                     <dd>
-                        <a onclick="xadmin.open('个人信息','/admin/user/editpasswd.html')">修改密码</a></dd>
+                        <a href="javascript:logout()">修改密码</a></dd>
                     <dd>
                         <a href="javascript:logout()">注销账号</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item to-index">
-                <a href="/"></a></li>
-            <span class="layui-nav-bar" style="left: 52.094px; top: 57px; width: 0px; opacity: 0;"></span></ul>
+                <a href="/"></a>
+            </li>
+        </ul>
     </div>
     <div class="left-nav">
         <div id="side-nav">
