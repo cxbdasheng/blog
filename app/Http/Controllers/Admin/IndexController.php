@@ -19,7 +19,7 @@ class IndexController extends Controller
             'mysql' => DB::connection()->getPdo()->query('SELECT VERSION();')->fetchColumn(),
         ];
         $assign = compact('socialiteUserData', 'version');
-        return view('admin/index', $assign);
+        return view('admin/index/index', $assign);
     }
 
     public function test()

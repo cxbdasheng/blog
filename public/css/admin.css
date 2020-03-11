@@ -138,6 +138,11 @@ a {
   line-height: 14px;
 }
 
+.left-nav #nav li .nav_right {
+  float: right;
+  font-size: 16px;
+}
+
 .left-nav #nav li .sub-menu li a {
   padding: 12px 15px 12px 30px;
   font-size: 14px;
