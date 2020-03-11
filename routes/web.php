@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// auth
+Route::namespace('Auth')->prefix('auth')->as('auth.')->group(function () {
+    // 后台登录
+    Route::prefix('admin')->group(function () {
+        Route::post('login', 'AdminController@login');
+    });
+});
 // 后台登录页面
 Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::redirect('/', url('admin/login/index'));
