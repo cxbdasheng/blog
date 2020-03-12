@@ -41,8 +41,9 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('index', 'IndexController@index')->name('admin.index');
         Route::get('test', 'IndexController@test')->name('admin.test');
     });
-
+    // 分类管理
+    Route::prefix('category')->group(function () {
+        // 分类列表
+        Route::get('index', 'CategoryController@index');
+    });
 });
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');

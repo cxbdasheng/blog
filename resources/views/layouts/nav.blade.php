@@ -26,9 +26,9 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a class="active">
+                        <a class="active" url="{{ url('admin/category/index') }}">
                             <i class="layui-icon"></i>
-                            <cite> 角色管理</cite>
+                            <cite> 分类管理</cite>
                         </a>
                     </li>
 
