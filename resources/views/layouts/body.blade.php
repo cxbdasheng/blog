@@ -19,7 +19,7 @@
                     <dd>
                         <a href="javascript:logout()">修改密码</a></dd>
                     <dd>
-                        <a href="javascript:logout()">注销账号</a></dd>
+                        <a href="{{ url('admin/login/logout') }}">注销账号</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item to-index">
