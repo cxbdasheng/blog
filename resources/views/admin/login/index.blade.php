@@ -6,7 +6,7 @@
             <h2 class="login-title">陈大剩博客登入</h2>
         </div>
         <form action="{{ url('auth/admin/login') }}" method="post"  class="layui-form" >
-            <input name="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
+            <input name="email" placeholder="用户名" type="text" lay-verify="required" class="layui-input" value="{{ old('email') }}">
             <hr class="hr15">
             @csrf
             <input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
@@ -18,14 +18,5 @@
     </body>
 @endsection
 @section('js')
-    <script>
-        $(function  () {
-            layui.use('form', function(){
-                var form = layui.form;
-                form.on('submit(login)', function () {
-                    return true;
-                });
-            });
-        });
-    </script>
+    @include('shared._error')
 @endsection

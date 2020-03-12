@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AdminController extends Controller
@@ -26,15 +26,14 @@ class AdminController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/admin/index/index';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * 自定义看守器
+     * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
      */
-    public function __construct()
+    protected function guard()
     {
-        $this->middleware('guest')->except('logout');
+        return Auth::guard('admin');
     }
 }
