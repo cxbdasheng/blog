@@ -45,5 +45,6 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     Route::prefix('category')->group(function () {
         // 分类列表
         Route::get('index', 'CategoryController@index');
+        Route::post('sort', 'CategoryController@sort');
     });
 });

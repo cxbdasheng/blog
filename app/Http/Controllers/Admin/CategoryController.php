@@ -16,4 +16,25 @@ class CategoryController extends Controller
         $request->flash();
         return view('admin/category/index', ['data' => $data]);
     }
+
+    public function sort(Request $request, Category $query)
+    {
+        $category=$query->find($request->id);
+        $category->sort=$request->sort;
+        $res=$category->save();
+        if ($res) {
+            $data = [
+                'success' => 1,
+                'message' => "请求成功！",
+                'data' => [],
+            ];
+        } else {
+            $data = [
+                'success' => 0,
+                'message' => "请求失败！",
+                'data' => [],
+            ];
+        }
+        return response()->json($data);
+    }
 }
