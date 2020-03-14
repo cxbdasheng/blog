@@ -46,5 +46,12 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         // 分类列表
         Route::get('index', 'CategoryController@index');
         Route::post('sort', 'CategoryController@sort');
+        Route::get('create', 'CategoryController@create');
+        Route::post('store', 'CategoryController@store');
+        Route::get('edit/{id}', 'CategoryController@edit');
+        Route::put('update/{id}', 'CategoryController@update');
+        Route::get('destroy/{id}', 'CategoryController@destroy');
+        Route::get('restore/{id}', 'CategoryController@restore');
+        Route::get('forceDelete/{id}', 'CategoryController@forceDelete');
     });
 });

@@ -1,9 +1,5 @@
 @if ($errors->any())
-    <script>
-        layui.use(['layer','form'],function () {
-                @foreach ($errors->all() as $error)
-                    layer.msg('{{ $error }}');
-                @endforeach
-            });
-    </script>
+    @foreach ($errors->all() as $error)
+        layer.msg('{{ $error }}', {icon: 2});
+    @endforeach
 @endif
