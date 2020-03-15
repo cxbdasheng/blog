@@ -54,4 +54,17 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('restore/{id}', 'CategoryController@restore');
         Route::get('forceDelete/{id}', 'CategoryController@forceDelete');
     });
+    // 标签管理
+    Route::prefix('tag')->group(function () {
+        // 分类列表
+        Route::get('index', 'TagController@index');
+        Route::post('sort', 'TagController@sort');
+        Route::get('create', 'TagController@create');
+        Route::post('store', 'TagController@store');
+        Route::get('edit/{id}', 'TagController@edit');
+        Route::put('update/{id}', 'TagController@update');
+        Route::get('destroy/{id}', 'TagController@destroy');
+        Route::get('restore/{id}', 'TagController@restore');
+        Route::get('forceDelete/{id}', 'TagController@forceDelete');
+    });
 });

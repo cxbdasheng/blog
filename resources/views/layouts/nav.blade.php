@@ -1,6 +1,6 @@
 <div class="left-nav">
     <div id="side-nav">
-        <ul id="nav" >
+        <ul id="nav">
             <li>
                 <a href="javascript:;">
                     <i class="layui-icon layui-icon-read left-nav-li" lay-tips="文章管理"></i>
@@ -31,14 +31,6 @@
                             <cite> 分类管理</cite>
                         </a>
                     </li>
-
-                    <li>
-                        <a>
-                            <i class="layui-icon"></i>
-                            <cite> 用户管理</cite>
-                        </a>
-                    </li>
-
                     <li>
                         <a>
                             <i class="layui-icon"></i>
@@ -55,6 +47,14 @@
                     <cite>标签管理</cite>
                     <i class="iconfont nav_right"></i>
                 </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a class="active" url="{{ url('admin/tag/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 标签管理</cite>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="javascript:;">

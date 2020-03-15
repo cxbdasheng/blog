@@ -58,7 +58,7 @@ class CategoryController extends Controller
     {
         $category->fill($request->except('_token'));
         $category->save();
-        return redirect('admin/category/index');
+        return redirect('admin/category/index')->with('message', '新建成功！');;
     }
 
     public function edit($id, Category $category)

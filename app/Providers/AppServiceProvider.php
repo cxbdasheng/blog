@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \App\Models\Category::observe(\App\Observers\CategoryObserver::class);
+        \App\Models\Tag::observe(\App\Observers\TagObserver::class);
     }
 }
