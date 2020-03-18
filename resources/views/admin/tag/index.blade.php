@@ -107,7 +107,7 @@
         });
         $('a.J-baseAjaxTodo').on("click", function () {
             var _this = this;
-            layer.confirm('你确定删除吗？', {
+            layer.confirm(_this.title, {
                 btn: ['确定', '取消']
                 , yes: function (index, layero) {
                     window.location.href = _this.href;

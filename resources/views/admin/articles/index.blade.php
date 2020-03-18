@@ -63,7 +63,7 @@
                                    href="{{url('admin/articles/destroy/'.$items->id)}}" title="你确定要删除吗？">删除</a>
                             @else
                                 <a class="layui-btn layui-btn-xs layui-btn-warm J-baseAjaxTodo"
-                                   href="{{url('admin/articles/restore/'.$items->id)}}" title="你确定要删除吗？">恢复</a>
+                                   href="{{url('admin/articles/restore/'.$items->id)}}" title="你确定恢复吗？">恢复</a>
                                 <a class="layui-btn layui-btn-xs layui-btn-danger J-baseAjaxTodo"
                                    href="{{url('admin/articles/forceDelete/'.$items->id)}}" title="你确定要删除吗？">彻底删除</a>
                             @endif
@@ -109,7 +109,7 @@
         });
         $('a.J-baseAjaxTodo').on("click", function () {
             var _this = this;
-            layer.confirm('你确定删除吗？', {
+            layer.confirm(_this.title, {
                 btn: ['确定', '取消']
                 , yes: function (index, layero) {
                     window.location.href = _this.href;

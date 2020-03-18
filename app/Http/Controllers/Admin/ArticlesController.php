@@ -96,4 +96,19 @@ class ArticlesController extends Controller
         }
         return back()->withInput()->with('message', '修改成功！');
     }
+    public function destroy(Articles $articles,$id){
+        $articles->find($id)->delete();
+        return redirect('admin/articles/index')->with('message', '删除成功！');
+    }
+    public function forceDelete($id, Articles $articles)
+    {
+        $articles->onlyTrashed()->find($id)->forceDelete();
+        return redirect('admin/articles/index')->with('message', '删除成功！');
+    }
+    public function restore(Articles $articles,$id)
+    {
+        $articles->onlyTrashed()->find($id)->restore();
+        return redirect('admin/articles/index')->with('message', '恢复成功！');
+    }
+
 }
