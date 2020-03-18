@@ -41,7 +41,7 @@
                                 <div class="layui-input-block">
                                     <select name="category_id" lay-verify="required">
                                         @foreach($category as $index => $items )
-                                            <option value="{{$items->id}}">{{$items->name}}</option>
+                                            <option value="{{$items->id}}" @if($items->id==old('category_id',$data->category_id))selected @endif >{{$items->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -50,7 +50,7 @@
                                 <label class="layui-form-label">标题</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="title" required lay-verify="required" placeholder=""
-                                           autocomplete="off" class="layui-input" value="{{old('title',$data->name)}}">
+                                           autocomplete="off" class="layui-input" value="{{old('title',$data->title)}}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -74,7 +74,7 @@
                                 <label class="layui-form-label">标签</label>
                                 <div class="layui-input-block">
                                     @foreach($tag as $index => $items)
-                                        <input type="checkbox" name="tags[]" value="{{$items->id}}" title="{{$items->name}}">
+                                        <input type="checkbox" name="tags[]" value="{{$items->id}}" title="{{$items->name}}" @if(in_array($items->id, $data->tags)) checked @endif>
                                     @endforeach
                                 </div>
                             </div>
@@ -83,24 +83,31 @@
                                 <div class="layui-upload-drag" id="test10">
                                     <i class="layui-icon"></i>
                                     <p>点击上传，或将文件拖拽到此处</p>
-                                    <div class="layui-hide" id="uploadDemoView">
+                                    <div class="@if(empty($data->cover))layui-hide @endif " id="uploadDemoView">
                                         <hr>
-                                        <img src="" alt="上传成功后渲染" style="max-width: 196px">
+                                        <img src="{{old('cover',$data->cover)}}" alt="上传成功后渲染" style="max-width: 196px">
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" id="cover" name="cover" value="">
+                            <input type="hidden" id="cover" name="cover" value="{{old('cover',$data->cover)}}">
                             <div class="layui-form-item layui-form-text">
                                 <label class="layui-form-label">描述</label>
                                 <div class="layui-input-block">
-                                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea">{{ old('desc') }}</textarea>
+                                    <textarea name="description" placeholder="请输入内容" class="layui-textarea">{{old('description',$data->description)}}</textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">是否置顶</label>
+                                <div class="layui-input-block" >
+                                    <input type="radio" name="is_top" value="1"  title="是" @if(old('is_top',$data->is_top)==1)checked @endif >
+                                    <input type="radio" name="is_top" value="0" title="否" @if(old('is_top',$data->is_top)==0)checked @endif>
                                 </div>
                             </div>
                             <div class="layui-form-item layui-form-text">
                                 <label class="layui-form-label">内容</label>
                                 <div class="layui-input-block" >
                                     <div class="" id="editor">
-                                        <textarea style="display:none;" name="markdown" placeholder="请输入内容" class="layui-textarea">{{ old('markdown') }}</textarea>
+                                        <textarea style="display:none;" name="markdown" placeholder="请输入内容" class="layui-textarea">{{old('markdown',$data->markdown)}}</textarea>
                                     </div>
                                 </div>
                             </div>

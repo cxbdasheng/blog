@@ -32,6 +32,7 @@ class ArticlesController extends Controller
     {
         $category = Category::all();
         $tag = Tag::all();
+        $data->tags=[];
         $assign = compact('category', 'tag', 'data');
         return view('admin/articles/create_and_edit', $assign);
     }
@@ -72,6 +73,27 @@ class ArticlesController extends Controller
             $articleTag = new ArticleTag();
             $articleTag->addTagIds($res->id, $tags);
         }
-        return redirect('admin/articles/index');
+        return redirect('admin/articles/index')->with('message', '添加成功！');
+    }
+
+    public function edit($id, Articles $articles){
+        $data = $articles->withTrashed()->find($id);
+        $data->tags = ArticleTag::where('article_id', $id)->pluck('tag_id')->toArray();
+        $category = Category::all();
+        $tag = Tag::all();
+        $assign = compact('category', 'tag', 'data');
+        return view('admin.articles.create_and_edit', $assign);
+    }
+
+    public function update(ArticleRequest $request, Articles $articles,ArticleTag $articleTagMode){
+        $data = $request->except('_token');
+        $tags = $data['tags'];
+        unset($data['tags']);
+        $result = $articles->withTrashed()->find($request->id)->update($data);
+        if ($result) {
+            ArticleTag::where('article_id', $request->id)->forceDelete();
+            $articleTagMode->addTagIds($request->id, $tags);
+        }
+        return back()->withInput()->with('message', '修改成功！');
     }
 }

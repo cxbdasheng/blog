@@ -19,8 +19,8 @@
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input id="boxCode" name="name" placeholder="分类名" class="layui-input" type="text"
-                                       value="{{old('name')}}" maxlength="50"></div>
+                                <input id="boxCode" name="title" placeholder="标题" class="layui-input" type="text"
+                                       value="{{old('title')}}" maxlength="50"></div>
                         </div>
                         <div class="layui-inline">
                             <a href="{{url('admin/articles/index')}}" class="layui-btn">重置</a>
@@ -70,11 +70,52 @@
                         </td>
                     </tr>
                 @endforeach
-
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
 @section('js')
+    {{ $data->links('layouts.page') }}
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        layui.use('laypage', function () {
+            layer.ready(function () {
+                var laypage = layui.laypage;
+                        @include('shared._messages')
+                var name = "{{old('title')}}";
+                //执行一个laypage实例
+                laypage.render({
+                    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+                    , count: {{$data->total()}}
+                    , curr:{{$data->currentPage()}}
+                    , limit:{{$data->perPage()}}
+                    , layout: ['prev', 'page', 'next', 'limit', 'count', 'skip']
+                    , jump: function (obj, first) {
+                        if (!first) {
+                            if (name) {
+                                window.location.href = "?page=" + obj.curr + "&limit=" + obj.limit + "&title=" + name;
+                            } else {
+                                window.location.href = "?page=" + obj.curr + "&limit=" + obj.limit;
+                            }
+                        }
+                    }
+                });
+            });
+        });
+        $('a.J-baseAjaxTodo').on("click", function () {
+            var _this = this;
+            layer.confirm('你确定删除吗？', {
+                btn: ['确定', '取消']
+                , yes: function (index, layero) {
+                    window.location.href = _this.href;
+                }
+            });
+            return false;
+        });
+    </script>
 @endsection
