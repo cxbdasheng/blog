@@ -24,6 +24,7 @@ class CreateArticlesTable extends Migration
             $table->string('description')->default('')->comment('描述');
             $table->string('keywords')->default('')->comment('关键词');
             $table->string('cover')->default('')->comment('封面图');
+            $table->integer('views')->default('0')->comment('查看数');
             $table->boolean('is_top')->default(0)->comment('是否置顶 1是 0否');
             $table->timestamps();
             $table->softDeletes();

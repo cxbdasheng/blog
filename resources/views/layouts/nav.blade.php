@@ -10,7 +10,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a url="">
+                        <a url="{{ url('admin/articles/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 文章列表</cite>
                         </a>

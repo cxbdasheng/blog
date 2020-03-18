@@ -12,4 +12,8 @@ class Category extends Model
     use Cachable;
     protected $table = 'categories';
     protected $fillable = ['name', 'keywords', 'description', 'sort'];
+
+    public function articles(){
+        return $this->hasOne(Articles::class);
+    }
 }

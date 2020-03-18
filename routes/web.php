@@ -60,11 +60,24 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('index', 'TagController@index');
         Route::post('sort', 'TagController@sort');
         Route::get('create', 'TagController@create');
-        Route::post('store', 'TagController@store');
         Route::get('edit/{id}', 'TagController@edit');
         Route::put('update/{id}', 'TagController@update');
         Route::get('destroy/{id}', 'TagController@destroy');
         Route::get('restore/{id}', 'TagController@restore');
         Route::get('forceDelete/{id}', 'TagController@forceDelete');
+    });
+    // 文章管理
+    Route::prefix('articles')->group(function () {
+        // 分类列表
+        Route::get('index', 'ArticlesController@index');
+        Route::post('sort', 'ArticlesController@sort');
+        Route::post('store', 'ArticlesController@store');
+        Route::get('create', 'ArticlesController@create');
+        Route::get('edit/{id}', 'ArticlesController@edit');
+        Route::put('update/{id}', 'ArticlesController@update');
+        Route::get('destroy/{id}', 'ArticlesController@destroy');
+        Route::get('restore/{id}', 'ArticlesController@restore');
+        Route::get('forceDelete/{id}', 'ArticlesController@forceDelete');
+        Route::post('upload_image', 'ArticlesController@uploadImage');
     });
 });
