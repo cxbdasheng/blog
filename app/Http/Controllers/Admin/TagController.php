@@ -49,7 +49,7 @@ class TagController extends Controller
     {
         $tag->fill($request->except('_token'));
         $tag->save();
-        return redirect('admin/tag/index')->with('message', '新建成功！');
+        return redirect('admin/tag/index');
     }
 
     public function edit($id, Tag $tag)
@@ -61,19 +61,19 @@ class TagController extends Controller
     public function update(TagRequest $request, Tag $tag,$id)
     {
         $tag->withTrashed()->find($id)->update($request->except('_token'));
-        return back()->withInput()->with('message', '修改成功！');
+        return back()->withInput();
     }
     public function destroy(Tag $tag,$id){
         $tag->find($id)->delete();
-        return redirect('admin/tag/index')->with('message', '删除成功！');
+        return redirect('admin/tag/index');
     }
     public function restore(Tag $tag,$id){
         $tag->onlyTrashed()->find($id)->restore();
-        return redirect('admin/tag/index')->with('message', '恢复成功！');
+        return redirect('admin/tag/index');
     }
     public function forceDelete(Tag $tag,$id){
         $tag->onlyTrashed()->find($id)->forceDelete();
 
-        return redirect('admin/tag/index')->with('message', '彻底删除成功！');
+        return redirect('admin/tag/index');
     }
 }

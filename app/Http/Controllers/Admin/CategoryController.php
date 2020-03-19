@@ -57,7 +57,7 @@ class CategoryController extends Controller
     {
         $category->fill($request->except('_token'));
         $category->save();
-        return redirect('admin/category/index')->with('message', '添加成功！');
+        return redirect('admin/category/index');
     }
 
     public function edit($id, Category $category)
@@ -69,19 +69,19 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category,$id)
     {
         $category->withTrashed()->find($id)->update($request->except('_token'));
-        return back()->withInput()->with('message', '修改成功！');
+        return back()->withInput();
     }
     public function destroy(Category $category,$id){
         $category->find($id)->delete();
-        return redirect('admin/category/index')->with('message', '删除成功！');
+        return redirect('admin/category/index');
     }
     public function restore(Category $category,$id){
         $category->onlyTrashed()->find($id)->restore();
-        return redirect('admin/category/index')->with('message', '恢复成功！');
+        return redirect('admin/category/index');
     }
     public function forceDelete(Category $category,$id){
         $category->onlyTrashed()->find($id)->forceDelete();
 
-        return redirect('admin/category/index')->with('message', '彻底删除成功！');
+        return redirect('admin/category/index');
     }
 }

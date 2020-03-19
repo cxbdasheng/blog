@@ -6,7 +6,7 @@ use App\Models\ArticleTag;
 use Markdown;
 use Str;
 
-class ArticleObserver
+class ArticleObserver extends BaseObserver
 {
     public function saving($article)
     {
@@ -46,8 +46,10 @@ class ArticleObserver
         // 删除文章后同步删除关联表 article_tags 中的数据
         if ($article->isForceDeleting()) {
             ArticleTag::onlyTrashed()->where('article_id', $article->id)->forceDelete();
+            push_success('彻底删除成功！');
         } else {
             ArticleTag::where('article_id', $article->id)->delete();
+            push_success('删除成功！');
         }
     }
 
@@ -55,5 +57,6 @@ class ArticleObserver
     {
         // 恢复删除的文章后同步恢复关联表 article_tags 中的数据
         ArticleTag::onlyTrashed()->where('article_id', $article->id)->restore();
+        push_success('恢复成功！');
     }
 }

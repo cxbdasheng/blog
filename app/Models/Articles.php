@@ -15,7 +15,7 @@ use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 class Articles extends Model
 {
     use SoftDeletes;
-//    use Cachable;
+    use Cachable;
     protected $table = 'articles';
     protected $fillable = ['category_id', 'title', 'slug', 'author','markdown','html','description','keywords','cover','views','is_top'];
     public function categories()

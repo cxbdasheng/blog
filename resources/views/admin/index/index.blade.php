@@ -53,7 +53,7 @@
                                     <a href="javascript:;" class="easy-backlog-body">
                                         <h3>文章数</h3>
                                         <p>
-                                            <cite>66</cite></p>
+                                            <cite>{{$articleCount}}</cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md3">

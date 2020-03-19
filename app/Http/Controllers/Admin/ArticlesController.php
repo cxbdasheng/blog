@@ -73,7 +73,7 @@ class ArticlesController extends Controller
             $articleTag = new ArticleTag();
             $articleTag->addTagIds($res->id, $tags);
         }
-        return redirect('admin/articles/index')->with('message', '添加成功！');
+        return redirect('admin/articles/index');
     }
 
     public function edit($id, Articles $articles){
@@ -94,21 +94,21 @@ class ArticlesController extends Controller
             ArticleTag::where('article_id', $request->id)->forceDelete();
             $articleTagMode->addTagIds($request->id, $tags);
         }
-        return back()->withInput()->with('message', '修改成功！');
+        return back()->withInput();
     }
     public function destroy(Articles $articles,$id){
         $articles->find($id)->delete();
-        return redirect('admin/articles/index')->with('message', '删除成功！');
+        return redirect('admin/articles/index');
     }
     public function forceDelete($id, Articles $articles)
     {
         $articles->onlyTrashed()->find($id)->forceDelete();
-        return redirect('admin/articles/index')->with('message', '删除成功！');
+        return redirect('admin/articles/index');
     }
     public function restore(Articles $articles,$id)
     {
         $articles->onlyTrashed()->find($id)->restore();
-        return redirect('admin/articles/index')->with('message', '恢复成功！');
+        return redirect('admin/articles/index');
     }
 
 }

@@ -28,3 +28,19 @@ if (!function_exists('generate_english_slug')) {
         return Str::slug($content);
     }
 }
+if (!function_exists('push_error')) {
+    function push_error($message = '失败', $flash = true)
+    {
+        if ($flash) {
+            Session::flash('error', $message);
+        }
+    }
+}
+if (!function_exists('push_success')) {
+    function push_success($message = '成功', $flash = true)
+    {
+        if ($flash) {
+            Session::flash('success', $message);
+        }
+    }
+}
