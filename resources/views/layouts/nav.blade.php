@@ -10,7 +10,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a url="{{ url('admin/articles/index') }}">
+                        <a url="{{ url('admin/articles/index') }}" code="">
                             <i class="layui-icon"></i>
                             <cite> 文章列表</cite>
                         </a>
@@ -26,15 +26,15 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a class="active" url="{{ url('admin/category/index') }}">
-                            <i class="layui-icon"></i>
-                            <cite> 分类管理</cite>
-                        </a>
-                    </li>
-                    <li>
                         <a>
                             <i class="layui-icon"></i>
                             <cite> 权限管理</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="active" url="{{ url('admin/category/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 分类管理</cite>
                         </a>
                     </li>
 

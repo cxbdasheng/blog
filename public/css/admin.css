@@ -31,6 +31,10 @@ a {
   background-color: #182b5c;
 }
 
+.logo i {
+  display: none;
+}
+
 .layui-easy .top-nav .logo a {
   color: #fff;
   line-height: 60px;
@@ -356,5 +360,57 @@ select:focus {
 
 .login-title {
   text-align: center;
+}
+
+.page-content-bg {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  /* bottom: 42px; */
+  bottom: 0px;
+  left: 220px;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  z-index: 10000;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .layui-nav .to-index {
+    display: none;
+  }
+
+  .layui-easy .left-nav {
+    width: 60px;
+  }
+
+  .left-nav #nav li a i {
+    font-size: 18px;
+  }
+
+  .left-nav cite,
+  .left-nav .nav_right {
+    display: none;
+  }
+
+  .layui-easy .layui-body {
+    left: 60px;
+  }
+
+  #page-panel {
+    left: 60px;
+  }
+
+  .logo {
+    width: 60px;
+  }
+
+  .logo span {
+    display: none;
+  }
+
+  .logo i {
+    display: block;
+  }
 }
 

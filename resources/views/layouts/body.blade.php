@@ -3,13 +3,13 @@
     <body class="layui-easy layui-layout-body" style="overflow: auto;">
     <div class="top-nav ">
         <div class="logo">
-            <a href="{{route('admin.index')}}">easy-blog
+            <a href="{{route('admin.index')}}"><i class="layui-icon layui-icon-home left-nav-li" lay-tips="首页" style="display: none"></i> <span>{{ env('APP_NAME', '博客')}}</span>
             </a>
         </div>
         <div class="left_open">
             <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
         </div>
-        <div class="left_open">您好，欢迎使用浩通科技CMS管理系统</div>
+        <div class="left_open">您好，欢迎使用{{ env('APP_NAME', '博客')}}后台管理系统</div>
         <ul class="layui-nav right" lay-filter="">
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="layui-icon layui-icon-username">admin</i><span
@@ -29,6 +29,7 @@
     </div>
     @include('layouts.nav')
     @yield('content')
+    <div class="page-content-bg" style="display: none;"></div>
     </body>
 @endsection
 @section('js')
