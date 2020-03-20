@@ -26,12 +26,6 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a>
-                            <i class="layui-icon"></i>
-                            <cite> 权限管理</cite>
-                        </a>
-                    </li>
-                    <li>
                         <a class="active" url="{{ url('admin/category/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 分类管理</cite>

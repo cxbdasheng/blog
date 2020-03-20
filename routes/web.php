@@ -39,7 +39,6 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     Route::prefix('index')->group(function () {
         // 后台首页
         Route::get('index', 'IndexController@index')->name('admin.index');
-        Route::get('test', 'IndexController@test')->name('admin.test');
     });
     // 分类管理
     Route::prefix('category')->group(function () {
@@ -80,4 +79,38 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('forceDelete/{id}', 'ArticlesController@forceDelete');
         Route::post('upload_image', 'ArticlesController@uploadImage');
     });
+});
+
+// Home 模块
+Route::namespace('Home')->name('home.')->group(function () {
+    // 首页
+    Route::get('/', 'IndexController@index')->name('index');
+//    // 分类
+//    Route::get('category/{category}/{slug?}', 'IndexController@category')->name('category');
+//    // 标签
+//    Route::get('tag/{tag}/{slug?}', 'IndexController@tag')->name('tag');
+//    // 随言碎语
+//    Route::get('note', 'IndexController@note')->name('note');
+//    // 开源项目
+//    Route::get('git', 'IndexController@git')->name('git');
+//    // 文章详情
+//    Route::get('article/{article}/{slug?}', 'IndexController@article')->name('article');
+//    // 检测是否登录
+//    Route::get('checkLogin', 'IndexController@checkLogin')->name('checkLogin');
+//    // 搜索文章
+//    Route::get('search', 'IndexController@search')->name('search');
+//    // feed
+//    Route::get('feed', 'IndexController@feed')->name('feed');
+//    // 推荐博客
+//    Route::prefix('site')->name('site.')->group(function () {
+//        Route::get('/', 'SiteController@index')->name('index');
+//        Route::post('store', 'SiteController@store')->middleware('auth.socialite', 'clean.xss')->name('store');
+//    });
+//    Route::middleware('auth.socialite')->group(function () {
+//        Route::post('comment', 'IndexController@comment')->name('comment.store');
+//        Route::prefix('like')->name('like.')->group(function () {
+//            Route::post('store', 'LikeController@store')->name('store');
+//            Route::delete('destroy', 'LikeController@destroy')->name('destroy');
+//        });
+//    });
 });
