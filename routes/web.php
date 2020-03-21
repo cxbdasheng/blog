@@ -85,7 +85,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
 Route::namespace('Home')->name('home.')->group(function () {
     // 首页
     Route::get('/', 'IndexController@index')->name('index');
-//    // 分类
+    // 分类
 //    Route::get('category/{category}/{slug?}', 'IndexController@category')->name('category');
 //    // 标签
 //    Route::get('tag/{tag}/{slug?}', 'IndexController@tag')->name('tag');
@@ -94,7 +94,7 @@ Route::namespace('Home')->name('home.')->group(function () {
 //    // 开源项目
 //    Route::get('git', 'IndexController@git')->name('git');
 //    // 文章详情
-//    Route::get('article/{article}/{slug?}', 'IndexController@article')->name('article');
+    Route::get('article/{articles}', 'IndexController@article')->name('article');
 //    // 检测是否登录
 //    Route::get('checkLogin', 'IndexController@checkLogin')->name('checkLogin');
 //    // 搜索文章

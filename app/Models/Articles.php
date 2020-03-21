@@ -11,7 +11,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-
+use App\Models\Tag;
 class Articles extends Model
 {
     use SoftDeletes;
@@ -21,6 +21,10 @@ class Articles extends Model
     public function categories()
     {
         return $this->belongsTo(Category::class,'category_id');
+    }
+    public function tags()
+    {
+            return $this->belongsToMany(Tag::class, 'article_tags','article_id','tag_id');
     }
 
 }

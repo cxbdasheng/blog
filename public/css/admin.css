@@ -414,3 +414,9 @@ select:focus {
   }
 }
 
+.editormd-dialog-container select {
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+

@@ -143,16 +143,12 @@
                     }
                 });
             });
-            // You can custom @link base url.
             editormd.urls.atLinkBase = "https://github.com/";
-
             testEditor = editormd("editor", {
                 autoFocus : false,
                 width     : "100%",
                 height    : 720,
                 toc       : true,
-                //atLink    : false,    // disable @link
-                //emailLink : false,    // disable email address auto link
                 todoList  : true,
                 placeholder: "请输入内容",
                 toolbarAutoFixed: false,
