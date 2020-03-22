@@ -29,7 +29,7 @@
         </div>
         <div class="layui-col-md11">
             @if($data->id)
-                <form action="{{url('admin/articles/update',$data->id)}}" method="POST" class="layui-form "
+                <form action="{{url('article',$data->id)}}" method="POST" class="layui-form "
                       accept-charset="UTF-8">
                     <input type="hidden" name="_method" value="PUT">
                     @else
@@ -93,7 +93,7 @@
                             <div class="layui-form-item layui-form-text">
                                 <label class="layui-form-label">描述</label>
                                 <div class="layui-input-block">
-                                    <textarea name="description" placeholder="请输入内容" class="layui-textarea">{{old('description',$data->description)}}</textarea>
+                                    <textarea name="description" placeholder="请输入内容" class="layui-textarea"  maxlength="100">{{old('description',$data->description)}}</textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item layui-form-text">

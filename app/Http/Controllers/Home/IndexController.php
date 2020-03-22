@@ -6,18 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Articles;
 use App\Models\Category;
+use App\Models\Tag;
 use Cache;
 class IndexController extends Controller
 {
     public function index()
     {
+        $type="index";
         // 获取文章列表数据
         $articles = Articles::select(
             'id', 'category_id', 'title',
             'slug', 'author', 'description',
             'cover', 'is_top', 'created_at'
         )->orderBy('created_at', 'desc')->with(['categories', 'tags'])->paginate(10);
-        $assign=['articles'=>$articles];
+        $assign=['articles'=>$articles,'type'=>$type];
         return view('home.index',$assign);
     }
 
@@ -31,5 +33,33 @@ class IndexController extends Controller
         }
         $assign=compact('articles');
         return view('home.article',$assign);
+    }
+
+    public function category(Category $category,Request $request){
+        $type="category";
+        $articles = $category->articles()
+            ->orderBy('created_at', 'desc')
+            ->with('tags')
+            ->paginate(10);
+        $assign=['articles'=>$articles,'type'=>$type];
+        return view('home.index',$assign);
+    }
+
+    public function tag(Tag $tag,Request $request)
+    {
+        $type="tag";
+        // 获取标签下的文章
+        $articles = $tag->articles()->orderBy('created_at', 'desc')
+            ->with(['categories', 'tags'])
+            ->paginate(10);
+        $assign=['articles'=>$articles,'type'=>$type];
+        return view('home.index',$assign);
+    }
+    public function more(Request $request){
+
+    }
+    public function search(Request $request){
+        $assign=['articles'=>[],'type'=>[]];
+        return view('home.index',$assign);
     }
 }

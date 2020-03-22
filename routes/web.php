@@ -86,9 +86,9 @@ Route::namespace('Home')->name('home.')->group(function () {
     // 首页
     Route::get('/', 'IndexController@index')->name('index');
     // 分类
-//    Route::get('category/{category}/{slug?}', 'IndexController@category')->name('category');
+    Route::get('category/{category}/{slug?}', 'IndexController@category')->name('category');
 //    // 标签
-//    Route::get('tag/{tag}/{slug?}', 'IndexController@tag')->name('tag');
+    Route::get('tag/{tag}/{slug?}', 'IndexController@tag')->name('tag');
 //    // 随言碎语
 //    Route::get('note', 'IndexController@note')->name('note');
 //    // 开源项目
@@ -98,7 +98,7 @@ Route::namespace('Home')->name('home.')->group(function () {
 //    // 检测是否登录
 //    Route::get('checkLogin', 'IndexController@checkLogin')->name('checkLogin');
 //    // 搜索文章
-//    Route::get('search', 'IndexController@search')->name('search');
+    Route::get('search', 'IndexController@search')->name('search');
 //    // feed
 //    Route::get('feed', 'IndexController@feed')->name('feed');
 //    // 推荐博客

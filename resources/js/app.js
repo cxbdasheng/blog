@@ -30,3 +30,48 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$(function(){
+    // 回顶部
+    $(window).scroll(function(){
+        if($(this).scrollTop() > 200){
+            $('.return').fadeIn(300);
+        }else{
+            $('.return').fadeOut(300);
+        }
+    });
+    $('.returntop').click(function(){
+        $('html ,body').animate({scrollTop: 0}, 300);
+        return false;
+    });
+    // 移动端导航
+    $("#check-nav").click(function(){
+        var display=$('.left-nav').css("display");
+
+        if (display=="none") {
+            $('.left-nav').show(300);
+            $("#check-nav").removeClass("icon-zhedie");
+            $("#check-nav").addClass("icon-zhedie1");
+        }else{
+            $('.left-nav').hide(400);
+            $("#check-nav").removeClass("icon-zhedie1");
+            $("#check-nav").addClass("icon-zhedie");
+        };
+    });
+    $('.mp').click(function(){
+        $('.left-nav').hide(400);
+        $("#check-nav").removeClass("icon-zhedie1");
+        $("#check-nav").addClass("icon-zhedie");
+    });
+    var pathname=window.location.pathname;
+    $(".top-nav-right a").each(function(){
+        var href=$(this).attr('href');
+        if (pathname==href)$(this).addClass('active');
+    });
+    if (pathname=="/")$('#nav').eq(0).addClass('active');
+    $(".mnav a").each(function(){
+        var href=$(this).attr('href');
+        if (pathname==href)$(this).addClass('selected');
+    });
+    if (pathname=="/")$('#left-nav').eq(0).addClass('selected');
+});

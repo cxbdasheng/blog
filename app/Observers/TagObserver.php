@@ -14,7 +14,7 @@ class TagObserver extends BaseObserver
     public function deleting($tag)
     {
         if (ArticleTag::where('tag_id', $tag->id)->count() !== 0) {
-            push_error('请先删除分类');
+            push_error('请先删除标签下的文章！');
             return false;
         }
     }

@@ -34,7 +34,7 @@ class ArticlesController extends Controller
         $tag = Tag::all();
         $data->tags=[];
         $assign = compact('category', 'tag', 'data');
-        return view('admin/articles/create_and_edit', $assign);
+        return view('admin.articles.create_and_edit', $assign);
     }
 
     public function uploadImage(Request $request, ImageUploadHandler $uploader)

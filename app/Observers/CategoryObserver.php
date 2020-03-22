@@ -14,7 +14,7 @@ class CategoryObserver extends BaseObserver
     public function deleting($category)
     {
         if (Articles::where('category_id', $category->id)->count() !== 0) {
-            push_error('请先删除分类');
+            push_error('请先删除分类下的文章！');
             return false;
         }
     }

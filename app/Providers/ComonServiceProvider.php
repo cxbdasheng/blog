@@ -21,10 +21,15 @@ class ComonServiceProvider extends ServiceProvider
             $assign = compact('articleCount');
             $view->with($assign);
         });
+        //前台Home页面基础数据
         view()->composer('layouts/home',function ($view){
             $category = Category::select('id', 'name', 'slug')->orderBy('sort')->get();
             $tag = Tag::has('articles')->withCount('articles')->get();
-            $assign = compact('category', 'tag');
+            $topArticle = Articles::select('id', 'title', 'slug','description','views','cover','created_at')
+                ->where('is_top', 1)
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $assign = compact('category', 'tag','topArticle');
             $view->with($assign);
         });
     }
