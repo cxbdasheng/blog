@@ -87,7 +87,7 @@
     @yield('body')
     <div class="main-right">
         <form action="{{route('home.search')}}" class="search clear" method="get">
-            <input type="text" class="s-content" name="search" placeholder="个人博客">
+            <input type="text" class="s-content" name="wd" value="@if(!empty($wd)){{$wd}}@endif" placeholder="">
             <button class="s-btn">搜索</button>
         </form>
         <div class="panel">

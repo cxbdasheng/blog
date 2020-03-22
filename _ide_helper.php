@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 7.0.8 on 2020-03-10 11:41:55.
+ * Generated for Laravel 7.2.2 on 2020-03-22 13:25:13.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -701,6 +701,19 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Add new prefix to list of absolute path prefixes.
+         *
+         * @param string $prefix
+         * @return \Illuminate\Foundation\Application 
+         * @static 
+         */ 
+        public static function addAbsoluteCachePathPrefix($prefix)
+        {
+                        /** @var \Illuminate\Foundation\Application $instance */
+                        return $instance->addAbsoluteCachePathPrefix($prefix);
+        }
+        
+        /**
          * Determine if the application is currently down for maintenance.
          *
          * @return bool 
@@ -1228,9 +1241,10 @@ namespace Illuminate\Support\Facades {
          * Call the given Closure / class@method and inject its dependencies.
          *
          * @param callable|string $callback
-         * @param array $parameters
+         * @param \Illuminate\Container\array<string,  mixed>  $parameters
          * @param string|null $defaultMethod
          * @return mixed 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function call($callback, $parameters = [], $defaultMethod = null)
@@ -1260,6 +1274,7 @@ namespace Illuminate\Support\Facades {
          * @param string $abstract
          * @param array $parameters
          * @return mixed 
+         * @throws \Illuminate\Contracts\Container\BindingResolutionException
          * @static 
          */ 
         public static function makeWith($abstract, $parameters = [])
@@ -1288,7 +1303,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Instantiate a concrete instance of the given type.
          *
-         * @param string $concrete
+         * @param \Closure|string $concrete
          * @return mixed 
          * @throws \Illuminate\Contracts\Container\BindingResolutionException
          * @static 
@@ -1832,7 +1847,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the currently authenticated user.
          *
-         * @return \App\Models\User|null
+         * @return \App\Models\User|null 
          * @static 
          */ 
         public static function user()
@@ -1844,7 +1859,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the ID for the currently authenticated user.
          *
-         * @return int|null 
+         * @return int|string|null 
          * @static 
          */ 
         public static function id()
@@ -1870,7 +1885,7 @@ namespace Illuminate\Support\Facades {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param mixed $id
-         * @return \App\User|false 
+         * @return \App\Models\User|false 
          * @static 
          */ 
         public static function onceUsingId($id)
@@ -1939,7 +1954,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \App\User|false 
+         * @return \App\Models\User|false 
          * @static 
          */ 
         public static function loginUsingId($id, $remember = false)
@@ -2018,7 +2033,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\Models\User
+         * @return \App\Models\User 
          * @static 
          */ 
         public static function getLastAttempted()
@@ -2129,7 +2144,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Return the currently cached user.
          *
-         * @return \App\Models\User|null
+         * @return \App\Models\User|null 
          * @static 
          */ 
         public static function getUser()
@@ -2179,7 +2194,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if current user is authenticated. If not, throw an exception.
          *
-         * @return \App\Models\User
+         * @return \App\Models\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */ 
@@ -2652,6 +2667,18 @@ namespace Illuminate\Support\Facades {
                         /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
                         return $instance->compileEndComponentClass();
         }
+        
+        /**
+         * Sanitize the given component attribute value.
+         *
+         * @param mixed $value
+         * @return mixed 
+         * @static 
+         */ 
+        public static function sanitizeComponentAttribute($value)
+        {
+                        return \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($value);
+        }
          
     }
 
@@ -2848,7 +2875,6 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $command
          * @return mixed 
-         * @throws \RuntimeException
          * @static 
          */ 
         public static function dispatchToQueue($command)
@@ -8645,6 +8671,104 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
+     */ 
+    class Redis {
+        
+        /**
+         * Get a Redis connection by name.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Redis\Connections\Connection 
+         * @static 
+         */ 
+        public static function connection($name = null)
+        {
+                        /** @var \Illuminate\Redis\RedisManager $instance */
+                        return $instance->connection($name);
+        }
+        
+        /**
+         * Resolve the given connection by name.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Redis\Connections\Connection 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function resolve($name = null)
+        {
+                        /** @var \Illuminate\Redis\RedisManager $instance */
+                        return $instance->resolve($name);
+        }
+        
+        /**
+         * Return all of the created connections.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function connections()
+        {
+                        /** @var \Illuminate\Redis\RedisManager $instance */
+                        return $instance->connections();
+        }
+        
+        /**
+         * Enable the firing of Redis command events.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function enableEvents()
+        {
+                        /** @var \Illuminate\Redis\RedisManager $instance */
+                        $instance->enableEvents();
+        }
+        
+        /**
+         * Disable the firing of Redis command events.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function disableEvents()
+        {
+                        /** @var \Illuminate\Redis\RedisManager $instance */
+                        $instance->disableEvents();
+        }
+        
+        /**
+         * Set the default driver.
+         *
+         * @param string $driver
+         * @return void 
+         * @static 
+         */ 
+        public static function setDriver($driver)
+        {
+                        /** @var \Illuminate\Redis\RedisManager $instance */
+                        $instance->setDriver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return \Illuminate\Redis\RedisManager 
+         * @static 
+         */ 
+        public static function extend($driver, $callback)
+        {
+                        /** @var \Illuminate\Redis\RedisManager $instance */
+                        return $instance->extend($driver, $callback);
+        }
+         
+    }
+
+    /**
+     * 
+     *
      * @method static mixed filterFiles(mixed $files)
      * @see \Illuminate\Http\Request
      */ 
@@ -10957,7 +11081,7 @@ namespace Illuminate\Support\Facades {
          * Create a new redirect response to a named route.
          *
          * @param string $route
-         * @param array $parameters
+         * @param mixed $parameters
          * @param int $status
          * @param array $headers
          * @return \Illuminate\Http\RedirectResponse 
@@ -10973,7 +11097,7 @@ namespace Illuminate\Support\Facades {
          * Create a new redirect response to a controller action.
          *
          * @param string $action
-         * @param array $parameters
+         * @param mixed $parameters
          * @param int $status
          * @param array $headers
          * @return \Illuminate\Http\RedirectResponse 
@@ -11944,6 +12068,46 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function auth($options = [])
+        {
+                        return \Illuminate\Routing\Router::auth($options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function resetPassword()
+        {
+                        return \Illuminate\Routing\Router::resetPassword();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+                        return \Illuminate\Routing\Router::confirmPassword();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function emailVerification()
+        {
+                        return \Illuminate\Routing\Router::emailVerification();
         }
          
     }
@@ -15092,6 +15256,1233 @@ namespace Illuminate\Support {
  
 }
 
+namespace GrahamCampbell\Markdown\Facades { 
+
+    /**
+     * This is the markdown facade class.
+     *
+     * @author Graham Campbell <graham@alt-three.com>
+     */ 
+    class Markdown {
+        
+        /**
+         * Converts CommonMark to HTML.
+         *
+         * @param string $commonMark
+         * @throws \RuntimeException
+         * @return string 
+         * @api 
+         * @static 
+         */ 
+        public static function convertToHtml($commonMark)
+        {
+                        /** @var \League\CommonMark\Converter $instance */
+                        return $instance->convertToHtml($commonMark);
+        }
+         
+    }
+ 
+}
+
+namespace Jenssegers\Agent\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Agent {
+        
+        /**
+         * Get all detection rules. These rules include the additional
+         * platforms and browsers and utilities.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDetectionRulesExtended()
+        {
+                        return \Jenssegers\Agent\Agent::getDetectionRulesExtended();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRules()
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getRules();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Jenssegers\Agent\CrawlerDetect 
+         * @static 
+         */ 
+        public static function getCrawlerDetect()
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getCrawlerDetect();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getBrowsers()
+        {
+                        return \Jenssegers\Agent\Agent::getBrowsers();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getOperatingSystems()
+        {
+                        return \Jenssegers\Agent\Agent::getOperatingSystems();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getPlatforms()
+        {
+                        return \Jenssegers\Agent\Agent::getPlatforms();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getDesktopDevices()
+        {
+                        return \Jenssegers\Agent\Agent::getDesktopDevices();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getProperties()
+        {
+                        return \Jenssegers\Agent\Agent::getProperties();
+        }
+        
+        /**
+         * Get accept languages.
+         *
+         * @param string $acceptLanguage
+         * @return array 
+         * @static 
+         */ 
+        public static function languages($acceptLanguage = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->languages($acceptLanguage);
+        }
+        
+        /**
+         * Get the browser name.
+         *
+         * @param string|null $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function browser($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->browser($userAgent);
+        }
+        
+        /**
+         * Get the platform name.
+         *
+         * @param string|null $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function platform($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->platform($userAgent);
+        }
+        
+        /**
+         * Get the device name.
+         *
+         * @param string|null $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function device($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->device($userAgent);
+        }
+        
+        /**
+         * Check if the device is a desktop computer.
+         *
+         * @param string|null $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isDesktop($userAgent = null, $httpHeaders = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isDesktop($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Check if the device is a mobile phone.
+         *
+         * @param string|null $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isPhone($userAgent = null, $httpHeaders = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isPhone($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Get the robot name.
+         *
+         * @param string|null $userAgent
+         * @return string|bool 
+         * @static 
+         */ 
+        public static function robot($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->robot($userAgent);
+        }
+        
+        /**
+         * Check if device is a robot.
+         *
+         * @param string|null $userAgent
+         * @return bool 
+         * @static 
+         */ 
+        public static function isRobot($userAgent = null)
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isRobot($userAgent);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function version($propertyName, $type = 'text')
+        {
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->version($propertyName, $type);
+        }
+        
+        /**
+         * Get the current script version.
+         * 
+         * This is useful for the demo.php file,
+         * so people can check on what version they are testing
+         * for mobile devices.
+         *
+         * @return string The version number in semantic version format.
+         * @static 
+         */ 
+        public static function getScriptVersion()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getScriptVersion();
+        }
+        
+        /**
+         * Set the HTTP Headers. Must be PHP-flavored. This method will reset existing headers.
+         *
+         * @param array $httpHeaders The headers to set. If null, then using PHP's _SERVER to extract
+         *                           the headers. The default null is left for backwards compatibility.
+         * @static 
+         */ 
+        public static function setHttpHeaders($httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setHttpHeaders($httpHeaders);
+        }
+        
+        /**
+         * Retrieves the HTTP headers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getHttpHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getHttpHeaders();
+        }
+        
+        /**
+         * Retrieves a particular header. If it doesn't exist, no exception/error is caused.
+         * 
+         * Simply null is returned.
+         *
+         * @param string $header The name of the header to retrieve. Can be HTTP compliant such as
+         *                       "User-Agent" or "X-Device-User-Agent" or can be php-esque with the
+         *                       all-caps, HTTP_ prefixed, underscore seperated awesomeness.
+         * @return string|null The value of the header.
+         * @static 
+         */ 
+        public static function getHttpHeader($header)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getHttpHeader($header);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMobileHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMobileHeaders();
+        }
+        
+        /**
+         * Get all possible HTTP headers that
+         * can contain the User-Agent string.
+         *
+         * @return array List of HTTP headers.
+         * @static 
+         */ 
+        public static function getUaHttpHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getUaHttpHeaders();
+        }
+        
+        /**
+         * Set CloudFront headers
+         * http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html#header-caching-web-device
+         *
+         * @param array $cfHeaders List of HTTP headers
+         * @return boolean If there were CloudFront headers to be set
+         * @static 
+         */ 
+        public static function setCfHeaders($cfHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setCfHeaders($cfHeaders);
+        }
+        
+        /**
+         * Retrieves the cloudfront headers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCfHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getCfHeaders();
+        }
+        
+        /**
+         * Set the User-Agent to be used.
+         *
+         * @param string $userAgent The user agent string to set.
+         * @return string|null 
+         * @static 
+         */ 
+        public static function setUserAgent($userAgent = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setUserAgent($userAgent);
+        }
+        
+        /**
+         * Retrieve the User-Agent.
+         *
+         * @return string|null The user agent if it's set.
+         * @static 
+         */ 
+        public static function getUserAgent()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getUserAgent();
+        }
+        
+        /**
+         * Set the detection type. Must be one of self::DETECTION_TYPE_MOBILE or
+         * self::DETECTION_TYPE_EXTENDED. Otherwise, nothing is set.
+         *
+         * @deprecated since version 2.6.9
+         * @param string $type The type. Must be a self::DETECTION_TYPE_* constant. The default
+         *                     parameter is null which will default to self::DETECTION_TYPE_MOBILE.
+         * @static 
+         */ 
+        public static function setDetectionType($type = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->setDetectionType($type);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMatchingRegex()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMatchingRegex();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMatchesArray()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMatchesArray();
+        }
+        
+        /**
+         * Retrieve the list of known phone devices.
+         *
+         * @return array List of phone devices.
+         * @static 
+         */ 
+        public static function getPhoneDevices()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getPhoneDevices();
+        }
+        
+        /**
+         * Retrieve the list of known tablet devices.
+         *
+         * @return array List of tablet devices.
+         * @static 
+         */ 
+        public static function getTabletDevices()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getTabletDevices();
+        }
+        
+        /**
+         * Alias for getBrowsers() method.
+         *
+         * @return array List of user agents.
+         * @static 
+         */ 
+        public static function getUserAgents()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getUserAgents();
+        }
+        
+        /**
+         * Retrieve the list of known utilities.
+         *
+         * @return array List of utilities.
+         * @static 
+         */ 
+        public static function getUtilities()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getUtilities();
+        }
+        
+        /**
+         * Method gets the mobile detection rules. This method is used for the magic methods $detect->is*().
+         *
+         * @deprecated since version 2.6.9
+         * @return array All the rules (but not extended).
+         * @static 
+         */ 
+        public static function getMobileDetectionRules()
+        {
+            //Method inherited from \Mobile_Detect            
+                        return \Jenssegers\Agent\Agent::getMobileDetectionRules();
+        }
+        
+        /**
+         * Method gets the mobile detection rules + utilities.
+         * 
+         * The reason this is separate is because utilities rules
+         * don't necessary imply mobile. This method is used inside
+         * the new $detect->is('stuff') method.
+         *
+         * @deprecated since version 2.6.9
+         * @return array All the rules + extended.
+         * @static 
+         */ 
+        public static function getMobileDetectionRulesExtended()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->getMobileDetectionRulesExtended();
+        }
+        
+        /**
+         * Check the HTTP headers for signs of mobile.
+         * 
+         * This is the fastest mobile check possible; it's used
+         * inside isMobile() method.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkHttpHeadersForMobile()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->checkHttpHeadersForMobile();
+        }
+        
+        /**
+         * Check if the device is mobile.
+         * 
+         * Returns true if any type of mobile device detected, including special ones
+         *
+         * @param null $userAgent deprecated
+         * @param null $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isMobile($userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isMobile($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Check if the device is a tablet.
+         * 
+         * Return true if any type of tablet device is detected.
+         *
+         * @param string $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isTablet($userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->isTablet($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * This method checks for a certain property in the
+         * userAgent.
+         *
+         * @todo : The httpHeaders part is not yet used.
+         * @param string $key
+         * @param string $userAgent deprecated
+         * @param string $httpHeaders deprecated
+         * @return bool|int|null 
+         * @static 
+         */ 
+        public static function is($key, $userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->is($key, $userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Some detection rules are relative (not standard),
+         * because of the diversity of devices, vendors and
+         * their conventions in representing the User-Agent or
+         * the HTTP headers.
+         * 
+         * This method will be used to check custom regexes against
+         * the User-Agent string.
+         *
+         * @param $regex
+         * @param string $userAgent
+         * @return bool 
+         * @todo : search in the HTTP headers too.
+         * @static 
+         */ 
+        public static function match($regex, $userAgent = null)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->match($regex, $userAgent);
+        }
+        
+        /**
+         * Prepare the version number.
+         *
+         * @todo Remove the error supression from str_replace() call.
+         * @param string $ver The string version, like "2.6.21.2152";
+         * @return float 
+         * @static 
+         */ 
+        public static function prepareVersionNo($ver)
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->prepareVersionNo($ver);
+        }
+        
+        /**
+         * Retrieve the mobile grading, using self::MOBILE_GRADE_* constants.
+         *
+         * @return string One of the self::MOBILE_GRADE_* constants.
+         * @static 
+         */ 
+        public static function mobileGrade()
+        {
+            //Method inherited from \Mobile_Detect            
+                        /** @var \Jenssegers\Agent\Agent $instance */
+                        return $instance->mobileGrade();
+        }
+         
+    }
+ 
+}
+
+namespace Barryvdh\Debugbar { 
+
+    /**
+     * 
+     *
+     * @method static void alert(string $message)
+     * @method static void critical(string $message)
+     * @method static void debug(string $message)
+     * @method static void emergency(string $message)
+     * @method static void error(string $message)
+     * @method static void info(string $message)
+     * @method static void log(string $message)
+     * @method static void notice(string $message)
+     * @method static void warning(string $message)
+     * @see \Barryvdh\Debugbar\LaravelDebugbar
+     */ 
+    class Facade {
+        
+        /**
+         * Enable the Debugbar and boot, if not already booted.
+         *
+         * @static 
+         */ 
+        public static function enable()
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->enable();
+        }
+        
+        /**
+         * Boot the debugbar (add collectors, renderer and listener)
+         *
+         * @static 
+         */ 
+        public static function boot()
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->boot();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function shouldCollect($name, $default = false)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->shouldCollect($name, $default);
+        }
+        
+        /**
+         * Adds a data collector
+         *
+         * @param \Barryvdh\Debugbar\DataCollectorInterface $collector
+         * @throws DebugBarException
+         * @return \Barryvdh\Debugbar\LaravelDebugbar 
+         * @static 
+         */ 
+        public static function addCollector($collector)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->addCollector($collector);
+        }
+        
+        /**
+         * Handle silenced errors
+         *
+         * @param $level
+         * @param $message
+         * @param string $file
+         * @param int $line
+         * @param array $context
+         * @throws \ErrorException
+         * @static 
+         */ 
+        public static function handleError($level, $message, $file = '', $line = 0, $context = [])
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->handleError($level, $message, $file, $line, $context);
+        }
+        
+        /**
+         * Starts a measure
+         *
+         * @param string $name Internal name, used to stop the measure
+         * @param string $label Public name
+         * @static 
+         */ 
+        public static function startMeasure($name, $label = null)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->startMeasure($name, $label);
+        }
+        
+        /**
+         * Stops a measure
+         *
+         * @param string $name
+         * @static 
+         */ 
+        public static function stopMeasure($name)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->stopMeasure($name);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @deprecated in favor of addThrowable
+         * @static 
+         */ 
+        public static function addException($e)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->addException($e);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @static 
+         */ 
+        public static function addThrowable($e)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->addThrowable($e);
+        }
+        
+        /**
+         * Returns a JavascriptRenderer for this instance
+         *
+         * @param string $baseUrl
+         * @param string $basePathng
+         * @return \Barryvdh\Debugbar\JavascriptRenderer 
+         * @static 
+         */ 
+        public static function getJavascriptRenderer($baseUrl = null, $basePath = null)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getJavascriptRenderer($baseUrl, $basePath);
+        }
+        
+        /**
+         * Modify the response and inject the debugbar (or data in headers)
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @param \Symfony\Component\HttpFoundation\Response $response
+         * @return \Symfony\Component\HttpFoundation\Response 
+         * @static 
+         */ 
+        public static function modifyResponse($request, $response)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->modifyResponse($request, $response);
+        }
+        
+        /**
+         * Check if the Debugbar is enabled
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function isEnabled()
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->isEnabled();
+        }
+        
+        /**
+         * Collects the data from the collectors
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function collect()
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->collect();
+        }
+        
+        /**
+         * Injects the web debug toolbar into the given Response.
+         *
+         * @param \Symfony\Component\HttpFoundation\Response $response A Response instance
+         * Based on https://github.com/symfony/WebProfilerBundle/blob/master/EventListener/WebDebugToolbarListener.php
+         * @static 
+         */ 
+        public static function injectDebugbar($response)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->injectDebugbar($response);
+        }
+        
+        /**
+         * Disable the Debugbar
+         *
+         * @static 
+         */ 
+        public static function disable()
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->disable();
+        }
+        
+        /**
+         * Adds a measure
+         *
+         * @param string $label
+         * @param float $start
+         * @param float $end
+         * @static 
+         */ 
+        public static function addMeasure($label, $start, $end)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->addMeasure($label, $start, $end);
+        }
+        
+        /**
+         * Utility function to measure the execution of a Closure
+         *
+         * @param string $label
+         * @param \Closure $closure
+         * @static 
+         */ 
+        public static function measure($label, $closure)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->measure($label, $closure);
+        }
+        
+        /**
+         * Collect data in a CLI request
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function collectConsole()
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->collectConsole();
+        }
+        
+        /**
+         * Adds a message to the MessagesCollector
+         * 
+         * A message can be anything from an object to a string
+         *
+         * @param mixed $message
+         * @param string $label
+         * @static 
+         */ 
+        public static function addMessage($message, $label = 'info')
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->addMessage($message, $label);
+        }
+        
+        /**
+         * Checks if a data collector has been added
+         *
+         * @param string $name
+         * @return boolean 
+         * @static 
+         */ 
+        public static function hasCollector($name)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->hasCollector($name);
+        }
+        
+        /**
+         * Returns a data collector
+         *
+         * @param string $name
+         * @return \DebugBar\DataCollectorInterface 
+         * @throws DebugBarException
+         * @static 
+         */ 
+        public static function getCollector($name)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getCollector($name);
+        }
+        
+        /**
+         * Returns an array of all data collectors
+         *
+         * @return \DebugBar\array[DataCollectorInterface] 
+         * @static 
+         */ 
+        public static function getCollectors()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getCollectors();
+        }
+        
+        /**
+         * Sets the request id generator
+         *
+         * @param \DebugBar\RequestIdGeneratorInterface $generator
+         * @return \Barryvdh\Debugbar\LaravelDebugbar 
+         * @static 
+         */ 
+        public static function setRequestIdGenerator($generator)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->setRequestIdGenerator($generator);
+        }
+        
+        /**
+         * 
+         *
+         * @return \DebugBar\RequestIdGeneratorInterface 
+         * @static 
+         */ 
+        public static function getRequestIdGenerator()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getRequestIdGenerator();
+        }
+        
+        /**
+         * Returns the id of the current request
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getCurrentRequestId()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getCurrentRequestId();
+        }
+        
+        /**
+         * Sets the storage backend to use to store the collected data
+         *
+         * @param \DebugBar\StorageInterface $storage
+         * @return \Barryvdh\Debugbar\LaravelDebugbar 
+         * @static 
+         */ 
+        public static function setStorage($storage = null)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->setStorage($storage);
+        }
+        
+        /**
+         * 
+         *
+         * @return \DebugBar\StorageInterface 
+         * @static 
+         */ 
+        public static function getStorage()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getStorage();
+        }
+        
+        /**
+         * Checks if the data will be persisted
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function isDataPersisted()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->isDataPersisted();
+        }
+        
+        /**
+         * Sets the HTTP driver
+         *
+         * @param \DebugBar\HttpDriverInterface $driver
+         * @return \Barryvdh\Debugbar\LaravelDebugbar 
+         * @static 
+         */ 
+        public static function setHttpDriver($driver)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->setHttpDriver($driver);
+        }
+        
+        /**
+         * Returns the HTTP driver
+         * 
+         * If no http driver where defined, a PhpHttpDriver is automatically created
+         *
+         * @return \DebugBar\HttpDriverInterface 
+         * @static 
+         */ 
+        public static function getHttpDriver()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getHttpDriver();
+        }
+        
+        /**
+         * Returns collected data
+         * 
+         * Will collect the data if none have been collected yet
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getData()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getData();
+        }
+        
+        /**
+         * Returns an array of HTTP headers containing the data
+         *
+         * @param string $headerName
+         * @param integer $maxHeaderLength
+         * @return array 
+         * @static 
+         */ 
+        public static function getDataAsHeaders($headerName = 'phpdebugbar', $maxHeaderLength = 4096, $maxTotalHeaderLength = 250000)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getDataAsHeaders($headerName, $maxHeaderLength, $maxTotalHeaderLength);
+        }
+        
+        /**
+         * Sends the data through the HTTP headers
+         *
+         * @param bool $useOpenHandler
+         * @param string $headerName
+         * @param integer $maxHeaderLength
+         * @return \Barryvdh\Debugbar\LaravelDebugbar 
+         * @static 
+         */ 
+        public static function sendDataInHeaders($useOpenHandler = null, $headerName = 'phpdebugbar', $maxHeaderLength = 4096)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->sendDataInHeaders($useOpenHandler, $headerName, $maxHeaderLength);
+        }
+        
+        /**
+         * Stacks the data in the session for later rendering
+         *
+         * @static 
+         */ 
+        public static function stackData()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->stackData();
+        }
+        
+        /**
+         * Checks if there is stacked data in the session
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function hasStackedData()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->hasStackedData();
+        }
+        
+        /**
+         * Returns the data stacked in the session
+         *
+         * @param boolean $delete Whether to delete the data in the session
+         * @return array 
+         * @static 
+         */ 
+        public static function getStackedData($delete = true)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getStackedData($delete);
+        }
+        
+        /**
+         * Sets the key to use in the $_SESSION array
+         *
+         * @param string $ns
+         * @return \Barryvdh\Debugbar\LaravelDebugbar 
+         * @static 
+         */ 
+        public static function setStackDataSessionNamespace($ns)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->setStackDataSessionNamespace($ns);
+        }
+        
+        /**
+         * Returns the key used in the $_SESSION array
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getStackDataSessionNamespace()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getStackDataSessionNamespace();
+        }
+        
+        /**
+         * Sets whether to only use the session to store stacked data even
+         * if a storage is enabled
+         *
+         * @param boolean $enabled
+         * @return \Barryvdh\Debugbar\LaravelDebugbar 
+         * @static 
+         */ 
+        public static function setStackAlwaysUseSessionStorage($enabled = true)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->setStackAlwaysUseSessionStorage($enabled);
+        }
+        
+        /**
+         * Checks if the session is always used to store stacked data
+         * even if a storage is enabled
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function isStackAlwaysUseSessionStorage()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->isStackAlwaysUseSessionStorage();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function offsetSet($key, $value)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->offsetSet($key, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function offsetGet($key)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->offsetGet($key);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function offsetExists($key)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->offsetExists($key);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function offsetUnset($key)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->offsetUnset($key);
+        }
+         
+    }
+ 
+}
+
 namespace Facade\Ignition\Facades { 
 
     /**
@@ -15351,6 +16742,46 @@ namespace Facade\Ignition\Facades {
         {
                         /** @var \Facade\FlareClient\Flare $instance */
                         return $instance->group($groupName, $properties);
+        }
+         
+    }
+ 
+}
+
+namespace Mews\Purifier\Facades { 
+
+    /**
+     * 
+     *
+     * @see \Mews\Purifier
+     */ 
+    class Purifier {
+        
+        /**
+         * 
+         *
+         * @param $dirty
+         * @param null $config
+         * @param \Closure|null $postCreateConfigHook
+         * @return mixed 
+         * @static 
+         */ 
+        public static function clean($dirty, $config = null, $postCreateConfigHook = null)
+        {
+                        /** @var \Mews\Purifier\Purifier $instance */
+                        return $instance->clean($dirty, $config, $postCreateConfigHook);
+        }
+        
+        /**
+         * Get HTMLPurifier instance.
+         *
+         * @return \HTMLPurifier 
+         * @static 
+         */ 
+        public static function getInstance()
+        {
+                        /** @var \Mews\Purifier\Purifier $instance */
+                        return $instance->getInstance();
         }
          
     }
@@ -18246,6 +19677,8 @@ namespace  {
 
     class Redirect extends \Illuminate\Support\Facades\Redirect {}
 
+    class Redis extends \Illuminate\Support\Facades\Redis {}
+
     class Request extends \Illuminate\Support\Facades\Request {}
 
     class Response extends \Illuminate\Support\Facades\Response {}
@@ -18266,7 +19699,15 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
+    class Markdown extends \GrahamCampbell\Markdown\Facades\Markdown {}
+
+    class Agent extends \Jenssegers\Agent\Facades\Agent {}
+
+    class Debugbar extends \Barryvdh\Debugbar\Facade {}
+
     class Flare extends \Facade\Ignition\Facades\Flare {}
+
+    class Purifier extends \Mews\Purifier\Facades\Purifier {}
  
 }
 
