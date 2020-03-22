@@ -19,8 +19,8 @@
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input id="boxCode" name="name" placeholder="分类名" class="layui-input" type="text"
-                                       value="{{old('name')}}" maxlength="50"></div>
+                                <input id="boxCode" name="name" placeholder="标签名" class="layui-input" type="text"
+                                       value="{{$name}}" maxlength="50"></div>
                         </div>
                         <div class="layui-inline">
                             <a href="{{url('admin/tag/index')}}" class="layui-btn">重置</a>

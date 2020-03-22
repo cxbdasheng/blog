@@ -23,9 +23,9 @@ class ArticlesController extends Controller
     public function index(Request $request, Articles $articles)
     {
         $limit = $request->limit ? $request->limit : 20;
-        $name = $request->name ? $request->name : '';
-        $data = $articles->with('categories')->withTrashed()->where('title', 'like', '%' . $name . '%')->orderBy('id', 'desc')->paginate($limit);
-        return view('admin.articles.index', compact('data'));
+        $title = $request->title ? $request->title : '';
+        $data = $articles->with('categories')->withTrashed()->where('title', 'like', '%' . $title . '%')->orderBy('id', 'desc')->paginate($limit);
+        return view('admin.articles.index', compact('data','title'));
     }
 
     public function create(Articles $data)

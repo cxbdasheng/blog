@@ -14,7 +14,7 @@ class CategoryController extends Controller
         $limit = $request->limit ? $request->limit : 20;
         $name = $request->name ? $request->name : '';
         $data = $category->withTrashed()->where('name', 'like', '%' . $name . '%')->orderBy('id', 'desc')->paginate($limit);
-        return view('admin/category/index', compact('data'));
+        return view('admin/category/index', compact('data','name'));
     }
     public function sort(Request $request, Category $query)
     {

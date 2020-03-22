@@ -20,7 +20,7 @@
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <input id="boxCode" name="title" placeholder="标题" class="layui-input" type="text"
-                                       value="{{old('title')}}" maxlength="50"></div>
+                                       value="{{$title}}" maxlength="50"></div>
                         </div>
                         <div class="layui-inline">
                             <a href="{{url('admin/articles/index')}}" class="layui-btn">重置</a>
@@ -46,7 +46,7 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$items->categories->name}}</td>
-                        <td>{{$items->title}}</td>
+                        <td><a target="_blank" href="/article/{{$items->id}}">{{$items->title}}</a></td>
                         <td>{{$items->views}}</td>
                         <td>
                             @if (is_null($items->deleted_at))
