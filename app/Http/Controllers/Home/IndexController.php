@@ -9,6 +9,7 @@ use App\Models\Articles;
 use App\Models\Category;
 use App\Models\Tag;
 use Cache;
+use App\Http\Resources\ArticlesResources;
 
 class IndexController extends Controller
 {
@@ -21,7 +22,8 @@ class IndexController extends Controller
             'slug', 'author', 'description',
             'cover', 'is_top', 'created_at'
         )->orderBy('created_at', 'desc')->with(['categories', 'tags'])->paginate(10);
-        $assign = ['articles' => $articles, 'type' => $type];
+        $index = $articles->min('id');
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => 0, 'index' => $index];
         return view('home.index', $assign);
     }
 
@@ -45,7 +47,8 @@ class IndexController extends Controller
             ->orderBy('created_at', 'desc')
             ->with('tags')
             ->paginate(10);
-        $assign = ['articles' => $articles, 'type' => $type];
+        $index = $articles->min('id');
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $category->id, 'index' => $index];
         return view('home.index', $assign);
     }
 
@@ -56,13 +59,74 @@ class IndexController extends Controller
         $articles = $tag->articles()->orderBy('created_at', 'desc')
             ->with(['categories', 'tags'])
             ->paginate(10);
-        $assign = ['articles' => $articles, 'type' => $type];
+        $index = $articles->min('id');
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $tag->id, 'index' => $index];
         return view('home.index', $assign);
     }
 
-    public function more(Request $request)
+    public function more(Request $request, Articles $articles,Tag $tag)
     {
-
+        if (!isset($request->index) || !isset($request->type_id)){
+            $data = [
+                'success' => 0,
+                'message' => "请求失败！",
+                'data' => [
+                ],
+            ];
+            return response()->json($data);
+        }
+        switch ($request->type) {
+            case 'category':
+                $articles = $articles->select(
+                    'id', 'category_id', 'title',
+                    'slug', 'author', 'description',
+                    'cover', 'is_top', 'created_at'
+                )->with('categories')
+                    ->where('category_id', $request->type_id)
+                    ->orderBy('created_at', 'desc')
+                    ->where('id', '<', $request->index)
+                    ->limit(5)
+                    ->get();
+                break;
+            case 'search':
+                $wd = clean($request->input('type_id'));
+                $id = $articles->searchArticleGetId($wd);
+                $articles = $articles->select(
+                    'id', 'category_id', 'title',
+                    'author', 'description', 'cover',
+                    'is_top', 'created_at'
+                )->whereIn('id', $id)
+                    ->orderBy('created_at', 'desc')
+                    ->with(['categories', 'tags'])
+                    ->where('id', '<', $request->index)
+                    ->limit(5)->get();
+                break;
+            case 'tag':
+                $articles = $tag->find($request->type_id)->articles()->orderBy('created_at', 'desc')
+                    ->with(['categories', 'tags'])->where('id', '<', $request->index)->limit(5)->get();
+                break;
+            default:
+                $articles = $articles->select(
+                    'id', 'category_id', 'title',
+                    'slug', 'author', 'description',
+                    'cover', 'is_top', 'created_at'
+                )->with('categories')
+                    ->orderBy('created_at', 'desc')
+                    ->where('id', '<', $request->index)->limit(5)
+                    ->get();
+                break;
+        }
+        $data = [
+            'success' => 1,
+            'message' => "请求成功！",
+            'data' => [
+                'index' => $articles->min('id') ? $articles->min('id') : $request->index,
+                'type' => $request->type,
+                'type_id' => $request->type_id,
+                'item' => $articles
+            ],
+        ];
+        return response()->json($data);
     }
 
     public function search(Request $request, Articles $articles)
@@ -81,10 +145,13 @@ class IndexController extends Controller
             ->orderBy('created_at', 'desc')
             ->with(['categories', 'tags'])
             ->paginate(10);
+        $index = $data->min('id');
         $assign = [
             'articles' => $data,
-            'type' => 'search'
+            'type' => 'search',
+            'type_id' => 0,
+            'index' => $index
         ];
-        return view('home.index', $assign)->with('wd',$wd);
+        return view('home.index', $assign)->with('wd', $wd);
     }
 }

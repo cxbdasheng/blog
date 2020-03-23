@@ -409,6 +409,11 @@
 @section('js')
 <script type="text/javascript" src="{{asset('js/prism.js')}}"></script>
     <script>
-        $('.new-cont pre').addClass("line-numbers").css("white-space", "pre-wrap");
+            var _pre=$('.new-cont pre');
+            if (_pre.length>0){
+                _pre.addClass("line-numbers").css("white-space", "pre-wrap");
+            }else{
+                _pre.addClass("line-numbers");
+            }
     </script>
 @endsection

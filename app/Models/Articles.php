@@ -17,10 +17,13 @@ class Articles extends Model
 {
     use SoftDeletes,Cachable;
     protected $table = 'articles';
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H-i:s',
+    ];
     protected $fillable = ['category_id', 'title', 'slug', 'author','markdown','html','description','keywords','cover','views','is_top'];
     public function categories()
     {
-        return $this->belongsTo(Category::class,'category_id');
+        return $this->belongsTo(Category::class,'category_id','id');
     }
     public function tags()
     {

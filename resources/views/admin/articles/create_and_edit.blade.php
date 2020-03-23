@@ -29,8 +29,7 @@
         </div>
         <div class="layui-col-md11">
             @if($data->id)
-                <form action="{{url('article',$data->id)}}" method="POST" class="layui-form "
-                      accept-charset="UTF-8">
+                <form action="{{url('admin/articles/update',$data->id)}}" method="POST" class="layui-form" accept-charset="UTF-8">
                     <input type="hidden" name="_method" value="PUT">
                     @else
                         <form action="{{url('admin/articles/store')}}" method="post" class="layui-form ">

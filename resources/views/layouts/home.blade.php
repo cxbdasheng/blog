@@ -87,7 +87,7 @@
     @yield('body')
     <div class="main-right">
         <form action="{{route('home.search')}}" class="search clear" method="get">
-            <input type="text" class="s-content" name="wd" value="@if(!empty($wd)){{$wd}}@endif" placeholder="">
+            <input type="text" class="s-content" id="search" name="wd" value="@if(!empty($wd)){{$wd}}@endif" placeholder="">
             <button class="s-btn">搜索</button>
         </form>
         <div class="panel">
@@ -122,11 +122,14 @@
             </h2>
             <ul>
                 @foreach($topArticle as $item)
-                    <li><a href="/article/{{$item->id}}" alt="{{$item->title}}" title="{{$item->title}}"><span class="c-img">
+                    <li><a href="/article/{{$item->id}}" alt="{{$item->title}}" title="{{$item->title}}"><span
+                                    class="c-img">
                                 <img src="{{$item->cover}}" alt="{{$item->title}}" title="{{$item->title}}"></span>
                             <div class="c-right"><span class="text">{{$item->title}}</span>
-                                <div class="c-foot"><span class="muted">{{$item->created_at}}</span><span class="muted-r"><span
-                                                class="ds-thread-count" data-replace="1">{{$item->views}} 次阅读</span></span></div>
+                                <div class="c-foot"><span class="muted">{{$item->created_at}}</span><span
+                                            class="muted-r"><span
+                                                class="ds-thread-count" data-replace="1">{{$item->views}}
+                                            次阅读</span></span></div>
                             </div>
                         </a></li>
                 @endforeach
@@ -166,6 +169,7 @@
     </div>
 </div>
 </body>
+<script src="{{mix('js/app.js')}}"></script>
+<script src="{{ asset('js/jquery.lazyload.js') }}"></script>
 @yield('js')
-<script src="{{ mix('js/app.js') }}"></script>
 </html>
