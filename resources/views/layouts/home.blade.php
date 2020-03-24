@@ -148,8 +148,9 @@
                 友情链接
             </h2>
             <ul>
-                <li><a target="_blank" href="https://www.baidu.com">百度</a></li>
-                <li><a target="_blank" href="http://www.php.cn">php中文网</a></li>
+                @foreach($links as $item)
+                <li><a target="_blank" href="{{$item->url}}">{{$item->name}}</a></li>
+                @endforeach
             </ul>
         </div>
     </div>

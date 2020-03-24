@@ -13,6 +13,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Navs;
+use App\Models\Link;
 class ComonServiceProvider extends ServiceProvider
 {
     public function boot()
@@ -33,7 +34,10 @@ class ComonServiceProvider extends ServiceProvider
             $navs = Navs::select('name', 'url')
                 ->orderBy('sort')
                 ->get();
-            $assign = compact('category', 'tag','topArticle','navs');
+            $links = Link::select('name', 'url')
+                ->orderBy('sort')
+                ->get();
+            $assign = compact('category', 'tag','topArticle','navs','links');
             $view->with($assign);
         });
     }
