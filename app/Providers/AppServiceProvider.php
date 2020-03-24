@@ -29,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Tag::observe(\App\Observers\TagObserver::class);
         \App\Models\Articles::observe(\App\Observers\ArticleObserver::class);
         \App\Models\Navs::observe(\App\Observers\NavsObserver::class);
+        \App\Models\Link::observe(\App\Observers\LinkObserver::class);
     }
 }

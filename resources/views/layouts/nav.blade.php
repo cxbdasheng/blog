@@ -48,7 +48,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a class="active" url="{{ url('admin/tag/index') }}">
+                        <a  url="{{ url('admin/tag/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 标签管理</cite>
                         </a>
@@ -70,6 +70,14 @@
                     <cite>友情链接</cite>
                     <i class="iconfont nav_right"></i>
                 </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a  url="{{ url('admin/link/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 外链管理</cite>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="javascript:;">

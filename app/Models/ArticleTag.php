@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 class ArticleTag extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,Cachable;
     protected $table = 'article_tags';
     protected $fillable = ['article_id', 'tag_id'];
     public function addTagIds($article_id, $tag_ids)

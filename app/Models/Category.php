@@ -9,8 +9,7 @@ use Str;
 
 class Category extends Model
 {
-    use SoftDeletes;
-    use Cachable;
+    use SoftDeletes,Cachable;
     protected $table = 'categories';
     protected $fillable = ['name', 'keywords', 'description', 'sort'];
 

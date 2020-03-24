@@ -3,14 +3,14 @@
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
-                <a href="{{url('admin/nav/index')}}">
-                    <li>导航管理</li>
+                <a href="{{url('admin/link/index')}}">
+                    <li>链接管理</li>
                 </a>
                 <a href="javascript:void(0)">
                     @if($data->id)
-                        <li class="layui-this">修改导航</li>
+                        <li class="layui-this">修改链接</li>
                     @else
-                        <li class="layui-this">新增导航</li>
+                        <li class="layui-this">新增链接</li>
                     @endif
                 </a>
             </ul>
@@ -18,15 +18,15 @@
         </div>
         <div class="layui-col-md5  mt-10">
             @if($data->id)
-                <form action="{{url('admin/nav/update',$data->id)}}" method="POST" class="layui-form "
+                <form action="{{url('admin/link/update',$data->id)}}" method="POST" class="layui-form "
                       accept-charset="UTF-8">
                     <input type="hidden" name="_method" value="PUT">
                     @else
-                        <form action="{{url('admin/nav/store')}}" method="post" class="layui-form ">
+                        <form action="{{url('admin/link/store')}}" method="post" class="layui-form ">
                             @endif
                             @csrf
                             <div class="layui-form-item">
-                                <label class="layui-form-label">导航名</label>
+                                <label class="layui-form-label">链接名称</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="name" required lay-verify="required" placeholder=""
                                            autocomplete="off" class="layui-input" value="{{old('name',$data->name)}}">
@@ -35,7 +35,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">URL</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="url" required lay-verify="required" placeholder=""
+                                    <input type="text" name="url" required lay-verify="required|url" placeholder=""
                                            autocomplete="off" class="layui-input"
                                            value="{{old('URL',$data->url)}}">
                                 </div>
@@ -43,7 +43,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">排序</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="sort" maxlength="3" required lay-verify="required|number" placeholder=""
+                                    <input type="text" maxlength="3" name="sort" required lay-verify="required|number" placeholder=""
                                            autocomplete="off" class="layui-input" value="{{old('sort',$data->sort)}}">
                                 </div>
                             </div>

@@ -11,9 +11,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-class Navs extends Model
+class Link extends Model
 {
-    use SoftDeletes,Cachable;
-    protected $table = 'navs';
+    use SoftDeletes;
+    protected $table = 'links';
     protected $fillable = ['name', 'url', 'sort'];
 }

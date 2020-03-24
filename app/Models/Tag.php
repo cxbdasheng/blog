@@ -8,8 +8,7 @@ use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use App\Models\Articles;
 class Tag extends Model
 {
-    use SoftDeletes;
-    use Cachable;
+    use SoftDeletes,Cachable;
     protected $table = 'tag';
     protected $fillable = ['name', 'keywords', 'description'];
 
