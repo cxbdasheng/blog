@@ -12,6 +12,7 @@ use App\Models\Articles;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Navs;
 class ComonServiceProvider extends ServiceProvider
 {
     public function boot()
@@ -29,7 +30,10 @@ class ComonServiceProvider extends ServiceProvider
                 ->where('is_top', 1)
                 ->orderBy('created_at', 'desc')
                 ->get();
-            $assign = compact('category', 'tag','topArticle');
+            $navs = Navs::select('name', 'url')
+                ->orderBy('sort')
+                ->get();
+            $assign = compact('category', 'tag','topArticle','navs');
             $view->with($assign);
         });
     }

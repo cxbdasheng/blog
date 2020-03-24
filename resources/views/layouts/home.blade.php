@@ -55,6 +55,9 @@
                     @foreach($category as $item)
                         <li><a id="nav" href="/category/{{$item->id}}">{{ $item->name}}</a></li>
                     @endforeach
+                    @foreach($navs as $item)
+                        <li><a id="nav" href="{{$item->url}}">{{ $item->name}}</a></li>
+                    @endforeach
                 </ul>
                 <div class="clear"></div>
             </div>
@@ -77,6 +80,9 @@
             <a id="left-nav" href="/">首页</a>
             @foreach($category as $item)
                 <li><a id="nav" href="/category/{{$item->id}}">{{ $item->name}}</a></li>
+            @endforeach
+            @foreach($navs as $item)
+                <li><a id="nav" href="{{$item->url}}">{{ $item->name}}</a></li>
             @endforeach
         </div>
         <div class="mp"></div>
