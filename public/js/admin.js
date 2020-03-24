@@ -37122,6 +37122,7 @@ $(document).ready(function () {
         $(this).parent().parent().parent().addClass('open');
         $(this).parent().parent().parent().children('a').find('.nav_right').html('&#xe6a6;');
         $(this).parent().parent().parent().children('.sub-menu').stop(true, true).slideDown();
+        console.log($(this));
         $(this).addClass('active');
       }
     }

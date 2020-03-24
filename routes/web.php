@@ -53,7 +53,6 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     Route::prefix('tag')->group(function () {
         // 分类列表
         Route::get('index', 'TagController@index');
-        Route::post('sort', 'TagController@sort');
         Route::get('create', 'TagController@create');
         Route::get('edit/{id}', 'TagController@edit');
         Route::put('update/{id}', 'TagController@update');
@@ -74,6 +73,26 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('restore/{id}', 'ArticlesController@restore');
         Route::get('forceDelete/{id}', 'ArticlesController@forceDelete');
         Route::post('upload_image', 'ArticlesController@uploadImage');
+    });
+
+    // 菜单管理
+    Route::prefix('nav')->group(function () {
+        // 菜单列表
+        Route::get('index', 'NavController@index');
+        // 添加菜单
+        Route::get('create', 'NavController@create');
+        Route::post('store', 'NavController@store');
+        // 编辑菜单
+        Route::get('edit/{id}', 'NavController@edit');
+        Route::put('update/{id}', 'NavController@update');
+        // 排序
+        Route::post('sort', 'NavController@sort');
+        // 删除菜单
+        Route::get('destroy/{id}', 'NavController@destroy');
+        // 恢复删除的菜单
+        Route::get('restore/{id}', 'NavController@restore');
+        // 彻底删除菜单
+        Route::get('forceDelete/{id}', 'NavController@forceDelete');
     });
 });
 

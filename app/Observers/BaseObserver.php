@@ -18,8 +18,10 @@ class BaseObserver
 
     public function updated($model)
     {
-        if(! $model->isDirty('deleted_at')){
+        if($model->isDirty()){
             push_success('更新成功！');
+        }else{
+            push_error('没有任何更新！');
         }
     }
 

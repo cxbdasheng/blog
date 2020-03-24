@@ -28,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Category::observe(\App\Observers\CategoryObserver::class);
         \App\Models\Tag::observe(\App\Observers\TagObserver::class);
         \App\Models\Articles::observe(\App\Observers\ArticleObserver::class);
+        \App\Models\Navs::observe(\App\Observers\NavsObserver::class);
     }
 }

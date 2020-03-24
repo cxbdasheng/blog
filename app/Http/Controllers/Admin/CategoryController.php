@@ -81,7 +81,6 @@ class CategoryController extends Controller
     }
     public function forceDelete(Category $category,$id){
         $category->onlyTrashed()->find($id)->forceDelete();
-
         return redirect('admin/category/index');
     }
 }

@@ -661,7 +661,7 @@ div#last-div ~ div {
 }
 .list-content .reading{
   position: absolute;
-  bottom: 5px;
+  bottom: 15px;
   right: 5px;
   transition: all 0.30s ease-in-out;
   -webkit-transition: all 0.30s ease-in-out;
@@ -1113,6 +1113,9 @@ div#last-div ~ div {
 
 }
 @media screen and (max-width: 560px){
+  .list-content .reading{
+    display: none;
+  }
   .left-titel .name:after {
     content: "";
     width: 74%;

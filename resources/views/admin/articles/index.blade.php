@@ -86,6 +86,7 @@
         layui.use('laypage', function () {
             layer.ready(function () {
                 var laypage = layui.laypage;
+                        @include('shared._error')
                         @include('shared._messages')
                 var name = "{{old('title')}}";
                 //执行一个laypage实例

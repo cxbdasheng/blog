@@ -4,10 +4,10 @@
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
                 <a href="javascript:void(0)">
-                    <li class="layui-this">标签管理</li>
+                    <li class="layui-this">导航管理</li>
                 </a>
-                <a href="{{url('admin/tag/create')}}">
-                    <li class="">新增标签</li>
+                <a href="{{url('admin/nav/create')}}">
+                    <li class="">新增导航</li>
                 </a>
             </ul>
             <div class="layui-tab-content"></div>
@@ -19,11 +19,11 @@
                     <div class="layui-form-item">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input id="boxCode" name="name" placeholder="标签名" class="layui-input" type="text"
+                                <input id="boxCode" name="name" placeholder="导航名" class="layui-input" type="text"
                                        value="{{$name}}" maxlength="50"></div>
                         </div>
                         <div class="layui-inline">
-                            <a href="{{url('admin/tag/index')}}" class="layui-btn">重置</a>
+                            <a href="{{url('admin/nav/index')}}" class="layui-btn">重置</a>
                             <button id="btnSubmit" type="submit" class="layui-btn">查询</button>
                         </div>
                     </div>
@@ -33,9 +33,9 @@
                 <thead>
                 <tr>
                     <th>序号</th>
-                    <th>标签名</th>
-                    <th>关键词</th>
-                    <th>描述</th>
+                    <th width="100">排序</th>
+                    <th>导航名</th>
+                    <th>URL</th>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>
@@ -44,9 +44,10 @@
                 @foreach ($data as $index => $items)
                     <tr>
                         <td>{{$loop->iteration}}</td>
+                        <td><input type="text" value="{{$items->sort}}" maxlength="3" name="{{$items->id}}"
+                                   class="layui-input category-sort"/></td>
                         <td>{{$items->name}}</td>
-                        <td>{{$items->keywords}}</td>
-                        <td>{{$items->description}}</td>
+                        <td>{{$items->url}}</td>
                         <td>
                             @if (is_null($items->deleted_at))
                                 √
@@ -55,15 +56,15 @@
                             @endif
                         </td>
                         <td>
-                            <a class="layui-btn layui-btn-xs" href="{{url('admin/tag/edit/'.$items->id)}}">修改</a>
+                            <a class="layui-btn layui-btn-xs" href="{{url('admin/nav/edit/'.$items->id)}}">修改</a>
                             @if(is_null($items->deleted_at))
                                 <a class="layui-btn layui-btn-xs layui-btn-normal J-baseAjaxTodo"
-                                   href="{{url('admin/tag/destroy/'.$items->id)}}" title="你确定要删除吗？">删除</a>
+                                   href="{{url('admin/nav/destroy/'.$items->id)}}" title="你确定要删除吗？">删除</a>
                             @else
                                 <a class="layui-btn layui-btn-xs layui-btn-warm J-baseAjaxTodo"
-                                   href="{{url('admin/tag/restore/'.$items->id)}}" title="你确定要删除吗？">恢复</a>
+                                   href="{{url('admin/nav/restore/'.$items->id)}}" title="你确定要删除吗？">恢复</a>
                                 <a class="layui-btn layui-btn-xs layui-btn-danger J-baseAjaxTodo"
-                                   href="{{url('admin/tag/forceDelete/'.$items->id)}}" title="你确定要删除吗？">彻底删除</a>
+                                   href="{{url('admin/nav/forceDelete/'.$items->id)}}" title="你确定要删除吗？">彻底删除</a>
                             @endif
                         </td>
                     </tr>
@@ -86,7 +87,7 @@
                 var laypage = layui.laypage;
                         @include('shared._error')
                         @include('shared._messages')
-                var name = "{{old('name')}}";
+                var name = "{{old('title')}}";
                 //执行一个laypage实例
                 laypage.render({
                     elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
@@ -104,6 +105,17 @@
                         }
                     }
                 });
+            });
+        });
+        $(".category-sort").blur(function () {
+            var _this = $(this);
+            var id = _this.attr('name');
+            $.post("{{url('admin/nav/sort')}}", {id: id, sort: _this.val(),}, function (res) {
+                if (res.success == "1") {
+                    layer.msg("修改成功！", {icon: 1});
+                } else {
+                    layer.msg(res.message, {icon: 2});
+                }
             });
         });
         $('a.J-baseAjaxTodo').on("click", function () {

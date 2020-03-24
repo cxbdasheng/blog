@@ -26,12 +26,17 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a class="active" url="{{ url('admin/category/index') }}">
+                        <a  url="{{ url('admin/category/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 分类管理</cite>
                         </a>
                     </li>
-
+                    <li>
+                        <a  url="{{ url('admin/nav/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 导航管理</cite>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>
