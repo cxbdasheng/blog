@@ -5,7 +5,7 @@ namespace App\Observers;
 use App\Models\ArticleTag;
 use Markdown;
 use Str;
-
+use App\Models\Time;
 class ArticleObserver extends BaseObserver
 {
     public function saving($article)
@@ -38,9 +38,12 @@ class ArticleObserver extends BaseObserver
         if (empty($article->cover)) {
             $article->cover = $image_paths[0] ?? config('app.url') .'/uploads/article/default.jpg';
         }
-
     }
-
+    public function created($model)
+    {
+        \DB::table('times')->insert(['content'=>'发表文章 《'.$model->title .'》','type'=>'2','created_at'=>date("Y:m:d H:s:i"),'updated_at'=>date("Y:m:d H:s:i")]);
+        push_success('添加成功！');
+    }
     public function deleted($article)
     {
         // 删除文章后同步删除关联表 article_tags 中的数据

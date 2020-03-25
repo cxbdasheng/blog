@@ -81,11 +81,19 @@
             </li>
             <li>
                 <a href="javascript:;">
-                    <i class="layui-icon layui-icon-dialogue left-nav-li" lay-tips="随言细语"></i>
+                    <i class="layui-icon layui-icon-dialogue left-nav-li" lay-tips="时间轴"></i>
                     <!-- <i class="iconfont">&#xe620;</i> -->
-                    <cite>随言细语</cite>
+                    <cite>时间轴</cite>
                     <i class="iconfont nav_right"></i>
                 </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a  url="{{ url('admin/time/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 时间轴管理</cite>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="javascript:;">

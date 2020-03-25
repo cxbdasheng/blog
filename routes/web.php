@@ -85,7 +85,6 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('forceDelete/{id}', 'ArticlesController@forceDelete');
         Route::post('upload_image', 'ArticlesController@uploadImage');
     });
-
     // 菜单管理
     Route::prefix('nav')->group(function () {
         Route::get('index', 'NavController@index');
@@ -98,6 +97,19 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('restore/{id}', 'NavController@restore');
         Route::get('forceDelete/{id}', 'NavController@forceDelete');
     });
+
+    // 随言碎语管理
+    Route::prefix('time')->group(function () {
+        Route::get('index', 'TimeController@index');
+        Route::get('create', 'TimeController@create');
+        Route::post('store', 'TimeController@store');
+        Route::get('edit/{id}', 'TimeController@edit');
+        Route::put('update/{id}', 'TimeController@update');
+        Route::get('destroy/{id}', 'TimeController@destroy');
+        Route::get('restore/{id}', 'TimeController@restore');
+        Route::get('forceDelete/{id}', 'TimeController@forceDelete');
+    });
+
 });
 
 // Home 模块
@@ -113,8 +125,7 @@ Route::namespace('Home')->name('home.')->group(function () {
     // 文章详情
     Route::get('article/{articles}', 'IndexController@article')->name('article');
     Route::post('articles/more','IndexController@more');
-//    // 随言碎语
-//    Route::get('note', 'IndexController@note')->name('note');
+//    Route::get('time', 'IndexController@time')->name('time');
 //    // 开源项目
 //    Route::get('git', 'IndexController@git')->name('git');
 

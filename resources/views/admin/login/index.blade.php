@@ -18,5 +18,9 @@
     </body>
 @endsection
 @section('js')
-    @include('shared._error')
+    <script>
+        layui.use(['layer', 'form'], function () {
+            @include('shared._error')
+        });
+    </script>
 @endsection
