@@ -373,7 +373,7 @@
     <div class="main-left">
         <div class="text">
             <h1 class="article-title">
-                {!! $articles->title!!}</h1>
+                {{ $articles->title}}</h1>
             <div class="new-info">
                 <ul>
                     <li><i class="iconfont icon-morentouxiang"></i>{{$articles->author}}</li>

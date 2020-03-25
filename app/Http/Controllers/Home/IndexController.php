@@ -10,7 +10,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use Cache;
 use App\Http\Resources\ArticlesResources;
-
+use App\Models\Time;
 class IndexController extends Controller
 {
     public function index()
@@ -153,5 +153,12 @@ class IndexController extends Controller
             'index' => $index
         ];
         return view('home.index', $assign)->with('wd', $wd);
+    }
+    public function time(Time $time){
+        $times=$time->orderBy('id', 'desc')->get();
+        $assign = [
+            'times' => $times,
+        ];
+        return view('home.time',$assign);
     }
 }

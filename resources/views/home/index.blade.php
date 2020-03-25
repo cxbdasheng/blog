@@ -90,13 +90,13 @@
                             }
                             for (var i = 0; i < res.data.item.length; i++) {
                                 var str = '<div class="list-content">\n' +
-                                    '<div class="l"><a href="/article/' + res.data.item[i].id + '" target="_blank" title="' + res.data.item[i].title + '"><img data-original="' + res.data.item[i].cover + '" src="' + res.data.item[i].cover + '" alt="' + res.data.item[i].title + '"></a></div>\n' +
+                                    '<div class="l"><a href="/article/' + res.data.item[i].id + '" target="_blank" title="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"><img data-original="' + res.data.item[i].cover + '" src="' + res.data.item[i].cover + '" alt="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"></a></div>\n' +
                                     '<div class="r">\n' +
                                     '<div class="r-titel">\n' +
-                                    '<a href="/article/' + res.data.item[i].id + '" target="_blank" title="' + res.data.item[i].id + '">' + res.data.item[i].id + '</a>\n' +
+                                    '<a href="/article/' + res.data.item[i].id + '" target="_blank" title="' + res.data.item[i].id + '">' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</a>\n' +
                                     '</div>\n' +
-                                    '<div class="c">'+ res.data.item[i].categories.name +' / '+ res.data.item[i].author  + ' · ' + res.data.item[i].created_at + '</div>\n' +
-                                    '<div class="d">' + res.data.item[i].description + '</div>\n' +
+                                    '<div class="c">'+ res.data.item[i].categories.name.replace(/</g, '&lt;').replace(/>/g, '&gt;') +' / '+ res.data.item[i].author.replace(/</g, '&lt;').replace(/>/g, '&gt;')  + ' · ' + res.data.item[i].created_at + '</div>\n' +
+                                    '<div class="d">' + res.data.item[i].description.replace(/</g, '&lt;').replace(/>/g, '&gt;')+ '</div>\n' +
                                     '</div>\n' +
                                     '<div class="reading"><a href="/article/' + res.data.item[i].id + '">阅读全文</a></div>\n' +
                                     '<div class="clear"></div>\n' +

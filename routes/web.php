@@ -125,7 +125,7 @@ Route::namespace('Home')->name('home.')->group(function () {
     // 文章详情
     Route::get('article/{articles}', 'IndexController@article')->name('article');
     Route::post('articles/more','IndexController@more');
-//    Route::get('time', 'IndexController@time')->name('time');
+    Route::get('time', 'IndexController@time')->name('time');
 //    // 开源项目
 //    Route::get('git', 'IndexController@git')->name('git');
 

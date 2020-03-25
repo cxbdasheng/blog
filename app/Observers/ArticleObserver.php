@@ -22,12 +22,14 @@ class ArticleObserver extends BaseObserver
         if (empty($article->is_top)) {
             $article->is_top = 0;
         }
-
+        // XSS 过滤
+        $article->description = clean($article->description);
         if ($article->isDirty('title') && empty($article->slug)) {
             $article->slug = generate_english_slug($article->title);
         }
         // 转换成html
         $article->html = Markdown::convertToHtml($article->markdown);
+
 //        $image_paths = get_image_paths_from_html($article->html);
 //        foreach ($image_paths as $image_path) {
 //            $image_path = public_path($image_path);
@@ -41,8 +43,17 @@ class ArticleObserver extends BaseObserver
     }
     public function created($model)
     {
-        \DB::table('times')->insert(['content'=>'发表文章 《'.$model->title .'》','type'=>'2','created_at'=>date("Y:m:d H:s:i"),'updated_at'=>date("Y:m:d H:s:i")]);
+        \DB::table('times')->insert(['content'=>'《'.$model->title .'》','article_id'=>$model->id,'type'=>'2','created_at'=>date("Y:m:d H:s:i"),'updated_at'=>date("Y:m:d H:s:i")]);
         push_success('添加成功！');
+    }
+    public function updated($model)
+    {
+        if($model->isDirty()){
+            \DB::table('times')->where('article_id',$model->id)->update(['content'=>'《'.$model->title .'》','updated_at'=>date("Y:m:d H:s:i")]);
+            push_success('更新成功！');
+        }else{
+            push_error('没有任何更新！');
+        }
     }
     public function deleted($article)
     {

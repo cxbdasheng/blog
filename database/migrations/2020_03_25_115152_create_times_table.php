@@ -17,6 +17,7 @@ class CreateTimesTable extends Migration
             $table->increments('id')->comment('主键id');
             $table->text('content')->comment('内容');
             $table->boolean('type')->default(1)->comment('时间戳类型：1文章，2闲言');
+            $table->integer('article_id')->unsigned()->default(0)->comment('文章id');
             $table->timestamps();
             $table->softDeletes();
         });
