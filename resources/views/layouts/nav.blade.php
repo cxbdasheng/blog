@@ -104,9 +104,15 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
+                        <a  url="{{ url('admin/config/seo') }}">
+                            <i class="layui-icon"></i>
+                            <cite> seo</cite>
+                        </a>
+                    </li>
+                    <li>
                         <a  url="{{ url('admin/config/other') }}">
                             <i class="layui-icon"></i>
-                            <cite> 其他设置</cite>
+                            <cite>其他设置</cite>
                         </a>
                     </li>
                 </ul>

@@ -16,49 +16,85 @@
                   class="layui-form">
                 {{ csrf_field() }}
                 <div class="layui-form-item">
-                    <label class="layui-form-label">使用 Slug</label>
+                    <label class="layui-form-label">Logo 类型</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="206" value="true" title="是" @if($config['config.is_slug']=='true')checked @endif >
-                        <input type="radio" name="206" value="false" title="否" @if($config['config.is_slug']=='false') checked @endif >
+                        <input type="radio" name="207" value="text" title="文字" lay-filter="login_type"
+                               @if($config['config.login.type']=='text')checked @endif >
+                        <input type="radio" name="207" value="img" title="图片" lay-filter="login_type"
+                               @if($config['config.login.type']=='img') checked @endif >
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">网站名</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="201" required lay-verify="required" placeholder="" autocomplete="off"
-                               class="layui-input" value="{{ $config['app.name'] }}">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">网站标题</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="202" required lay-verify="required" placeholder="" autocomplete="off"
-                               class="layui-input" value="{{ $config['config.head.title'] }}">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">网站关键字</label>
-                    <div class="layui-input-block">
-                        <textarea name="203" placeholder=""
-                                  class="layui-textarea">{{ $config['config.head.keywords'] }}</textarea>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">网站描述</label>
-                    <div class="layui-input-block">
-                        <textarea name="204" placeholder=""
-                                  class="layui-textarea">{{ $config['config.head.description'] }}</textarea>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">网站图标</label>
-                    <div class="layui-upload-drag" id="test10">
-                        <i class="layui-icon"></i>
-                        <p>点击上传，或将文件拖拽到此处</p>
-                        <div class="@if(empty($config['config.head.icon']))layui-hide @endif " id="uploadDemoView">
-                            <hr>
-                            <img src="{{ $config['config.head.icon'] }}" alt="上传成功后渲染" style="max-width: 196px">
+                <div class="layui-form-item" id="logo">
+                    <label class="layui-form-label">Logo</label>
+                    @if($config['config.login.type']=='text')
+                        <div id="login_value">
+                            <div class="layui-input-block">
+                                <input type="text" name="208" required lay-verify="required" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input" value="{{ $config['config.login.value'] }}">
+                            </div>
                         </div>
+                    @else
+                        <div class="" id="login_value">
+                            <input type="hidden" name="208" lay-verify="required" id="inputimgurl"  placeholder="图片地址"
+                                   value="{{$config['config.login.value']}}" class="layui-input">
+                            <div class="layui-input-inline layui-btn-container" style="width: auto;">
+                                <a class="layui-btn layui-btn-primary" id="editimg">上传图片</a>
+                            </div>
+                            <div class="layui-input-inline">
+                                <div class="layui-upload-list" style="margin:0">
+                                    <img src="{{$config['config.login.value']}}" id="srcimgurl" class="layui-upload-img"
+                                         width="190">
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">ICP 备案</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="210" required lay-verify="required" placeholder="" autocomplete="off"
+                               class="layui-input" value="{{ $config['config.icp'] }}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">默认作者</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="209" required lay-verify="required" placeholder="" autocomplete="off"
+                               class="layui-input" value="{{ $config['config.author'] }}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">水印内容</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="211" required lay-verify="required" placeholder="" autocomplete="off"
+                               class="layui-input" value="{{ $config['config.water.text'] }}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">水印颜色</label>
+                    <div class="layui-input-inline" style="width: 120px;">
+                        <input type="text" name="213" value="{{ $config['config.water.color'] }}" placeholder="请选择颜色"
+                               class="layui-input" id="test-form-input">
+                    </div>
+                    <div class="layui-inline" style="left: -11px;">
+                        <div id="test-form"></div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">第三方统计代码</label>
+                    <div class="layui-input-block">
+                        <textarea name="214" placeholder=""
+                                  class="layui-textarea">{{ $config['config.statistics'] }}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">链接打开方式</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="216" value="_blank" title="新标签"
+                               @if($config['config.link_type']=='_blank')checked @endif >
+                        <input type="radio" name="216" value="_self" title="当前标签"
+                               @if($config['config.link_type']=='_self') checked @endif >
                     </div>
                 </div>
                 <input type="hidden" id="cover" name="205" value="{{ $config['config.head.icon'] }}">
@@ -72,28 +108,61 @@
 @endsection
 @section('js')
     <script>
-        layui.use(['layer', 'form', 'upload'], function () {
+        layui.config({
+            base: '/lib/layui/cropper/' //layui自定义layui组件目录
+        }).use(['form', 'croppers', 'element', 'cropper', 'layer', 'upload', 'colorpicker'], function () {
             var $ = layui.jquery
-                , upload = layui.upload;
+                , form = layui.form
+                , croppers = layui.croppers
+                , layer = layui.layer
+                , upload = layui.upload
+                , colorpicker = layui.colorpicker
+                , element = layui.element;
             @include('shared._error')@include('shared._messages')
-            //拖拽上传
-            upload.render({
-                elem: '#test10'
-                , acceptMime: 'image/*'
-                , exts: 'ico'
-                , size: 1024 * 2
-                , url: '{{url('admin/articles/upload_image')}}'
-                , done: function (res) {
-                    if (res.success==1){
-                        layer.msg('上传成功', {icon: 1});
-                        $(".layui-upload-file").remove();
-                        $("#cover").attr('value', res.url);
-                        layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.url);
-                    } else {
-                        layer.msg('上传失败', {icon: 2});
-                    }
-                }, error: function () {
-                    layer.msg('上传失败', {icon: 2});
+            colorpicker.render({
+                elem: '#test-form'
+                , color: '{{$config['config.water.color']}}'
+                , done: function (color) {
+                    $('#test-form-input').val(color);
+                }
+            });
+
+            form.on('radio(login_type)', function (data) {
+                $('#login_value').remove();
+                if (data.value == 'img') {
+                    var html = '<div class="" id="login_value">\n' +
+                        '<input type="hidden" name="208" lay-verify="required" id="inputimgurl" placeholder="图片地址"\n' +
+                        'value="@if($config['config.login.type']=='img'){{$config['config.login.value']}} @endif" class="layui-input">\n' +
+                        '<div class="layui-input-inline layui-btn-container" style="width: auto;">\n' +
+                        '<a class="layui-btn layui-btn-primary" id="editimg">上传图片</a>\n' +
+                        '</div>\n' +
+                        '<div class="layui-input-inline">\n' +
+                        '<div class="layui-upload-list" style="margin:0">\n' +
+                        '<img src="@if($config['config.login.type']=='img'){{$config['config.login.value']}} @endif" id="srcimgurl" class="layui-upload-img" width="190">\n' +
+                        '</div>\n' +
+                        '</div>\n' +
+                        '</div>';
+
+                } else {
+                    var html = '<div id="login_value">\n' +
+                        '<div class="layui-input-block">\n' +
+                        '<input type="text" name="208" required lay-verify="required" placeholder="" autocomplete="off"\n' +
+                        'class="layui-input" value="@if($config['config.login.type']=='text'){{$config['config.login.value']}} @endif">\n' +
+                        '</div>\n' +
+                        '</div>';
+                }
+                $('#logo').append(html);
+            });
+            croppers.render({
+                elem: '#editimg'
+                , saveW: 350     //保存宽度
+                , saveH: 82
+                , mark: 4.26 / 1    //选取比例
+                , area: '900px'  //弹窗宽度
+                , url: "{{url('admin/articles/upload_image')}}"  //图片上传接口返回和（layui 的upload 模块）返回的JOSN一样
+                , done: function (url) { //上传完毕回调
+                    $("#inputimgurl").val(url);
+                    $("#srcimgurl").attr('src', url);
                 }
             });
         });

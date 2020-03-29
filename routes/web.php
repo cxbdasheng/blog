@@ -112,6 +112,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     // 系统设置
     Route::prefix('config')->group(function () {
         Route::get('other', 'ConfigController@other');
+        Route::get('seo', 'ConfigController@seo');
         Route::post('update', 'ConfigController@update');
     });
 });

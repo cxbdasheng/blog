@@ -7,14 +7,23 @@
  */
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Config;
+
 class ConfigController extends Controller
 {
-    public function other(){
+    public function seo()
+    {
+        return view('admin.config.seo');
+    }
+
+    public function other()
+    {
         return view('admin.config.other');
     }
+
     public function update(Request $request)
     {
         $configs = $request->except('_token');

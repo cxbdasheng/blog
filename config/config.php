@@ -13,5 +13,19 @@ return [
         'description' => '',
         'icon' => ''
     ],
-    'is_slug' => ''
+    'is_slug' => '',
+    'login' => [
+        'type'=>'',
+        'value' => '',
+    ],
+    'author'=>'',
+    'icp'=>'',
+    'water' => [
+        'text'=>'',
+        'size' => '',
+        'color' => '',
+    ],
+    'statistics'=>'',
+    'mate'=>'',
+    'link_type'=>'',
 ];
