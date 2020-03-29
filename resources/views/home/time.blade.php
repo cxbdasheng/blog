@@ -96,7 +96,7 @@
             padding: 8px 12px;
             border-radius: 5px;
             text-align: left;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .time-axis li .direction-l .flag-wrapper {
@@ -183,6 +183,9 @@
             color:#1299da ;
         }
         @media screen and (max-width: 767px) {
+            .time-axis li .flag-wrapper{
+                font-size:12px;
+            }
             .time-axis::before {
                 width: 4px;
                 margin-left: -2px;

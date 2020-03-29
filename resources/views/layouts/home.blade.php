@@ -48,7 +48,13 @@
     <div class="top_2">
         <div class="top-nav">
             <div class="top-nav-left">
-                <a href="/"><img src="/img/logo.png" alt="爱一直在" title="爱一直在"></a>
+                <a href="/">
+                @if(config('config.login.type')=='img')
+                   <img src="{{config('config.login.value')}}" alt="{{ config('config.head.title') }}">
+                @else
+                   <h1>{{config('config.login.value')}}</h1>
+                @endif
+                </a>
             </div>
             <div class="top-nav-right">
                 <ul>
@@ -66,15 +72,15 @@
     </div>
     <div class="min-nav">
         <div class="overlay">
-            <i class="iconfont icon-zhedie"></i>
-        </div>
-        <h1 class="logo"><a href="/"><img src="/img/logo.png" alt=""></a></h1>
-    </div>
-    <div class="min-nav">
-        <div class="overlay">
             <i class="iconfont icon-zhedie" id="check-nav"></i>
         </div>
-        <h1 class="logo"><a href="/"><img src="/img/logo.png" alt=""></a></h1>
+        <h1 class="logo"><a href="/">
+                @if(config('config.login.type')=='img')
+                    <img src="{{config('config.login.value')}}" alt="{{ config('config.head.title') }}">
+                @else
+                    {{config('config.login.value')}}
+                @endif
+            </a></h1>
     </div>
     <div class="left-nav">
         <div class="mnav">
@@ -97,11 +103,11 @@
             <input type="text" class="s-content" id="search" name="wd" value="@if(!empty($wd)){{$wd}}@endif" placeholder="">
             <button class="s-btn">搜索</button>
         </form>
-        <div class="panel">
+        <div class="panel pb10">
             <h2 class="p-titel">
                 标签列表
             </h2>
-            <div class="p-tal">
+            <div class="p-tal" >
                 <ul>
                     @foreach($tag as $item)
                         <li><a href="{{$item->url}}" alt="{{$item->name}}"
@@ -129,7 +135,7 @@
             </h2>
             <ul>
                 @foreach($topArticle as $item)
-                    <li><a href="{{$item->url}}" alt="{{$item->title}}" title="{{$item->title}}"><span
+                    <li><a href="{{$item->url}}" target="{{config('config.link_type')}}" alt="{{$item->title}}" title="{{$item->title}}"><span
                                     class="c-img">
                                 <img src="{{$item->cover}}" alt="{{$item->title}}" title="{{$item->title}}"></span>
                             <div class="c-right"><span class="text">{{$item->title}}</span>
@@ -161,7 +167,7 @@
     <div class="cont">
         <div class="cont-main">
             <p><a href="http://c69p.com">关于c69p</a>|<a href="http://c69p.com/about">关于CXB</a>|<a href="c69p.com/about">版权所有</a>|<a
-                        target="_blank" href="http://www.beian.miit.gov.cn">湘ICP备17009938号</a></p>
+                        target="_blank" href="http://www.beian.miit.gov.cn">{{config('config.icp')}}</a></p>
             <p class="copyright">Copyright © 2017 -
                 <script>
                     document.write(new Date().getFullYear());
@@ -177,6 +183,7 @@
     </div>
 </div>
 </body>
+{!! htmlspecialchars_decode(config('config.statistics')) !!}
 <script src="{{mix('js/app.js')}}"></script>
 <script src="{{ asset('js/jquery.lazyload.js') }}"></script>
 @yield('js')

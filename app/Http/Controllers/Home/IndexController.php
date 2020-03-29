@@ -47,6 +47,11 @@ class IndexController extends Controller
             // 文章点击量+1
             $articles->increment('views');
         }
+        $head = [
+            'title' => config('config.head.title'),
+            'keywords' => config('config.head.keywords'),
+            'description' => config('config.head.description'),
+        ];
         $assign = compact('articles');
         return view('home.article', $assign);
     }

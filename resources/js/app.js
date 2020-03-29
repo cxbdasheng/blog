@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,9 +27,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+// const app = new Vue({
+//     el: '#app',
+// });
 
 $(function(){
     // 回顶部
@@ -74,4 +74,33 @@ $(function(){
         if (pathname==href)$(this).addClass('selected');
     });
     if (pathname=="/")$('#left-nav').eq(0).addClass('selected');
+
+    // 顶部导航吸顶
+    var moun;//定义全局变量
+    $(window).scroll( function() {
+        clearTimeout(moun);
+        if( $(document).scrollTop() > 0 ){
+            moun = setTimeout(function(){
+                $(".top_2").addClass("mounting");
+            },10);
+        }else{
+            moun = setTimeout(function(){
+                $(".top_2").removeClass("mounting");
+            },10);
+        }
+    });
+
+    if( $(document).scrollTop()>0){
+        $(".top_2").addClass("mounting");
+    }else {
+        $(".top_2").removeClass("mounting");
+    }
+    //搜索框光标聚焦边框变色
+    var searchColor = $(".main-right .search input");
+    searchColor.onfocus = function (){
+        $(this).addClass("border-color");
+    };
+    searchColor.onblur = function (){
+        $(this).removeClass("border-color");
+    }
 });

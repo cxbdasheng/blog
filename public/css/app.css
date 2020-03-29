@@ -25,7 +25,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: #000;
+  color: #333;
 }
 
 img {
@@ -1034,6 +1034,54 @@ div#last-div ~ div {
   position: absolute;
   right: 0;
   bottom: 8px;
+}
+
+a:hover {
+  color: #ED502E;
+}
+
+.p-tal ul li a:hover {
+  border-color: #ED502E;
+  background-color: #ED502E;
+  color: #fff;
+}
+
+.p-tal ul li a {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: #666;
+  font-size: 13px;
+  transition: all 0.2s ease 0s;
+}
+
+.list-content .reading a:hover,
+.main-right .search .s-btn:hover,
+.more-button:hover {
+  opacity: 0.85;
+  filter: alpha(opacity=85);
+}
+
+.mounting {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  width: 100%;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease 0s;
+  height: 75px;
+}
+
+.mounting .top-nav {
+  height: 75px;
+  line-height: 75px;
+}
+
+.mounting .top-nav-right li .active {
+  border-top: 4px #f9f9f9 solid;
 }
 
 @media screen and (max-width: 1023px) {
