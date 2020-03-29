@@ -109,7 +109,11 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('restore/{id}', 'TimeController@restore');
         Route::get('forceDelete/{id}', 'TimeController@forceDelete');
     });
-
+    // 系统设置
+    Route::prefix('config')->group(function () {
+        Route::get('other', 'ConfigController@other');
+        Route::post('update', 'ConfigController@update');
+    });
 });
 
 // Home 模块
@@ -123,7 +127,7 @@ Route::namespace('Home')->name('home.')->group(function () {
     // 搜索文章
     Route::get('search', 'IndexController@search')->name('search');
     // 文章详情
-    Route::get('article/{articles}', 'IndexController@article')->name('article');
+    Route::get('article/{articles}/{slug?}', 'IndexController@article')->name('article');
     Route::post('articles/more','IndexController@more');
     Route::get('time', 'IndexController@time')->name('time');
 //    // 开源项目

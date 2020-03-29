@@ -102,6 +102,14 @@
                     <cite>系统设置</cite>
                     <i class="iconfont nav_right"></i>
                 </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a  url="{{ url('admin/config/other') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 其他设置</cite>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

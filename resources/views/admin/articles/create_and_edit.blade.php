@@ -133,10 +133,14 @@
                     , acceptMime: 'image/*'
                     , url: '{{url('admin/articles/upload_image')}}'
                     , done: function (res) {
-                        layer.msg('上传成功', {icon: 1});
-                        $(".layui-upload-file").remove();
-                        $("#cover").attr('value', res.url);
-                        layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.url);
+                        if (res.success==1){
+                            layer.msg('上传成功', {icon: 1});
+                            $(".layui-upload-file").remove();
+                            $("#cover").attr('value', res.url);
+                            layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.url);
+                        } else {
+                            layer.msg('上传失败', {icon: 2});
+                        }
                     }, error: function () {
                         layer.msg('上传失败', {icon: 2});
                     }

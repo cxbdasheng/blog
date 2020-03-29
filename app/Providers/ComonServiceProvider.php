@@ -14,10 +14,31 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Navs;
 use App\Models\Link;
+use App\Models\Config;
+use Exception;
+use Artisan;
 class ComonServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+
+        try {
+            $config = Config::where('id', '>', 200)->pluck('value', 'name');
+        } catch (Exception $exception) {
+            return true;
+        }
+        /**
+         * 如果已经执行了 migrate ；
+         * 当再当执行 db:seed 的时候上面的 try 并不会触发错误
+         * 而是缓存了一个空的 config
+         * 所以此处需要清空缓存并不再向下执行
+         */
+        if ($config->isEmpty()) {
+            Artisan::call('modelCache:clear');
+            return true;
+        }
+        // 动态替换 /config 目录下的配置项
+        config($config->toArray());
         view()->composer(['admin/index/index','layouts/home'], function ($view) {
             $articleCount = Articles::count('id');
             $assign = compact('articleCount');
@@ -38,6 +59,10 @@ class ComonServiceProvider extends ServiceProvider
                 ->orderBy('sort')
                 ->get();
             $assign = compact('category', 'tag','topArticle','navs','links');
+            $view->with($assign);
+        });
+        view()->composer(['admin/config/*'], function ($view) use ($config) {
+            $assign = compact('config');
             $view->with($assign);
         });
     }

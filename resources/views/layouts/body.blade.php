@@ -3,7 +3,7 @@
     <body class="layui-easy layui-layout-body" style="overflow: auto;">
     <div class="top-nav ">
         <div class="logo">
-            <a href="{{route('admin.index')}}"><i class="layui-icon layui-icon-home left-nav-li" lay-tips="首页" style="display: none"></i> <span>{{ env('APP_NAME', '博客')}}</span>
+            <a href="{{route('admin.index')}}"><i class="layui-icon layui-icon-home left-nav-li" lay-tips="首页" style="display: none"></i> <span>{{ config('app.name')}}</span>
             </a>
         </div>
         <div class="left_open">

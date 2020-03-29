@@ -5,11 +5,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title','cxb')</title>
-    <meta name="keywords" content="@yield('keywords','cxb')"/>
-    <meta name="description" content="@yield('description','cxb')"/>
+    <title>@yield('title','陈大剩博客') @if(request()->path() != '/') - {{ config('config.head.title') }} @endif</title>
+    <meta name="keywords" content="@yield('keywords','Cxb,php全栈成长之路,陈大剩博客,php程序员,全栈成长之路')"/>
+    <meta name="description" content="@yield('description','一位正在努力的程序员,记录自己的成长之路！php全栈成长之路,陈大剩博客')"/>
     <meta name="author" content="Cxb,chenDasheng"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ config('config.head.icon') }}" type="image/x-icon">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('ico/iconfont.css') }}" rel="stylesheet">
     <script src="{{asset('lib/layui/jquery.min.js')}}"></script>
@@ -53,7 +54,7 @@
                 <ul>
                     <li><a id="nav" href="/">首页</a></li>
                     @foreach($category as $item)
-                        <li><a id="nav" href="/category/{{$item->id}}">{{ $item->name}}</a></li>
+                        <li><a id="nav" href="{{$item->url}}">{{ $item->name}}</a></li>
                     @endforeach
                     @foreach($navs as $item)
                         <li><a id="nav" href="{{$item->url}}">{{ $item->name}}</a></li>
@@ -79,7 +80,7 @@
         <div class="mnav">
             <a id="left-nav" href="/">首页</a>
             @foreach($category as $item)
-                <li><a id="nav" href="/category/{{$item->id}}">{{ $item->name}}</a></li>
+                <li><a id="nav" href="{{$item->url}}">{{ $item->name}}</a></li>
             @endforeach
             @foreach($navs as $item)
                 <li><a id="nav" href="{{$item->url}}">{{ $item->name}}</a></li>
@@ -103,7 +104,7 @@
             <div class="p-tal">
                 <ul>
                     @foreach($tag as $item)
-                        <li><a href="/tag/{{$item->id}}" alt="{{$item->name}}"
+                        <li><a href="{{$item->url}}" alt="{{$item->name}}"
                                title="{{$item->name}}">{{$item->name}}</a></li>
                     @endforeach
                     <div class="clear"></div>
@@ -128,7 +129,7 @@
             </h2>
             <ul>
                 @foreach($topArticle as $item)
-                    <li><a href="/article/{{$item->id}}" alt="{{$item->title}}" title="{{$item->title}}"><span
+                    <li><a href="{{$item->url}}" alt="{{$item->title}}" title="{{$item->title}}"><span
                                     class="c-img">
                                 <img src="{{$item->cover}}" alt="{{$item->title}}" title="{{$item->title}}"></span>
                             <div class="c-right"><span class="text">{{$item->title}}</span>

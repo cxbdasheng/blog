@@ -31,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Navs::observe(\App\Observers\NavsObserver::class);
         \App\Models\Link::observe(\App\Observers\LinkObserver::class);
         \App\Models\Time::observe(\App\Observers\TimeObserver::class);
+        \App\Models\Config::observe(\App\Observers\ConfigObserver::class);
     }
 }

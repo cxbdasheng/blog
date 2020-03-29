@@ -10,6 +10,6 @@ class TagTableSeeder extends Seeder
      */
     public function run()
     {
-        $replies = factory(\App\Models\Tag::class,100)->create();
+        $replies = factory(\App\Models\Tag::class,5)->create();
     }
 }

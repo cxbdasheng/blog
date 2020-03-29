@@ -10,6 +10,6 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $replies = factory(\App\Models\Category::class,100)->create();
+        $replies = factory(\App\Models\Category::class,5)->create();
     }
 }

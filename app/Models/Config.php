@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * @Author: ChenDasheng
- * @Created: 2020/3/24
- * Time: 21:41
+ * @Created: 2020/3/26
+ * Time: 23:56
  */
 
 namespace App\Models;
@@ -11,9 +11,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-class Link extends Model
+class Config extends Model
 {
-    use SoftDeletes,Cachable;
-    protected $table = 'links';
-    protected $fillable = ['name', 'url', 'sort'];
+    use SoftDeletes;
+    protected $table = 'configs';
+    protected $fillable = ['name', 'value'];
 }

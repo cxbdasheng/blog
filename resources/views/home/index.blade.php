@@ -8,15 +8,15 @@
             <div class="apen">
                 @foreach($articles as $value)
                 <div class="list-content">
-                    <div class="l"><a href="/article/{{$value->id}}"  target="_blank" title="{{$value->title}}"><img class="lazy"  data-original="{{$value->cover}}"  alt="{{$value->title}}"></a></div>
+                    <div class="l"><a href="{{$value->url}}"  target="_blank" title="{{$value->title}}"><img class="lazy"  data-original="{{$value->cover}}"  alt="{{$value->title}}"></a></div>
                     <div class="r">
                         <div class="r-titel">
-                            <a href="/article/{{$value->id}}" target="_blank" title="{{$value->title}}">{{$value->title}}</a>
+                            <a href="{{$value->url}}" target="_blank" title="{{$value->title}}">{{$value->title}}</a>
                         </div>
                         <div class="c">{{$value->categories->name}} / {{$value->author}} · {{$value->created_at}}</div>
                         <div class="d">{{$value->description}}</div>
                     </div>
-                    <div class="reading"><a href="/article/{{$value->id}}">阅读全文</a></div>
+                    <div class="reading"><a href="{{$value->url}}">阅读全文</a></div>
                     <div class="clear"></div>
                 </div>
                 @endforeach
@@ -90,15 +90,15 @@
                             }
                             for (var i = 0; i < res.data.item.length; i++) {
                                 var str = '<div class="list-content">\n' +
-                                    '<div class="l"><a href="/article/' + res.data.item[i].id + '" target="_blank" title="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"><img data-original="' + res.data.item[i].cover + '" src="' + res.data.item[i].cover + '" alt="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"></a></div>\n' +
+                                    '<div class="l"><a href="' + res.data.item[i].url + '" target="_blank" title="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"><img data-original="' + res.data.item[i].cover + '" src="' + res.data.item[i].cover + '" alt="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"></a></div>\n' +
                                     '<div class="r">\n' +
                                     '<div class="r-titel">\n' +
-                                    '<a href="/article/' + res.data.item[i].id + '" target="_blank" title="' + res.data.item[i].id + '">' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</a>\n' +
+                                    '<a href="' + res.data.item[i].url + '" target="_blank" title="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '">' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</a>\n' +
                                     '</div>\n' +
                                     '<div class="c">'+ res.data.item[i].categories.name.replace(/</g, '&lt;').replace(/>/g, '&gt;') +' / '+ res.data.item[i].author.replace(/</g, '&lt;').replace(/>/g, '&gt;')  + ' · ' + res.data.item[i].created_at + '</div>\n' +
                                     '<div class="d">' + res.data.item[i].description.replace(/</g, '&lt;').replace(/>/g, '&gt;')+ '</div>\n' +
                                     '</div>\n' +
-                                    '<div class="reading"><a href="/article/' + res.data.item[i].id + '">阅读全文</a></div>\n' +
+                                    '<div class="reading"><a href="' + res.data.item[i].url + '">阅读全文</a></div>\n' +
                                     '<div class="clear"></div>\n' +
                                     '</div>';
                                 $(".apen").append(str).animate({opacity: 1}, 1500);

@@ -12,13 +12,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use App\Models\Tag;
-use Str;
 class Articles extends Model
 {
     use SoftDeletes,Cachable;
     protected $table = 'articles';
     protected $casts = [
-        'created_at' => 'datetime:Y-m-d H-i:s',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+    ];
+    protected $appends = [
+        'url'
     ];
     protected $fillable = ['category_id', 'title', 'slug', 'author','markdown','html','description','keywords','cover','views','is_top'];
     public function categories()
@@ -34,5 +36,13 @@ class Articles extends Model
             ->orWhere('description', 'like', "%$wd%")
             ->orWhere('markdown', 'like', "%$wd%")
             ->pluck('id');
+    }
+    public function getUrlAttribute()
+    {
+        $parameters = [$this->id];
+        if (config('config.is_slug')=='true') {
+            $parameters[] = $this->slug;
+        }
+        return url('article', $parameters);
     }
 }

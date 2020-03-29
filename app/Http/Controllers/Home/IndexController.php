@@ -150,9 +150,10 @@ class IndexController extends Controller
             'articles' => $data,
             'type' => 'search',
             'type_id' => 0,
-            'index' => $index
+            'index' => $index,
+            'wd' => $wd,
         ];
-        return view('home.index', $assign)->with('wd', $wd);
+        return response()->view('home.index', $assign)->header('X-Robots-Tag', 'noindex');
     }
     public function time(Time $time){
         $times=$time->orderBy('id', 'desc')->get();
