@@ -1,4 +1,7 @@
 @extends('layouts.home')
+@section('title', $head['title'])
+@section('keywords', $head['keywords'])
+@section('description', $head['description'])
 @section('css')
     <style type="text/css">
         .time-line {

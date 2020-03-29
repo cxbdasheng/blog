@@ -13,6 +13,12 @@ use App\Http\Resources\ArticlesResources;
 use App\Models\Time;
 class IndexController extends Controller
 {
+    /**
+     * 首页
+     * @Author: ChenDasheng
+     * @Created: 2020/3/29
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $type = "index";
@@ -23,7 +29,12 @@ class IndexController extends Controller
             'cover', 'is_top', 'created_at'
         )->orderBy('created_at', 'desc')->with(['categories', 'tags'])->paginate(10);
         $index = $articles->min('id');
-        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => 0, 'index' => $index];
+        $head = [
+            'title' => config('config.head.title'),
+            'keywords' => config('config.head.keywords'),
+            'description' => config('config.head.description'),
+        ];
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => 0, 'index' => $index,'head'=>$head];
         return view('home.index', $assign);
     }
 
@@ -48,7 +59,12 @@ class IndexController extends Controller
             ->with('tags')
             ->paginate(10);
         $index = $articles->min('id');
-        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $category->id, 'index' => $index];
+        $head = [
+            'title' => $category->name,
+            'keywords' => $category->keywords,
+            'description' => $category->description,
+        ];
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $category->id, 'index' => $index,'head'=>$head];
         return view('home.index', $assign);
     }
 
@@ -60,7 +76,12 @@ class IndexController extends Controller
             ->with(['categories', 'tags'])
             ->paginate(10);
         $index = $articles->min('id');
-        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $tag->id, 'index' => $index];
+        $head = [
+            'title' => $tag->name,
+            'keywords' => $tag->keywords,
+            'description' => $tag->description,
+        ];
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $tag->id, 'index' => $index,'head'=>$head];
         return view('home.index', $assign);
     }
 
@@ -146,19 +167,31 @@ class IndexController extends Controller
             ->with(['categories', 'tags'])
             ->paginate(10);
         $index = $data->min('id');
+        $head = [
+            'title' => $wd,
+            'keywords' => '',
+            'description' => '',
+        ];
         $assign = [
             'articles' => $data,
             'type' => 'search',
             'type_id' => 0,
             'index' => $index,
             'wd' => $wd,
+            'head' => $head,
         ];
         return response()->view('home.index', $assign)->header('X-Robots-Tag', 'noindex');
     }
     public function time(Time $time){
         $times=$time->orderBy('id', 'desc')->get();
+        $head = [
+            'title' => '时间轴',
+            'keywords' => '时间轴,文章归档,小日记',
+            'description' => '文章归档，时间轴',
+        ];
         $assign = [
             'times' => $times,
+            'head' => $head,
         ];
         return view('home.time',$assign);
     }

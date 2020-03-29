@@ -1,4 +1,7 @@
 @extends('layouts.home')
+@section('title', $head['title'])
+@section('keywords', $head['keywords'])
+@section('description', $head['description'])
 @section('body')
     <div class="main-left">
         <div class="left-titel">
