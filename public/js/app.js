@@ -37116,15 +37116,18 @@ $(function () {
     $("#check-nav").removeClass("icon-zhedie1");
     $("#check-nav").addClass("icon-zhedie");
   });
-  var pathname = window.location.pathname;
+  var pathname = window.location.href;
+  var nav = window.location.pathname;
   $(".top-nav-right a").each(function () {
     var href = $(this).attr('href');
     if (pathname == href) $(this).addClass('active');
+    if (nav == href) $(this).addClass('active');
   });
   if (pathname == "/") $('#nav').eq(0).addClass('active');
   $(".mnav a").each(function () {
     var href = $(this).attr('href');
     if (pathname == href) $(this).addClass('selected');
+    if (nav == href) $(this).addClass('selected');
   });
   if (pathname == "/") $('#left-nav').eq(0).addClass('selected'); // 顶部导航吸顶
 
@@ -37159,13 +37162,7 @@ $(function () {
 
   searchColor.onblur = function () {
     $(this).removeClass("border-color");
-  }; // $('.top-nav-left').mouseover(function () {
-  //     $(this).addClass('onmouseover');
-  // });
-  // $('.top-nav-left').mouseout(function () {
-  //     $(this).removeClass('onmouseover');
-  // });
-
+  };
 
   function clickHandler() {
     $('.top-nav-left').addClass('onmouseover');
@@ -37175,7 +37172,24 @@ $(function () {
     }, 1000);
   }
 
-  $('.top-nav-left').one('mouseover', clickHandler);
+  $('.top-nav-left').one('mouseover', clickHandler); // 固定在顶部
+
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 1000) {
+      var wh = $(window).height();
+      var h = $(this).scrollTop();
+
+      if (wh < 662) {
+        $('.right-fix').css("top", h - 370);
+      } else {
+        $('.right-fix').css("top", h - 140);
+      }
+
+      ;
+    } else {
+      $('.right-fix').css("top", "auto");
+    }
+  });
 });
 
 /***/ }),

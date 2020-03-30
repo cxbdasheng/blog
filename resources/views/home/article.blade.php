@@ -112,7 +112,8 @@
                 <ul>
                     <li><i class="iconfont icon-biaoqian"></i>标签:</li>
                     @foreach($articles->tags as $item)
-                    <li><a href="{{$item->url}}" alt="{{$item->name}}" title="{{$item->name}}">{{$item->name}}</a></li>
+                        <li><a href="{{$item->url}}" alt="{{$item->name}}" title="{{$item->name}}">{{$item->name}}</a>
+                        </li>
                     @endforeach
                 </ul>
                 <div class="clear"></div>
@@ -133,13 +134,22 @@
     </div>
 @endsection
 @section('js')
-<script type="text/javascript" src="{{asset('js/prism.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/prism.js')}}"></script>
     <script>
-            var _pre=$('.new-cont pre');
-            if (_pre.length>0){
-                _pre.addClass("line-numbers").css("white-space", "pre-wrap");
-            }else{
-                _pre.addClass("line-numbers");
-            }
+        var pathname="{{$articles->categories->name}}";
+        $(".top-nav-right a").each(function(){
+            var text=$(this).text();
+            if (pathname==text)$(this).addClass('active');
+        });
+        $(".mnav a").each(function(){
+            var text=$(this).text();
+            if (pathname==text)$(this).addClass('selected');
+        });
+        var _pre = $('.new-cont pre');
+        if (_pre.length > 0) {
+            _pre.addClass("line-numbers").css("white-space", "pre-wrap");
+        } else {
+            _pre.addClass("line-numbers");
+        }
     </script>
 @endsection

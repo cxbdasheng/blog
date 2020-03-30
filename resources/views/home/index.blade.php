@@ -4,11 +4,20 @@
 @section('description', $head['description'])
 @section('body')
     <div class="main-left">
+        @if(!empty($wd))
+            <div class="search-home">
+                <div class="search-content">
+                    <h2>搜索到的与 <span style="color: #ED502E;">{{$wd}}</span> 相关的文章</h2>
+                </div>
+            </div>
+        @endif
         <div class="left-titel">
-            <h2 class="name">今日推荐</h2>
+            <h2 class="name">文章列表</h2>
         </div>
         <div class="left-content">
+
             <div class="apen">
+                {{--@if($articles->isEmpty()) <div class="list-content"><h2>该内容下无文章！</h2></div> @endif--}}
                 @foreach($articles as $value)
                     <div class="list-content">
                         <div class="l"><a href="{{$value->url}}" target="{{config('config.link_type')}}"

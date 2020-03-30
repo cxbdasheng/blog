@@ -214,6 +214,7 @@ img {
   float: right;
   width: 27.1%;
   margin-top: 10px;
+  position: relative;
 }
 
 /*底部*/
@@ -541,6 +542,7 @@ div#last-div ~ div {
 
 .left-content {
   background: #fff;
+  min-height: 180px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -1826,5 +1828,25 @@ span.inline-color {
   padding: 0px 20px;
   cursor: pointer;
   outline: none;
+}
+
+.search-home {
+  width: 100%;
+  padding: 25px 0px;
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  line-height: 36px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.search-content {
+  margin: 0 20px;
+}
+
+.right-fix {
+  position: relative;
 }
 

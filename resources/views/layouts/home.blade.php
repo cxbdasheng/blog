@@ -103,66 +103,65 @@
             <input type="text" class="s-content" id="search" name="wd" value="@if(!empty($wd)){{$wd}}@endif" placeholder="">
             <button class="s-btn">搜索</button>
         </form>
-        <div class="panel pb10">
-            <h2 class="p-titel">
-                标签列表
-            </h2>
-            <div class="p-tal" >
+        <div class="right-fix">
+            <div class="panel pb10">
+                <h2 class="p-titel">
+                    标签列表
+                </h2>
+                <div class="p-tal" >
+                    <ul>
+                        @foreach($tag as $item)
+                            <li><a href="{{$item->url}}" alt="{{$item->name}}"
+                                   title="{{$item->name}}">{{$item->name}}</a></li>
+                        @endforeach
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+            {{--<div class="message">--}}
+            {{--<h2 class="m-titel">--}}
+            {{--留言墙--}}
+            {{--</h2>--}}
+            {{--<div class="w">--}}
+            {{--</div>--}}
+            {{--<div class="clear" style="margin-top: 20px;"></div>--}}
+            {{--</div>--}}
+            <div class="click">
+                <h2 class="c-titel">
+                    置顶推荐
+                </h2>
                 <ul>
-                    @foreach($tag as $item)
-                        <li><a href="{{$item->url}}" alt="{{$item->name}}"
-                               title="{{$item->name}}">{{$item->name}}</a></li>
+                    @foreach($topArticle as $item)
+                        <li><a href="{{$item->url}}" target="{{config('config.link_type')}}" alt="{{$item->title}}" title="{{$item->title}}"><span
+                                        class="c-img">
+                                <img src="{{$item->cover}}" alt="{{$item->title}}" title="{{$item->title}}"></span>
+                                <div class="c-right"><span class="text">{{$item->title}}</span>
+                                    <div class="c-foot"><span class="muted">{{$item->created_at}}</span><span
+                                                class="muted-r"><span
+                                                    class="ds-thread-count" data-replace="1">{{$item->views}}
+                                                次阅读</span></span></div>
+                                </div>
+                            </a></li>
                     @endforeach
-                    <div class="clear"></div>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="link">
+                <h2 class="l-titel">
+                    友情链接
+                </h2>
+                <ul>
+                    @foreach($links as $item)
+                        <li><a target="_blank" href="{{$item->url}}">{{$item->name}}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>
-        <div class="message">
-            <h2 class="m-titel">
-                留言墙
-            </h2>
-            <!--<ul>-->
-            <!--<img src="img/kfz.gif" alt="程序正在加紧开发，敬请期待。。。">-->
-            <!--<li style="text-align: center"><p>程序正在加紧开发，敬请期待。。。</p></li>-->
-            <!--</ul>-->
-            <div class="w">
-            </div>
-            <div class="clear" style="margin-top: 20px;"></div>
-        </div>
-        <div class="click">
-            <h2 class="c-titel">
-                置顶推荐
-            </h2>
-            <ul>
-                @foreach($topArticle as $item)
-                    <li><a href="{{$item->url}}" target="{{config('config.link_type')}}" alt="{{$item->title}}" title="{{$item->title}}"><span
-                                    class="c-img">
-                                <img src="{{$item->cover}}" alt="{{$item->title}}" title="{{$item->title}}"></span>
-                            <div class="c-right"><span class="text">{{$item->title}}</span>
-                                <div class="c-foot"><span class="muted">{{$item->created_at}}</span><span
-                                            class="muted-r"><span
-                                                class="ds-thread-count" data-replace="1">{{$item->views}}
-                                            次阅读</span></span></div>
-                            </div>
-                        </a></li>
-                @endforeach
-            </ul>
-            <div class="clear"></div>
-        </div>
-        <div class=""></div>
-        <div class="link">
-            <h2 class="l-titel">
-                友情链接
-            </h2>
-            <ul>
-                @foreach($links as $item)
-                <li><a target="_blank" href="{{$item->url}}">{{$item->name}}</a></li>
-                @endforeach
-            </ul>
-        </div>
+        <div class="clear"></div>
     </div>
     <div class="clear"></div>
 </div>
+<div class="clear"></div>
 <div class="foot">
     <div class="cont">
         <div class="cont-main">
