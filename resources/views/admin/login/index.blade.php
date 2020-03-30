@@ -1,9 +1,10 @@
 @extends('layouts.base')
+@section('title', '博客登入')
 @section('body')
     <body class="login-bg">
     <div class="login layui-anim">
         <div class="message">
-            <h2 class="login-title">陈大剩博客登入</h2>
+            <h2 class="login-title">{{config('app.name')}}登入</h2>
         </div>
         <form action="{{ url('auth/admin/login') }}" method="post"  class="layui-form" >
             <input name="email" placeholder="用户名" type="text" lay-verify="required" class="layui-input" value="{{ old('email') }}">

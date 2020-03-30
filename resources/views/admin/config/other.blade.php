@@ -1,4 +1,5 @@
 @extends('layouts.body')
+@section('title', '其他设置')
 @section('content')
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
@@ -15,6 +16,9 @@
             <form enctype="multipart/form-data" action="{{ url('admin/config/update') }}" method="post"
                   class="layui-form">
                 {{ csrf_field() }}
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>首页logo信息</legend>
+                </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">Logo 类型</label>
                     <div class="layui-input-block">
@@ -50,6 +54,9 @@
                         </div>
                     @endif
                 </div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>底部相关</legend>
+                </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">ICP 备案</label>
                     <div class="layui-input-block">
@@ -57,11 +64,21 @@
                                class="layui-input" value="{{ $config['config.icp'] }}">
                     </div>
                 </div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>文章相关</legend>
+                </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">默认作者</label>
                     <div class="layui-input-block">
                         <input type="text" name="209" required lay-verify="required" placeholder="" autocomplete="off"
                                class="layui-input" value="{{ $config['config.author'] }}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">水印字体大小</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="212" required maxlength="2" lay-verify="required|number" placeholder="" autocomplete="off"
+                               class="layui-input" value="{{ $config['config.water.size'] }}">
                     </div>
                 </div>
                 <div class="layui-form-item">

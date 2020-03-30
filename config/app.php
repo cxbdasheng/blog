@@ -230,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

@@ -8,6 +8,7 @@
 use Illuminate\Support\Str;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use PHPHtmlParser\Dom;
+use Intervention\Image\Facades\Image;
 if (!function_exists('generate_english_slug')) {
     /**
      * Generate English slug
@@ -41,6 +42,49 @@ if (!function_exists('push_success')) {
     {
         if ($flash) {
             Session::flash('success', $message);
+        }
+    }
+}
+if (!function_exists('get_image_paths_from_html')) {
+    function get_image_paths_from_html($html)
+    {
+        $dom = new Dom();
+        $dom->loadStr($html);
+        /** @var \PHPHtmlParser\Dom\HtmlNode[] $image_tags */
+        $image_tags  = $dom->find('img');
+        $image_paths = [];
+
+        foreach ($image_tags as $image_tag) {
+            $image_paths[] = $image_tag->getAttribute('src');
+        }
+
+        return $image_paths;
+    }
+}
+
+if (!function_exists('add_text_water')) {
+    /**
+     * 给图片添加文字水印
+     *
+     * @param string $file
+     * @param string $text
+     * @param string $color
+     *
+     * @return mixed
+     */
+    function add_text_water($file, $text, $color = '#0B94C1')
+    {
+        $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        if ($extension != 'gif') {
+            $image = Image::make($file);
+            $image->text($text, $image->width() - 20, $image->height() - 30, function ($font) use ($color) {
+                $font->file(public_path('fonts/msyh.ttf'));
+                $font->size(config('config.water.size'));
+                $font->color($color);
+                $font->align('right');
+                $font->valign('bottom');
+            });
+            $image->save($file);
         }
     }
 }

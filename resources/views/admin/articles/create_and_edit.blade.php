@@ -1,4 +1,9 @@
 @extends('layouts.body')
+@if($data->id)
+    @section('title', '修改文章')
+@else
+    @section('title', '新增文章')
+@endif
 @section('css')
     <link rel="stylesheet" href="{{ asset('lib/editor/css/editormd.min.css') }}">
     <style>
@@ -57,7 +62,7 @@
                                 <div class="layui-input-block">
                                     <input type="text" name="author" required lay-verify="required" placeholder=""
                                            autocomplete="off" class="layui-input"
-                                           value="{{old('author',$data->author)}}">
+                                           value="{{old('author',$data->author?$data->author:config('config.author'))}}">
                                 </div>
                             </div>
                             <div class="layui-form-item">

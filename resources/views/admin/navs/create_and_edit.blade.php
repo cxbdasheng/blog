@@ -1,4 +1,9 @@
 @extends('layouts.body')
+@if($data->id)
+    @section('title', '修改导航')
+@else
+    @section('title', '新增导航')
+@endif
 @section('content')
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">

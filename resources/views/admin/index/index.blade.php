@@ -1,4 +1,5 @@
 @extends('layouts.body')
+@section('title', '后台首页')
 @section('content')
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">

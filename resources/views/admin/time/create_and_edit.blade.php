@@ -1,4 +1,9 @@
 @extends('layouts.body')
+@if($data->id)
+    @section('title', '修改时间点')
+@else
+    @section('title', '新增时间点')
+@endif
 @section('content')
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
