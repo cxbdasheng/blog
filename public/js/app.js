@@ -37136,7 +37136,7 @@ $(function () {
     if ($(document).scrollTop() > 0) {
       moun = setTimeout(function () {
         $(".top_2").addClass("mounting");
-      }, 10);
+      }, 100);
     } else {
       moun = setTimeout(function () {
         $(".top_2").removeClass("mounting");
@@ -37159,7 +37159,23 @@ $(function () {
 
   searchColor.onblur = function () {
     $(this).removeClass("border-color");
-  };
+  }; // $('.top-nav-left').mouseover(function () {
+  //     $(this).addClass('onmouseover');
+  // });
+  // $('.top-nav-left').mouseout(function () {
+  //     $(this).removeClass('onmouseover');
+  // });
+
+
+  function clickHandler() {
+    $('.top-nav-left').addClass('onmouseover');
+    setTimeout(function () {
+      $('.top-nav-left').removeClass('onmouseover');
+      $('.top-nav-left').one('mouseover', clickHandler);
+    }, 1000);
+  }
+
+  $('.top-nav-left').one('mouseover', clickHandler);
 });
 
 /***/ }),

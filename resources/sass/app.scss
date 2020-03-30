@@ -686,14 +686,21 @@ div#last-div ~ div {
   -o-transition: all 1.2s;
 }
 
-.l img:hover {
+//.l img:hover {
+//  transform: scale(1.2);
+//  -moz-transform: scale(1.2);
+//  -webkit-transform: scale(1.2);
+//  -o-transform: scale(1.2);
+//  -ms-transform: scale(1.2);
+//}
+.list-content:hover .l img{
+  //transition: All .7s ease;
   transform: scale(1.2);
   -moz-transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -o-transform: scale(1.2);
   -ms-transform: scale(1.2);
 }
-
 .r {
   width: 63%;
   float: right;
@@ -1179,6 +1186,32 @@ a:hover {
 .mounting .top-nav-right li .active{
   border-top: 4px #f9f9f9 solid;
 }
+
+
+
+
+@-moz-keyframes tada{
+  0%{-moz-transform:scale(1);}
+  10%,20%{-moz-transform:scale(0.9) rotate(-3deg);}
+  30%,50%,70%,90%{-moz-transform:scale(1.2) rotate(3deg);}
+  40%,60%,80%{-moz-transform:scale(1.2) rotate(-3deg);}
+  100%{-moz-transform:scale(1) rotate(0);}
+}
+
+@-webkit-keyframes tada{
+  0%{-webkit-transform:scale(1);}
+  10%,20%{-webkit-transform:scale(0.9) rotate(-3deg);}
+  30%,50%,70%,90%{-webkit-transform:scale(1.2) rotate(3deg);}
+  40%,60%,80%{-webkit-transform:scale(1.2) rotate(-3deg);}
+  100%{-webkit-transform:scale(1) rotate(0);}}
+
+.onmouseover {
+  -webkit-animation: tada 1s .2s ease both;
+  -moz-animation: tada 1s .2s ease both;
+}
+
+
+
 //body{
 //  background: #f6f6f6;
 //}
