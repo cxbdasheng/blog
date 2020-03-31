@@ -162,7 +162,7 @@
     <div class="clear"></div>
 </div>
 <div class="clear"></div>
-<div class="foot">
+<div class="foot" title="返回顶部">
     <div class="cont">
         <div class="cont-main">
             <p><a href="http://c69p.com">关于c69p</a>|<a href="http://c69p.com/about">关于CXB</a>|<a href="c69p.com/about">版权所有</a>|<a

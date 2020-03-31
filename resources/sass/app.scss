@@ -319,7 +319,7 @@ img {
 }
 
 .returntop {
-  padding: 8px;
+  padding: 20px;
   margin-bottom: 5px;
   width: auto;
   height: auto;
@@ -342,12 +342,12 @@ img {
 }
 
 .returntop:hover {
-  background: #2F889A;
-  color: #fff;
+  background: #f9f9f9;
+  color: #ED502E;
 }
 
 .returntop:hover i {
-  color: #fff;
+  color: #ED502E;
 }
 
 /*左侧导航*/
@@ -479,6 +479,9 @@ img {
 }
 
 @media screen and (max-width: 767px) {
+  .returntop{
+    padding: 8px;
+  }
 }
 
 @media screen and (max-width: 766px) and (min-width: 561px) {
