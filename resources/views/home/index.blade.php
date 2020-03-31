@@ -60,10 +60,6 @@
 @section('js')
     <script>
         $(function () {
-            $("img").lazyload({
-                placeholder: "/uploads/article/default.jpg",
-                effect: "fadeIn"
-            });
             $(window).scroll(function () {
                 if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
                     if ($('.wan-button').length <= 0) {
@@ -108,7 +104,7 @@
                             }
                             for (var i = 0; i < res.data.item.length; i++) {
                                 var str = '<div class="list-content">\n' +
-                                    '<div class="l"><a href="' + res.data.item[i].url + '" target="{{config('config.link_type')}}" title="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"><img data-original="' + res.data.item[i].cover + '" src="' + res.data.item[i].cover + '" alt="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"></a></div>\n' +
+                                    '<div class="l"><a href="' + res.data.item[i].url + '" target="{{config('config.link_type')}}" title="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"><img class="lazy" data-original="' + res.data.item[i].cover + '"  alt="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"></a></div>\n' +
                                     '<div class="r">\n' +
                                     '<div class="r-titel">\n' +
                                     '<a href="' + res.data.item[i].url + '" target="{{config('config.link_type')}}" title="' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '">' + res.data.item[i].title.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</a>\n' +
@@ -121,6 +117,10 @@
                                     '</div>';
                                 $(".apen").append(str).animate({opacity: 1}, 1500);
                             }
+                            $('img.lazy').lazyload({
+                                placeholder: "/uploads/article/default.png",
+                                threshold: 400
+                            });
                             $('.more-loading').hide();
                             $('.more-button').show();
                             $('#type').val(res.data.type);

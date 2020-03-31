@@ -39,7 +39,7 @@ class ArticleObserver extends BaseObserver
             }
         }
         if (empty($article->cover)) {
-            $article->cover = $image_paths[0] ?? config('app.url') .'/uploads/article/default.jpg';
+            $article->cover = $image_paths[0] ?? config('app.url') .'/uploads/article/default.png';
         }
     }
     public function created($model)

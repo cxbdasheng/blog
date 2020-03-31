@@ -931,7 +931,12 @@ div#last-div ~ div {
 }
 
 .click a:hover {
-  background-color: #fafff8;
+  background-color: #fff6f0;
+}
+
+.click li:hover {
+  transform: scale(1.05);
+  transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
 
 .c-img {
@@ -942,6 +947,7 @@ div#last-div ~ div {
 .c-img img {
   width: 80px;
   height: 55px;
+  border-radius: 3px;
 }
 
 .c-right {

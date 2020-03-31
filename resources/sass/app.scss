@@ -1037,19 +1037,28 @@ div#last-div ~ div {
 .click li:last-child a {
   border-bottom: none;
 }
-
 .click a:hover {
-  background-color: #fafff8;
+  background-color: #fff6f0;
 }
-
+.click li:hover {
+  //transform: scale(1.05);
+  //-moz-transform: scale(1.05);
+  //-webkit-transform: scale(1.05);
+  //-o-transform: scale(1.05);
+  //-ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+  transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}
 .c-img {
   float: left;
   width: 30%;
 }
-
 .c-img img {
   width: 80px;
   height: 55px;
+  border-radius: 3px;
 }
 
 .c-right {

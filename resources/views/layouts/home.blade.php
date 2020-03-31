@@ -134,7 +134,7 @@
                     @foreach($topArticle as $item)
                         <li><a href="{{$item->url}}" target="{{config('config.link_type')}}" alt="{{$item->title}}" title="{{$item->title}}"><span
                                         class="c-img">
-                                <img src="{{$item->cover}}" alt="{{$item->title}}" title="{{$item->title}}"></span>
+                                <img class="lazy" data-original="{{$item->cover}}" alt="{{$item->title}}" title="{{$item->title}}"></span>
                                 <div class="c-right"><span class="text">{{$item->title}}</span>
                                     <div class="c-foot"><span class="muted">{{$item->created_at}}</span><span
                                                 class="muted-r"><span

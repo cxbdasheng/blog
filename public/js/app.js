@@ -37190,6 +37190,10 @@ $(function () {
       $('.right-fix').css("top", "auto");
     }
   });
+  $("img.lazy").lazyload({
+    placeholder: "/uploads/article/default.png",
+    effect: "fadeIn"
+  });
 });
 
 /***/ }),
