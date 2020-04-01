@@ -34,7 +34,20 @@ a {
   text-decoration: none;
   color: #333;
 }
-
+em {
+  font-style: normal;
+}
+/* 清除浮动的最好办法 */
+.fixclear:after{
+  content: '';
+  height: 0;
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+.fixclear{
+  *zoom: 1;/* 兼容IE678 */
+}
 img {
   border: 0;
   display: block;
@@ -267,47 +280,44 @@ img {
 }
 
 /*底部*/
-.foot {
+.foot{
   width: 100%;
-  min-height: 56px;
-  background: #fff;
-  padding: 15px 0 15px 0;
+  min-height: 50px;
+  line-height: 50px;
+  /* min-height: 56px; */
+  background: #1b1c1d;
+  color: #9d9d9d;
   text-align: center;
 }
-
-.foot-left {
-  float: left;
-}
-
-.foot-left img {
-  height: 56px;
-}
-
-.cont {
+.cont{
   margin: 0 auto;
   max-width: 1240px;
-  line-height: 30px;
 }
-
-.cont-main {
+.cont-main{
+  padding: 0 20px;
   overflow: hidden;
 }
-
-.copyright {
-  color: #9E9E9E;
-  padding: 0 10px;
+/* 主要用的类名 */
+.fl{
+  float: left;
 }
-
-.cont-main a, .cont-main span {
-  color: #373737;
-  text-decoration: none;
-  padding: 0 10px;
+.fr{
+  float: right;
 }
-
-.min-nav {
+.pr{
+  position: relative;
+}
+.cont-main span,
+.cont-main a{
+  font-size: 12px;
+  color: #aaa;
+}
+.cont-main a:hover{
+  color: #ddd;
+}
+.min-nav{
   display: none;
 }
-
 .return {
   z-index: 999;
   bottom: 100px;
@@ -405,6 +415,12 @@ img {
     max-width: 98%;
     padding: 0;
   }
+  .fl{
+    float: none;
+  }
+  .fr{
+    float: none;
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -475,6 +491,12 @@ img {
   .body {
     width: auto;
     margin-top: 60px;
+  }
+  .fl{
+    float: none;
+  }
+  .fr{
+    float: none;
   }
 }
 

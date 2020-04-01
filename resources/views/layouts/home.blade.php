@@ -162,16 +162,24 @@
     <div class="clear"></div>
 </div>
 <div class="clear"></div>
-<div class="foot" title="返回顶部">
+<div class="foot">
     <div class="cont">
         <div class="cont-main">
-            <p><a href="http://c69p.com">关于c69p</a>|<a href="http://c69p.com/about">关于CXB</a>|<a href="c69p.com/about">版权所有</a>|<a
-                        target="_blank" href="http://www.beian.miit.gov.cn">{{config('config.icp')}}</a></p>
-            <p class="copyright">Copyright © 2017 -
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
-                cxb. All Rights Reserved.
+            <p class="fl">
+                <a href="http://c69p.com">关于c69p</a>|
+                <a target="_blank" href="http://www.beian.miit.gov.cn">{{config('config.icp')}}</a>|
+                <span class="copyright">
+                    Copyright © 2017 -<script>document.write(new Date().getFullYear());</script>
+                    陈大剩
+                </span>|
+                <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" target="_blank">本站采用创作共用版权：CC BY-NC 4.0</a>
+            </p>
+            <p class="fr">
+                <span>站长统计</span>|
+                <span>文章总数[<em>{{$articleCount}}</em>]</span>|
+                <span>评论总数[<em>2000</em>]</span>|
+               <span>登录用户[<em>10000</em>]</span>|
+               <span>碎言碎语：<em>100</em></span>
             </p>
         </div>
     </div>
