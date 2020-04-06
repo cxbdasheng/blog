@@ -47,7 +47,6 @@ $(function () {
     // 移动端导航
     $("#check-nav").click(function () {
         var display = $('.left-nav').css("display");
-
         if (display == "none") {
             $('.left-nav').show(300);
             $("#check-nav").removeClass("icon-zhedie");
@@ -56,8 +55,7 @@ $(function () {
             $('.left-nav').hide(400);
             $("#check-nav").removeClass("icon-zhedie1");
             $("#check-nav").addClass("icon-zhedie");
-        }
-        ;
+        };
     });
     $('.mp').click(function () {
         $('.left-nav').hide(400);

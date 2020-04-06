@@ -22,27 +22,37 @@
 <div class="top">
     <div class="top-header">
         <div class="top-weclome">
-            <script type="text/javascript">
-                var Hours = new Date().getHours();
-                var meg = '';
-                if (Hours <= 6) {
-                    meg = "凌晨";
-                }
-                else if (Hours <= 11) {
-                    meg = "早上";
-                }
-                else if (Hours <= 14) {
-                    meg = "中午";
-                }
-                else if (Hours <= 19) {
-                    meg = "下午";
-                }
-                else {
-                    meg = "晚上";
-                }
-                ;
-                document.write('Hi' + meg + '好，现在是：' + new Date().getFullYear() + "年" + (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日" + " " + "星期" + "日一二三四五六".charAt(new Date().getDay()));
-            </script>
+            <div class="today fl">
+                <script type="text/javascript">
+                    var Hours = new Date().getHours();
+                    var meg = '';
+                    if (Hours <= 6) {
+                        meg = "凌晨";
+                    }
+                    else if (Hours <= 11) {
+                        meg = "早上";
+                    }
+                    else if (Hours <= 14) {
+                        meg = "中午";
+                    }
+                    else if (Hours <= 19) {
+                        meg = "下午";
+                    }
+                    else {
+                        meg = "晚上";
+                    }
+                    ;
+                    document.write('Hi' + meg + '好，现在是：' + new Date().getFullYear() + "年" + (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日" + " " + "星期" + "日一二三四五六".charAt(new Date().getDay()));
+                </script>
+            </div>
+            <div class="loginbar fr">
+                @if(auth()->guard('socialite')->check())
+                   欢迎：{{ auth()->guard('socialite')->user()->name }}
+                    <a href="{{ url('auth/socialite/logout') }}">退出</a>
+                @else
+                    <a id="index-login" href="javascript:;">登录</a>
+                @endif
+            </div>
         </div>
     </div>
     <div class="top_2">
@@ -190,8 +200,68 @@
     </div>
 </div>
 </body>
+<div class="pop">
+    <div class="pop-left">
+        <img src="{{asset('img/login_left.png')}}" alt="">
+    </div>
+    <div class="pop-right">
+        <div class="pop-right-head">
+            <h4>登入</h4>
+            <a href="javascript:;" id="login_close"><i class="iconfont icon-zhedie1"></i></a>
+            <div class="clear"></div>
+        </div>
+        <div class="pop-body">
+            <section class="pop-form">
+                <form  action="">
+                    <ul>
+                        <li><input type="text" name="name" class="pop-input"  placeholder="请输入邮箱账号" /></li>
+                        <li><input type="password" name="password" class="pop-input" placeholder="请输入密码" /></li>
+                    </ul>
+                    <div class="">
+                        <input value="登录"  class="form-submit" type="submit">
+                    </div>
+                </form>
+            </section>
+
+            <div class="pop-other">
+                <div class="pop-other-head">
+                    社交账号登录
+                </div>
+                <div class="pop-other-body">
+                    @foreach($socialiteClients as $socialiteClient)
+                        <a href="{{ url('auth/socialite/redirectToProvider/' . $socialiteClient->name) }}"  alt="{{ $socialiteClient->name }}" title="{{ $socialiteClient->name }}登入"> <i class="iconfont icon-{{ $socialiteClient->icon }}"></i> </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pop-shade">
+
+</div>
+<div class="clear"></div>
 {!! htmlspecialchars_decode(config('config.statistics')) !!}
 <script src="{{mix('js/app.js')}}"></script>
 <script src="{{ asset('js/jquery.lazyload.js') }}"></script>
+<script>
+    $("#index-login").click(function () {
+        var display = $('.pop').css("display");
+        if (display == "none") {
+            $('.pop').show();
+            $('.pop-shade').show();
+        } else {
+            $('.pop').hide();
+            $('.pop-shade').hide();
+        };
+    });
+    $('.pop-shade').click(function () {
+        $('.pop').hide();
+        $(this).hide();
+    });
+    $('#login_close').click(function () {
+        $('.pop').hide();
+        $('.pop-shade').hide();
+    });
+</script>
 @yield('js')
 </html>

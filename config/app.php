@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComonServiceProvider::class,
 
-
+        \SocialiteProviders\Manager\ServiceProvider::class,
     ],
 
     /*

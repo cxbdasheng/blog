@@ -13,7 +13,7 @@
         "fruitcake/laravel-cors": "^1.0",
         "genealabs/laravel-model-caching": "*",
         "graham-campbell/markdown": "^12.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^6.5",
         "intervention/image": "^2.5",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^7.0",
@@ -23,6 +23,9 @@
         "mews/purifier": "^3.2",
         "overtrue/laravel-lang": "^3.0",
         "paquettg/php-html-parser": "^2.2",
+        "socialiteproviders/github": "dev-master",
+        "socialiteproviders/qq": "^3.0",
+        "socialiteproviders/weibo": "^3.0",
         "stichoza/google-translate-php": "^4.1"
     },
     "require-dev": {

@@ -12,6 +12,8 @@ use App\Models\Articles;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\SocialiteClient;
+use App\Models\SocialiteUser;
 use App\Models\Navs;
 use App\Models\Link;
 use App\Models\Config;
@@ -39,13 +41,27 @@ class ComonServiceProvider extends ServiceProvider
         }
         // 动态替换 /config 目录下的配置项
         config($config->toArray());
+
+        try {
+            // Get socialite clients
+            $socialiteClients = SocialiteClient::all();
+        } catch (Exception $exception) {
+            return true;
+        }
+
+        $socialiteClients->map(function ($socialiteClient) {
+            config([
+                'services.' . $socialiteClient->name . '.client_id'     => $socialiteClient->client_id,
+                'services.' . $socialiteClient->name . '.client_secret' => $socialiteClient->client_secret,
+            ]);
+        });
         view()->composer(['admin/index/index','layouts/home'], function ($view) {
             $articleCount = Articles::count('id');
             $assign = compact('articleCount');
             $view->with($assign);
         });
         //前台Home页面基础数据
-        view()->composer('layouts/home',function ($view){
+        view()->composer('layouts/home',function ($view)use ($socialiteClients){
             $category = Category::select('id', 'name', 'slug')->orderBy('sort')->get();
             $tag = Tag::has('articles')->withCount('articles')->get();
             $topArticle = Articles::select('id', 'title', 'slug','description','views','cover','created_at')
@@ -58,7 +74,11 @@ class ComonServiceProvider extends ServiceProvider
             $links = Link::select('name', 'url')
                 ->orderBy('sort')
                 ->get();
-            $assign = compact('category', 'tag','topArticle','navs','links');
+
+            $socialiteClients = $socialiteClients->filter(function ($socialiteClient) {
+                return !empty($socialiteClient->client_id) && !empty($socialiteClient->client_secret);
+            });
+            $assign = compact('category', 'tag','topArticle','navs','links','socialiteClients');
             $view->with($assign);
         });
         view()->composer(['admin/config/*'], function ($view) use ($config) {

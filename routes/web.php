@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 // auth
 Route::namespace('Auth')->prefix('auth')->as('auth.')->group(function () {
+    // Socialite
+    Route::prefix('socialite')->as('socialite.')->group(function () {
+        // 重定向
+        Route::get('redirectToProvider/{service}', 'SocialiteController@redirectToProvider')->name('redirectToProvider');
+        // 获取用户资料并登录
+        Route::get('handleProviderCallback/{service}', 'SocialiteController@handleProviderCallback')->name('handleProviderCallback');
+        // 退出登录
+        Route::get('logout', 'SocialiteController@logout')->name('logout');
+    });
     // 后台登录
     Route::prefix('admin')->group(function () {
         Route::post('login', 'AdminController@login');
@@ -131,24 +140,4 @@ Route::namespace('Home')->name('home.')->group(function () {
     Route::get('article/{articles}/{slug?}', 'IndexController@article')->name('article');
     Route::post('articles/more','IndexController@more');
     Route::get('time', 'IndexController@time')->name('time');
-//    // 开源项目
-//    Route::get('git', 'IndexController@git')->name('git');
-
-//    // 检测是否登录
-//    Route::get('checkLogin', 'IndexController@checkLogin')->name('checkLogin');
-
-//    // feed
-//    Route::get('feed', 'IndexController@feed')->name('feed');
-//    // 推荐博客
-//    Route::prefix('site')->name('site.')->group(function () {
-//        Route::get('/', 'SiteController@index')->name('index');
-//        Route::post('store', 'SiteController@store')->middleware('auth.socialite', 'clean.xss')->name('store');
-//    });
-//    Route::middleware('auth.socialite')->group(function () {
-//        Route::post('comment', 'IndexController@comment')->name('comment.store');
-//        Route::prefix('like')->name('like.')->group(function () {
-//            Route::post('store', 'LikeController@store')->name('store');
-//            Route::delete('destroy', 'LikeController@destroy')->name('destroy');
-//        });
-//    });
 });

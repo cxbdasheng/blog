@@ -15,6 +15,19 @@ body {
   padding: 0;
 }
 
+button,
+input,
+optgroup,
+option,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  outline: 0;
+}
+
 li {
   list-style: none;
 }
@@ -147,6 +160,19 @@ img {
   font-size: 14px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.top-weclome .today {
+  margin-left: 6px;
+}
+
+.top-weclome .loginbar {
+  margin-right: 30px;
+}
+
+.top-weclome .loginbar a {
+  display: inline-block;
+  padding-right: 16px;
 }
 
 .top_2 {
@@ -1901,5 +1927,154 @@ span.inline-color {
 
 .right-fix {
   position: relative;
+}
+
+.pop input[type=text],
+.pop input[type=file],
+.pop input[type=password],
+.pop input[type=email],
+select {
+  box-sizing: border-box;
+}
+
+.pop {
+  position: fixed;
+  width: 540px;
+  height: auto;
+  top: 20%;
+  left: 30%;
+  z-index: 10001;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: none;
+  transition: opacity 0.15s linear;
+}
+
+.pop-left {
+  width: 225px;
+  min-height: 320px;
+  float: left;
+  background: #000;
+}
+
+.pop-right {
+  width: 315px;
+  min-height: 319px;
+  color: #b2b2b2;
+  float: right;
+  background: #ffffff;
+  position: relative;
+}
+
+.pop-left img {
+  width: 100%;
+  height: 100%;
+}
+
+.pop-body {
+  position: relative;
+  padding: 15px;
+}
+
+.pop-form {
+  padding: 15px 15px 10px;
+  box-sizing: border-box;
+}
+
+.pop-form input {
+  border: 1px solid #eaeaea;
+  font-size: 13px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  color: #555555;
+}
+
+.pop-input {
+  padding-left: 10px;
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.pop-form li {
+  padding-bottom: 15px;
+  margin-bottom: 5px;
+  text-align: -webkit-match-parent;
+}
+
+.pop-form .form-submit {
+  width: 100%;
+  background: #ED502E;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.pop-other {
+  padding: 15px;
+}
+
+.pop-other-head {
+  text-align: center;
+  color: #555;
+}
+
+.pop-other-head:after,
+.pop-other-head:before {
+  background-color: #eeeeee;
+  content: "";
+  width: 53px;
+  height: 2px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.pop-other-body {
+  text-align: center;
+}
+
+.pop-other-body a {
+  text-align: center;
+  display: inline-block;
+  margin: 20px 10px 0;
+}
+
+.pop-other-body a i {
+  font-size: 30px;
+  color: #555555;
+}
+
+.pop-other-body a i:hover {
+  color: #ED502E;
+}
+
+.pop-right-head {
+  min-height: 16.43px;
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.pop-shade {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background-color: black;
+  opacity: 0.3;
+  position: fixed;
+  _position: absolute;
+  pointer-events: auto;
+  display: none;
+}
+
+.pop-right-head h4 {
+  float: left;
+  color: #555;
+}
+
+.pop-right-head a {
+  float: right;
 }
 

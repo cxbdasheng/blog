@@ -49,7 +49,11 @@ return [
         'admin'=>[
             'driver' => 'session',
             'provider' => 'users',
-        ]
+        ],
+        'socialite' => [
+            'driver' => 'session',
+            'provider' => 'socialite',
+        ],
     ],
 
     /*
@@ -74,7 +78,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+        'socialite' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SocialiteUser::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
