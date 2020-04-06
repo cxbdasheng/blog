@@ -188,8 +188,8 @@
                 <span>站长统计</span>|
                 <span>文章总数[<em>{{$articleCount}}</em>]</span>|
                 <span>评论总数[<em>2000</em>]</span>|
-               <span>登录用户[<em>10000</em>]</span>|
-               <span>碎言碎语：<em>100</em></span>
+               <span>登录用户[<em>{{$userCount}}</em>]</span>|
+               <span>时间点[<em>{{$timeCount}}</em>]</span>
             </p>
         </div>
     </div>
@@ -212,9 +212,10 @@
         </div>
         <div class="pop-body">
             <section class="pop-form">
-                <form  action="">
+                <form  action="{{ url('auth/admin/login') }}" method="post" >
+                    @csrf
                     <ul>
-                        <li><input type="text" name="name" class="pop-input"  placeholder="请输入邮箱账号" /></li>
+                        <li><input type="text" name="email" class="pop-input"  placeholder="请输入邮箱账号" /></li>
                         <li><input type="password" name="password" class="pop-input" placeholder="请输入密码" /></li>
                     </ul>
                     <div class="">

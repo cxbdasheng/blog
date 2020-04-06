@@ -136,6 +136,7 @@ class ConfigTableSeeder extends Seeder
                 'updated_at' => '2020-03-27 01:03:22',
                 'deleted_at' => null,
             ],
+
         ]);
     }
 }

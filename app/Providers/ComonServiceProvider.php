@@ -17,6 +17,7 @@ use App\Models\SocialiteUser;
 use App\Models\Navs;
 use App\Models\Link;
 use App\Models\Config;
+use App\Models\Time;
 use Exception;
 use Artisan;
 class ComonServiceProvider extends ServiceProvider
@@ -57,7 +58,9 @@ class ComonServiceProvider extends ServiceProvider
         });
         view()->composer(['admin/index/index','layouts/home'], function ($view) {
             $articleCount = Articles::count('id');
-            $assign = compact('articleCount');
+            $userCount = SocialiteUser::count('id');
+            $timeCount = Time::count('id');
+            $assign = compact('articleCount','userCount','timeCount');
             $view->with($assign);
         });
         //前台Home页面基础数据
@@ -78,6 +81,7 @@ class ComonServiceProvider extends ServiceProvider
             $socialiteClients = $socialiteClients->filter(function ($socialiteClient) {
                 return !empty($socialiteClient->client_id) && !empty($socialiteClient->client_secret);
             });
+
             $assign = compact('category', 'tag','topArticle','navs','links','socialiteClients');
             $view->with($assign);
         });
