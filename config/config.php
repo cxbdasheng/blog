@@ -28,4 +28,9 @@ return [
     'statistics'=>'',
     'mate'=>'',
     'link_type'=>'',
+    'social_share' => [
+        'select_plugin' => '',
+        'jssocials_config' => '',
+        'sharejs_config' => ''
+    ],
 ];

@@ -136,7 +136,37 @@ class ConfigTableSeeder extends Seeder
                 'updated_at' => '2020-03-27 01:03:22',
                 'deleted_at' => null,
             ],
-
+            [
+                'id'         => 217,
+                'name'       => 'config.social_share.select_plugin',
+                'value'      => 'sharejs',
+                'created_at' => '2019-05-27 22:22:00',
+                'updated_at' => '2019-05-27 22:22:00',
+                'deleted_at' => null,
+            ],
+            [
+                'id'         => 218,
+                'name'       => 'config.social_share.jssocials_config',
+                'value'      => '{
+    shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "pocket", "whatsapp", "messenger", "vkontakte", "telegram", "line"],
+    showLabel: false,
+    showCount: false,
+    shareIn: "popup"
+}',
+                'created_at' => '2019-05-27 22:22:00',
+                'updated_at' => '2019-05-27 22:22:00',
+                'deleted_at' => null,
+            ],
+            [
+                'id'         => 219,
+                'name'       => 'config.social_share.sharejs_config',
+                'value'      => '{
+    sites: ["weibo", "qq", "wechat", "douban", "qzone", "linkedin", "facebook", "twitter", "google"]
+}',
+                'created_at' => '2019-05-27 22:22:00',
+                'updated_at' => '2019-05-27 22:22:00',
+                'deleted_at' => null,
+            ],
         ]);
     }
 }

@@ -7,10 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Articles;
 use App\Models\Category;
+use App\Models\SocialiteUser;
+use App\Http\Requests\CommentRequest;
+use App\Models\Comment;
 use App\Models\Tag;
 use Cache;
 use App\Http\Resources\ArticlesResources;
 use App\Models\Time;
+
 class IndexController extends Controller
 {
     /**
@@ -34,11 +38,11 @@ class IndexController extends Controller
             'keywords' => config('config.head.keywords'),
             'description' => config('config.head.description'),
         ];
-        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => 0, 'index' => $index,'head'=>$head];
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => 0, 'index' => $index, 'head' => $head];
         return view('home.index', $assign);
     }
 
-    public function article(Articles $articles, Request $request)
+    public function article(Articles $articles, Request $request, Comment $commentModel)
     {
         // 同一个用户访问同一篇文章每天只增加1个访问量  使用 ip+id 作为 key 判别
         $ipAndId = 'article_' . $request->ip() . ':' . $articles->id;
@@ -52,7 +56,9 @@ class IndexController extends Controller
             'keywords' => config('config.head.keywords'),
             'description' => config('config.head.description'),
         ];
-        $assign = compact('articles');
+        // 获取评论
+        $comment = $commentModel->getDataByArticleId($articles->id);
+        $assign = compact('articles','comment');
         return view('home.article', $assign);
     }
 
@@ -69,7 +75,7 @@ class IndexController extends Controller
             'keywords' => $category->keywords,
             'description' => $category->description,
         ];
-        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $category->id, 'index' => $index,'head'=>$head];
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $category->id, 'index' => $index, 'head' => $head];
         return view('home.index', $assign);
     }
 
@@ -86,13 +92,13 @@ class IndexController extends Controller
             'keywords' => $tag->keywords,
             'description' => $tag->description,
         ];
-        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $tag->id, 'index' => $index,'head'=>$head];
+        $assign = ['articles' => $articles, 'type' => $type, 'type_id' => $tag->id, 'index' => $index, 'head' => $head];
         return view('home.index', $assign);
     }
 
-    public function more(Request $request, Articles $articles,Tag $tag)
+    public function more(Request $request, Articles $articles, Tag $tag)
     {
-        if (!isset($request->index) || !isset($request->type_id)){
+        if (!isset($request->index) || !isset($request->type_id)) {
             $data = [
                 'success' => 0,
                 'message' => "请求失败！",
@@ -187,8 +193,10 @@ class IndexController extends Controller
         ];
         return response()->view('home.index', $assign)->header('X-Robots-Tag', 'noindex');
     }
-    public function time(Time $time){
-        $times=$time->orderBy('id', 'desc')->get();
+
+    public function time(Time $time)
+    {
+        $times = $time->orderBy('id', 'desc')->get();
         $head = [
             'title' => '时间轴',
             'keywords' => '时间轴,文章归档,小日记',
@@ -198,6 +206,41 @@ class IndexController extends Controller
             'times' => $times,
             'head' => $head,
         ];
-        return view('home.time',$assign);
+        return view('home.time', $assign);
+    }
+
+    public function contact(CommentRequest $request)
+    {
+        // 如果用户输入邮箱；则将邮箱记录入socialite_user表中
+        $email = $request->input('email', '');
+        $userId = $request->input('id', '');
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false) {
+            // 修改邮箱
+            SocialiteUser::where('id', $userId)->update([
+                'email' => $email,
+            ]);
+        }
+        $data=$request->only('article_id', 'content', 'pid', 'socialite_user_id');
+        // 存储评论
+        $data['is_audited']=1;
+        $comment = Comment::create($data);
+        if ($comment){
+            $data = [
+                'success' => 1,
+                'message' => "请求成功！",
+                'data' => [
+                    'id' => $comment->id
+                ],
+            ];
+        }else{
+            $data = [
+                'success' => 0,
+                'message' => "请求失败！",
+                'data' => [
+                ],
+            ];
+        }
+
+        return response()->json($data);
     }
 }

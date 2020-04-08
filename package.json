@@ -22,5 +22,11 @@
         "sass-loader": "^8.0.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "emoji-js": "^3.5.0",
+        "font-awesome": "^4.7.0",
+        "jssocials": "^1.5.0",
+        "social-share.js": "^1.0.16"
     }
 }

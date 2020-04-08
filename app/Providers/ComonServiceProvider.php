@@ -18,6 +18,7 @@ use App\Models\Navs;
 use App\Models\Link;
 use App\Models\Config;
 use App\Models\Time;
+use App\Models\Comment;
 use Exception;
 use Artisan;
 class ComonServiceProvider extends ServiceProvider
@@ -60,7 +61,8 @@ class ComonServiceProvider extends ServiceProvider
             $articleCount = Articles::count('id');
             $userCount = SocialiteUser::count('id');
             $timeCount = Time::count('id');
-            $assign = compact('articleCount','userCount','timeCount');
+            $commentCount = Comment::count('id');
+            $assign = compact('articleCount','userCount','timeCount','commentCount');
             $view->with($assign);
         });
         //前台Home页面基础数据

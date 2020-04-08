@@ -1,11 +1,11 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-// Variables
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 @import 'variables';
-
-// Bootstrap
-//@import '~bootstrap/scss/bootstrap';
-
+@import 'article';
+@import "~font-awesome/scss/font-awesome.scss";
+@import "~jssocials/dist/jssocials.css";
+@import "~jssocials/dist/jssocials-theme-plain.css";
+@import "~social-share.js/dist/css/share.min.css";
 //公共样式
 html {
   overflow-x: hidden;
@@ -2252,6 +2252,7 @@ span.inline-color {
 }
 .pop-other-body{
   text-align: center;
+  min-height: 54px;
 }
 .pop-other-body a{
   text-align: center;

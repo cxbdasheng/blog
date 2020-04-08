@@ -98,13 +98,13 @@ class SocialiteController extends Controller
         $avatarPath = public_path('uploads/avatar/' . $userId . '.jpg');
         try {
             // 下载最新的头像到本地
-            $client = new Client(['verify' => false]);
+            $client = new Client();
             $client->request('GET', $user->avatar, [
                 'sink' => $avatarPath,
             ]);
         } catch (Exception $e) {
             // 如果下载失败；则使用默认图片
-            copy(public_path('uploads/article/default.png'), $avatarPath);
+            copy(public_path('img/default.jpg'), $avatarPath);
         }
 
         Auth::guard('socialite')->loginUsingId($userId, true);

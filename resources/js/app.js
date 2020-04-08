@@ -1,4 +1,4 @@
-/**
+ /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
@@ -27,9 +27,9 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// const app = new Vue({
-//     el: '#app',
-// });
+require('jssocials/dist/jssocials.min');
+
+require('social-share.js/dist/js/jquery.share.min');
 
 $(function () {
     // 回顶部
@@ -132,7 +132,27 @@ $(function () {
         }
     });
     $("img.lazy").lazyload({
-        placeholder: "/uploads/article/default.png",
+        placeholder: "/img/default.png",
         effect: "fadeIn"
+    });
+
+    // 登入弹出框JS
+    $("#index-login").click(function () {
+        var display = $('.pop').css("display");
+        if (display == "none") {
+            $('.pop').show();
+            $('.pop-shade').show();
+        } else {
+            $('.pop').hide();
+            $('.pop-shade').hide();
+        };
+    });
+    $('.pop-shade').click(function () {
+        $('.pop').hide();
+        $(this).hide();
+    });
+    $('#login_close').click(function () {
+        $('.pop').hide();
+        $('.pop-shade').hide();
     });
 });

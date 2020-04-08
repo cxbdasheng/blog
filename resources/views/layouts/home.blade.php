@@ -187,7 +187,7 @@
             <p class="fr">
                 <span>站长统计</span>|
                 <span>文章总数[<em>{{$articleCount}}</em>]</span>|
-                <span>评论总数[<em>2000</em>]</span>|
+                <span>评论总数[<em>{{$commentCount}}</em>]</span>|
                <span>登录用户[<em>{{$userCount}}</em>]</span>|
                <span>时间点[<em>{{$timeCount}}</em>]</span>
             </p>
@@ -200,69 +200,54 @@
     </div>
 </div>
 </body>
-<div class="pop">
-    <div class="pop-left">
-        <img src="{{asset('img/login_left.png')}}" alt="">
-    </div>
-    <div class="pop-right">
-        <div class="pop-right-head">
-            <h4>登入</h4>
-            <a href="javascript:;" id="login_close"><i class="iconfont icon-zhedie1"></i></a>
-            <div class="clear"></div>
+@if(auth()->guard('socialite')->check())
+@else
+    <div class="pop">
+        <div class="pop-left">
+            <img src="{{asset('img/login_left.png')}}" alt="">
         </div>
-        <div class="pop-body">
-            <section class="pop-form">
-                <form  action="{{ url('auth/admin/login') }}" method="post" >
-                    @csrf
-                    <ul>
-                        <li><input type="text" name="email" class="pop-input"  placeholder="请输入邮箱账号" /></li>
-                        <li><input type="password" name="password" class="pop-input" placeholder="请输入密码" /></li>
-                    </ul>
-                    <div class="">
-                        <input value="登录"  class="form-submit" type="submit">
-                    </div>
-                </form>
-            </section>
+        <div class="pop-right">
+            <div class="pop-right-head">
+                <h4>登入</h4>
+                <a href="javascript:;" id="login_close"><i class="iconfont icon-zhedie1"></i></a>
+                <div class="clear"></div>
+            </div>
+            <div class="pop-body">
+                <section class="pop-form">
+                    <form  action="{{ url('auth/admin/login') }}" method="post" >
+                        @csrf
+                        <ul>
+                            <li><input type="text" name="email" class="pop-input"  placeholder="请输入邮箱账号" /></li>
+                            <li><input type="password" name="password" class="pop-input" placeholder="请输入密码" /></li>
+                        </ul>
+                        <div class="">
+                            <input value="登录"  class="form-submit" type="submit">
+                        </div>
+                    </form>
+                </section>
 
-            <div class="pop-other">
-                <div class="pop-other-head">
-                    社交账号登录
-                </div>
-                <div class="pop-other-body">
-                    @foreach($socialiteClients as $socialiteClient)
-                        <a href="{{ url('auth/socialite/redirectToProvider/' . $socialiteClient->name) }}"  alt="{{ $socialiteClient->name }}" title="{{ $socialiteClient->name }}登入"> <i class="iconfont icon-{{ $socialiteClient->icon }}"></i> </a>
-                    @endforeach
+                <div class="pop-other">
+                    <div class="pop-other-head">
+                        社交账号登录
+                    </div>
+                    <div class="pop-other-body">
+                        @foreach($socialiteClients as $socialiteClient)
+                            <a href="{{ url('auth/socialite/redirectToProvider/' . $socialiteClient->name) }}"  alt="{{ $socialiteClient->name }}" title="{{ $socialiteClient->name }}登入"> <i class="iconfont icon-{{ $socialiteClient->icon }}"></i> </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="pop-shade">
+    <div class="pop-shade">
+    </div>
+@endif
 
-</div>
 <div class="clear"></div>
 {!! htmlspecialchars_decode(config('config.statistics')) !!}
 <script src="{{mix('js/app.js')}}"></script>
 <script src="{{ asset('js/jquery.lazyload.js') }}"></script>
 <script>
-    $("#index-login").click(function () {
-        var display = $('.pop').css("display");
-        if (display == "none") {
-            $('.pop').show();
-            $('.pop-shade').show();
-        } else {
-            $('.pop').hide();
-            $('.pop-shade').hide();
-        };
-    });
-    $('.pop-shade').click(function () {
-        $('.pop').hide();
-        $(this).hide();
-    });
-    $('#login_close').click(function () {
-        $('.pop').hide();
-        $('.pop-shade').hide();
-    });
 </script>
 @yield('js')
 </html>

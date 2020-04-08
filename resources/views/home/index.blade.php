@@ -118,7 +118,7 @@
                                 $(".apen").append(str).animate({opacity: 1}, 1500);
                             }
                             $('img.lazy').lazyload({
-                                placeholder: "/uploads/article/default.png",
+                                placeholder: "/img/default.png",
                                 threshold: 400
                             });
                             $('.more-loading').hide();
