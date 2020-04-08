@@ -107,7 +107,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('forceDelete/{id}', 'NavController@forceDelete');
     });
 
-    // 随言碎语管理
+    // 时间轴
     Route::prefix('time')->group(function () {
         Route::get('index', 'TimeController@index');
         Route::get('create', 'TimeController@create');
@@ -122,7 +122,14 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     Route::prefix('config')->group(function () {
         Route::get('other', 'ConfigController@other');
         Route::get('seo', 'ConfigController@seo');
+        Route::get('socialite', 'ConfigController@socialite');
         Route::post('update', 'ConfigController@update');
+    });
+    // 第三方用户管理
+    Route::prefix('socialiteUser')->group(function () {
+        Route::get('index', 'SocialiteUserController@index');
+        Route::get('edit/{id}', 'SocialiteUserController@edit');
+        Route::put('update/{id}', 'SocialiteUserController@update');
     });
 });
 

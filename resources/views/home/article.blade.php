@@ -237,7 +237,7 @@
             });
             return false;
         });
-        
+
         $('.body').on('click', '.reply', function () {
             var clas = $(this).attr('class');
             var id = $(this).attr('id');

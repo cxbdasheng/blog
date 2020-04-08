@@ -21,4 +21,8 @@ class SocialiteUser extends Model implements AuthenticatableContract, Authorizab
     use SoftDeletes,Cachable,Authenticatable,Authorizable;
     protected $table = 'socialite_users';
     protected $fillable = ['socialite_client_id', 'name', 'avatar','openid','access_token','last_login_ip','login_times','email','is_admin','remember_token'];
+    public function socialiteClient()
+    {
+        return $this->belongsTo(SocialiteClient::class);
+    }
 }

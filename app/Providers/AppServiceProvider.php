@@ -32,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Link::observe(\App\Observers\LinkObserver::class);
         \App\Models\Time::observe(\App\Observers\TimeObserver::class);
         \App\Models\Config::observe(\App\Observers\ConfigObserver::class);
+        \App\Models\SocialiteUser::observe(\App\Observers\SocialiteUserObserver::class);
     }
 }

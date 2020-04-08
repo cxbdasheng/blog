@@ -10,10 +10,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 class Comment extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,Cachable;
     protected $table = 'comments';
     protected $fillable = ['socialite_user_id', 'type', 'pid', 'article_id','is_audited','content','content'];
     protected $casts = [

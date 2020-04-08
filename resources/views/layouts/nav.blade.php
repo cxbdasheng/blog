@@ -62,6 +62,14 @@
                     <cite>用户管理</cite>
                     <i class="iconfont nav_right"></i>
                 </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a  url="{{ url('admin/socialiteUser/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 第三方登入用户</cite>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="javascript:;">
