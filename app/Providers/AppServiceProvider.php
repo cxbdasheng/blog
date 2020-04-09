@@ -33,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Time::observe(\App\Observers\TimeObserver::class);
         \App\Models\Config::observe(\App\Observers\ConfigObserver::class);
         \App\Models\SocialiteUser::observe(\App\Observers\SocialiteUserObserver::class);
+        \App\Models\SocialiteClient::observe(\App\Observers\SocialiteClientObserver::class);
     }
 }

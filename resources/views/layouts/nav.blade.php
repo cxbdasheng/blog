@@ -123,6 +123,18 @@
                             <cite>其他设置</cite>
                         </a>
                     </li>
+                    <li>
+                        <a  url="{{ url('admin/socialiteClient/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite>第三方登入</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a  url="{{ url('admin/config/socialShare') }}">
+                            <i class="layui-icon"></i>
+                            <cite>社会化分享</cite>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

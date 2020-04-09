@@ -58,6 +58,13 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('restore/{id}', 'CategoryController@restore');
         Route::get('forceDelete/{id}', 'CategoryController@forceDelete');
     });
+    // Socialite client
+    Route::prefix('socialiteClient')->group(function () {
+        Route::get('index', 'SocialiteClientController@index');
+        Route::get('edit/{id}', 'SocialiteClientController@edit');
+        Route::put('update/{id}', 'SocialiteClientController@update');
+    });
+
     // 添加外链
     Route::prefix('link')->group(function () {
         Route::get('index', 'LinkController@index');
@@ -124,6 +131,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('seo', 'ConfigController@seo');
         Route::get('socialite', 'ConfigController@socialite');
         Route::post('update', 'ConfigController@update');
+        Route::get('socialShare', 'ConfigController@socialShare');
     });
     // 第三方用户管理
     Route::prefix('socialiteUser')->group(function () {

@@ -23,12 +23,15 @@ class ConfigController extends Controller
     {
         return view('admin.config.other');
     }
-
-    public function update(Request $request)
+    public function socialShare()
+    {
+        return view('admin.config.socialShare');
+    }
+    public function update(Request $request,Config $configModel)
     {
         $configs = $request->except('_token');
         foreach ($configs as $id => $config) {
-            Config::find($id)->update([
+            $configModel->find($id)->update([
                 'value' => is_array($config) ? json_encode($config) : $config,
             ]);
         }
