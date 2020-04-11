@@ -45,6 +45,23 @@ if (!function_exists('push_success')) {
         }
     }
 }
+if (!function_exists('mail_is_configured')) {
+    function mail_is_configured()
+    {
+        $mailConfig = [
+            config('mail.default'),
+            config('mail.mailers.smtp.host'),
+            config('mail.mailers.smtp.port'),
+            config('mail.mailers.smtp.encryption'),
+            config('mail.mailers.smtp.username'),
+            config('mail.mailers.smtp.username'),
+            config('mail.from.address'),
+            config('mail.from.name'),
+        ];
+
+        return count(array_filter($mailConfig)) === 8;
+    }
+}
 if (!function_exists('get_image_paths_from_html')) {
     function get_image_paths_from_html($html)
     {

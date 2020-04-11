@@ -124,6 +124,12 @@
                         </a>
                     </li>
                     <li>
+                        <a  url="{{ url('admin/config/mail') }}">
+                            <i class="layui-icon"></i>
+                            <cite>邮箱设置</cite>
+                        </a>
+                    </li>
+                    <li>
                         <a  url="{{ url('admin/socialiteClient/index') }}">
                             <i class="layui-icon"></i>
                             <cite>第三方登入</cite>

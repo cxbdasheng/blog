@@ -23,6 +23,10 @@ class ConfigController extends Controller
     {
         return view('admin.config.other');
     }
+    public function mail()
+    {
+        return view('admin.config.mail');
+    }
     public function socialShare()
     {
         return view('admin.config.socialShare');

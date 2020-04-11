@@ -11,6 +11,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use App\Models\SocialiteUser;
 class Comment extends Model
 {
     use SoftDeletes,Cachable;
@@ -22,6 +23,11 @@ class Comment extends Model
     ];
     // 用于递归
     private $child = [];
+
+    public function socialiteUser()
+    {
+        return $this->belongsTo(SocialiteUser::class)->withDefault();
+    }
     public function getDataByArticleId($article_id)
     {
         // 关联第三方用户表获取一级评论
@@ -88,5 +94,6 @@ class Comment extends Model
         }
 
     }
+
 
 }

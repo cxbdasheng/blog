@@ -132,6 +132,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('socialite', 'ConfigController@socialite');
         Route::post('update', 'ConfigController@update');
         Route::get('socialShare', 'ConfigController@socialShare');
+        Route::get('mail', 'ConfigController@mail');
     });
     // 第三方用户管理
     Route::prefix('socialiteUser')->group(function () {

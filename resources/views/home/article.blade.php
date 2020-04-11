@@ -124,7 +124,7 @@
                 </form>
             </div>
             @foreach($comment as $item)
-                <div class="hf">
+                <div class="hf" id="comment-{{$item['id']}}">
                     <div class="hflc">
                         <div class="hflc-left">
                             <img src="{{$item['avatar']}}" class="hfimg" alt="{{$item['name']}}"
@@ -148,7 +148,7 @@
                             <div class="interactive">
                                 @if(!empty($item['child']))
                                     @foreach($item['child'] as $child)
-                                        <div class="interactive-con">
+                                        <div class="interactive-con" id="comment-{{$child['id']}}">
                                             <div class="hflc-left">
                                                 <img src="{{$child['avatar']}}" class="hfimg" alt="{{$child['name']}}"
                                                      title="{{$child['name']}}">
