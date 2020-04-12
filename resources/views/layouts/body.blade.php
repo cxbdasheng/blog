@@ -12,7 +12,7 @@
         <div class="left_open">您好，欢迎使用{{ env('APP_NAME', '博客')}}后台管理系统</div>
         <ul class="layui-nav right" lay-filter="">
             <li class="layui-nav-item">
-                <a href="javascript:;"><i class="layui-icon layui-icon-username">admin</i><span
+                <a href="javascript:;"><i class="layui-icon layui-icon-username"> {{auth()->guard('admin')->user()->name}}</i><span
                             class="layui-nav-more"></span></a>
                 <dl class="layui-nav-child layui-anim layui-anim-upbit">
                     <!-- 二级菜单 -->

@@ -113,6 +113,20 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('restore/{id}', 'NavController@restore');
         Route::get('forceDelete/{id}', 'NavController@forceDelete');
     });
+    // 管理员
+    Route::prefix('user')->group(function () {
+        // 管理员列表
+        Route::get('index', 'UserController@index');
+        // 编辑管理员
+        Route::get('edit/{id}', 'UserController@edit');
+        Route::put('update/{id}', 'UserController@update');
+        // 删除管理员
+        Route::get('destroy/{id}', 'UserController@destroy');
+        // 恢复删除的管理员
+        Route::get('restore/{id}', 'UserController@restore');
+        // 彻底删除管理员
+        Route::get('forceDelete/{id}', 'UserController@forceDelete');
+    });
 
     // 时间轴
     Route::prefix('time')->group(function () {

@@ -64,6 +64,12 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
+                        <a  url="{{ url('admin/user/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 管理员管理</cite>
+                        </a>
+                    </li>
+                    <li>
                         <a  url="{{ url('admin/socialiteUser/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 第三方登入用户</cite>

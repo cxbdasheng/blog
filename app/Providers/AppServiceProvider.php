@@ -35,5 +35,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\SocialiteUser::observe(\App\Observers\SocialiteUserObserver::class);
         \App\Models\SocialiteClient::observe(\App\Observers\SocialiteClientObserver::class);
         \App\Models\Comment::observe(\App\Observers\CommentObserver::class);
+        \App\Models\User::observe(\App\Observers\UserObserver::class);
     }
 }

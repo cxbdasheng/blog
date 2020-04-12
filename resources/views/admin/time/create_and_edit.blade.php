@@ -33,8 +33,10 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">内容</label>
                                 <div class="layui-input-block">
-                                    <textarea name="content" placeholder="请输入内容" class="layui-textarea"  style="min-height: 300px;">{{old('content',$data->content)}}</textarea>
+                                    <textarea name="content" placeholder="请输入内容" class="layui-textarea"
+                                              style="min-height: 300px;">{{old('content',$data->content)}}</textarea>
                                 </div>
+                            </div>
                             <div class="buttons" style="">
                                 <button class="layui-btn" lay-submit="" lay-filter="submit">提交</button>
                                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
