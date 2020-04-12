@@ -14,6 +14,7 @@ use App\Models\Tag;
 use Cache;
 use App\Http\Resources\ArticlesResources;
 use App\Models\Time;
+use App\Models\Praise;
 
 class IndexController extends Controller
 {
@@ -57,8 +58,9 @@ class IndexController extends Controller
             'description' => config('config.head.description'),
         ];
         // 获取评论
+        $praiseCount = Praise::where('article_id', $articles->id)->count();
         $comment = $commentModel->getDataByArticleId($articles->id);
-        $assign = compact('articles','comment');
+        $assign = compact('articles', 'comment', 'praiseCount');
         return view('home.article', $assign);
     }
 
@@ -220,11 +222,11 @@ class IndexController extends Controller
                 'email' => $email,
             ]);
         }
-        $data=$request->only('article_id', 'content', 'pid', 'socialite_user_id');
+        $data = $request->only('article_id', 'content', 'pid', 'socialite_user_id');
         // 存储评论
-        $data['is_audited']=1;
+        $data['is_audited'] = 1;
         $comment = Comment::create($data);
-        if ($comment){
+        if ($comment) {
             $data = [
                 'success' => 1,
                 'message' => "请求成功！",
@@ -232,7 +234,7 @@ class IndexController extends Controller
                     'id' => $comment->id
                 ],
             ];
-        }else{
+        } else {
             $data = [
                 'success' => 0,
                 'message' => "请求失败！",
@@ -242,5 +244,24 @@ class IndexController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    public function praise(Request $request, Praise $praise)
+    {
+        $id = $request->id ?? 0;
+        $count=$praise->where('article_id','=',$id)->where('ip','=',$request->ip())->count();
+        if ($count){
+            return response()->json('check');
+        }else{
+            $data=[
+                'article_id'=>$id,
+                'ip'=>$request->ip()
+            ];
+            $praise->fill($data);
+            $res=$praise->save();
+            if ($res){
+                return response()->json('ok');
+            }
+        }
     }
 }

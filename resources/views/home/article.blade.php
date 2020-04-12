@@ -47,10 +47,10 @@
                     @endif
                 </div>
                 <div class="zan">
-                    <div class="zan-k" onclick="zan()">
+                    <div class="zan-k" onclick="praise()">
                         <i class="iconfont icon-weibiaoti--"></i>
                         赞
-                        <span>（<b class="zan-data">22</b>）</span>
+                        <span>（<b class="zan-data">{{$praiseCount}}</b>）</span>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -215,6 +215,23 @@
                 return '请先登入！';
             }
         });
+        function praise() {
+            $.ajax({
+                    type: "POST",
+                    url: "{{route('praise')}}?number="+Math.random(),
+                    dataType: "json",
+                    async:false,
+                    data:{id:{{$articles->id}}},
+                    success: function(res) {
+                        if(res=="ok"){
+                            var b=Number($('.zan-data').text());
+                            $('.zan-data').text(b+1);
+                        }else{
+                            alert("你已经投过一次了，还想投么(￣口￣)！！！");
+                        }
+                     }
+            })
+        }
         //监听提交
         form.on('submit(submit)', function (data) {
             var load = layer.msg('正在努力提交...', {icon: 16, shade: [0.1, '#fff'], time: false});

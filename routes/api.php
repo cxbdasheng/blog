@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('Home')->group(function (){
     Route::post('contact','IndexController@contact')->name('contact');
+    Route::post('praise', 'IndexController@praise')->name('praise');
 });

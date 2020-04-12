@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use App\Models\Tag;
+use App\Models\Praise;
 class Articles extends Model
 {
     use SoftDeletes,Cachable;
@@ -30,6 +31,10 @@ class Articles extends Model
     public function tags()
     {
             return $this->belongsToMany(Tag::class, 'article_tags','article_id','tag_id');
+    }
+    public function praise()
+    {
+        return $this->hasMany(Praise::class,'article_id');
     }
     public function searchArticleGetId(string $wd){
         return self::where('title', 'like', "%$wd%")
