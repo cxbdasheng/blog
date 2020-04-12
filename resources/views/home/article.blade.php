@@ -243,7 +243,7 @@
             var id = $(this).attr('id');
             if (clas !== "check reply") {
                 @if(auth()->guard('socialite')->check())
-                var html = '<form id="" class="layui-form"><div class="comments-left">\n' +
+                var html = '<form id="ly" class="layui-form"><div class="comments-left">\n' +
                     '                            <img src="{{ auth()->guard('socialite')->user()->avatar }}"\n' +
                     '                                 alt="{{ auth()->guard('socialite')->user()->name }}"\n' +
                     '                                 title="{{ auth()->guard('socialite')->user()->name }}"/>\n' +
@@ -275,7 +275,7 @@
                     '                            </div>\n' +
                     '                        </div></form>';
                 @else
-                    var html = '<form id="" class="layui-form"><div class="comments-left">\n' +
+                    var html = '<form id="ly" class="layui-form"><div class="comments-left">\n' +
                     '                            <img src="/img/default.jpg" alt="头像" title="头像"/>\n' +
                     '                        </div>\n' +
                     '                        <div class="comments-right">\n' +
@@ -303,7 +303,7 @@
                 $(this).attr('class', 'check reply');
                 $(this).parents('.fh-fh').parents('.fhtime').append(html);
             } else {
-                $(this).parents('.fh-fh').parents('.fhtime').find('.ly').remove();
+                $(this).parents('.fh-fh').parents('.fhtime').find('#ly').remove();
                 $(this).removeClass('check');
             }
         });
