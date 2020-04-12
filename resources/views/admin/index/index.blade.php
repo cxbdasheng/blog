@@ -59,23 +59,23 @@
                                 </li>
                                 <li class="layui-col-md3">
                                     <a href="javascript:;" class="easy-backlog-body">
-                                        <h3>会员数</h3>
+                                        <h3>第三方用户</h3>
                                         <p>
-                                            <cite>12</cite></p>
+                                            <cite>{{$userCount}}</cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md3">
                                     <a href="javascript:;" class="easy-backlog-body">
-                                        <h3>回复数</h3>
+                                        <h3>评论数</h3>
                                         <p>
-                                            <cite>99</cite></p>
+                                            <cite>{{$commentCount}}</cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md3">
                                     <a href="javascript:;" class="easy-backlog-body">
-                                        <h3>商品数</h3>
+                                        <h3>时间轴</h3>
                                         <p>
-                                            <cite>67</cite></p>
+                                            <cite>{{$timeCount}}</cite></p>
                                     </a>
                                 </li>
                             </ul>
@@ -84,19 +84,48 @@
                 </div>
                 <div class="layui-col-md4">
                     <div class="layui-card">
-                        <div class="layui-card-header">卡片面板</div>
+                        <div class="layui-card-header">最新登录的用户 （Top5）</div>
                         <div class="layui-card-body">
-                            卡片式面板面板通常用于非白色背景色的主体内<br>
-                            从而映衬出边框投影
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>昵称</th>
+                                    <th>登入次数</th>
+                                    <th>登入时间</th>
+                                </tr>
+                                </thead>
+                                @foreach($socialiteUserData as $item)
+                                <tr>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{ $item->login_times}}</td>
+                                    <td>{{ $item->updated_at }}</td>
+                                </tr>
+                                @endforeach
+                        </table>
                         </div>
                     </div>
                 </div>
                 <div class="layui-col-md4">
                     <div class="layui-card">
-                        <div class="layui-card-header">卡片面板</div>
+                        <div class="layui-card-header">最新评论 （Top5）</div>
                         <div class="layui-card-body">
-                            卡片式面板面板通常用于非白色背景色的主体内<br>
-                            从而映衬出边框投影
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>昵称</th>
+                                    <th>文章</th>
+                                    <th>内容</th>
+                                </tr>
+                                </thead>
+                                @foreach($latestComments as $item)
+                                    @if($loop->index>4) @break @endif
+                                <tr>
+                                    <td>{{$item->socialiteUser->name}}</td>
+                                    <td>《{{ $item->articles->sub_title }}》</td>
+                                    <td>{{ $item->sub_content }}</td>
+                                </tr>
+                                @endforeach
+                            </table>
                         </div>
                     </div>
                 </div>

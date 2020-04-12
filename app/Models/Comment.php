@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use App\Models\SocialiteUser;
+use App\Models\Articles;
 class Comment extends Model
 {
     use SoftDeletes,Cachable;
@@ -27,6 +28,10 @@ class Comment extends Model
     public function socialiteUser()
     {
         return $this->belongsTo(SocialiteUser::class)->withDefault();
+    }
+    public function articles()
+    {
+        return $this->belongsTo(Articles::class,'article_id')->withDefault();
     }
     public function getDataByArticleId($article_id)
     {

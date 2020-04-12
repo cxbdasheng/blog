@@ -21,6 +21,7 @@ use App\Models\Time;
 use App\Models\Comment;
 use Exception;
 use Artisan;
+use Str;
 class ComonServiceProvider extends ServiceProvider
 {
     public function boot()
@@ -53,23 +54,47 @@ class ComonServiceProvider extends ServiceProvider
 
         $socialiteClients->map(function ($socialiteClient) {
             config([
-                'services.' . $socialiteClient->name . '.client_id'     => $socialiteClient->client_id,
+                'services.' . $socialiteClient->name . '.client_id' => $socialiteClient->client_id,
                 'services.' . $socialiteClient->name . '.client_secret' => $socialiteClient->client_secret,
             ]);
         });
-        view()->composer(['admin/index/index','layouts/home'], function ($view) {
+        view()->composer(['admin/index/index', 'layouts/home'], function ($view) {
             $articleCount = Articles::count('id');
             $userCount = SocialiteUser::count('id');
             $timeCount = Time::count('id');
             $commentCount = Comment::count('id');
-            $assign = compact('articleCount','userCount','timeCount','commentCount');
+            $latestComments = Comment::with(['articles', 'socialiteUser'])
+                ->whereHas('socialiteUser', function ($query) {
+                    $query->where('is_admin', 0);
+                })
+                ->has('articles')
+                ->orderBy('created_at', 'desc')
+                ->limit(17)
+                ->get()
+                ->each(function ($comment){
+                    $comment->sub_content = strip_tags($comment->content);
+                    if (mb_strlen($comment->sub_content) > 10) {
+                        if (config('app.locale') === 'zh-CN') {
+                            $comment->sub_content = Str::substr($comment->sub_content, 0, 40);
+                        } else {
+                            $comment->sub_content = Str::words($comment->sub_content, 10, '');
+                        }
+                    }
+                    if (config('app.locale') === 'zh-CN') {
+                        $comment->articles->sub_title = Str::substr($comment->articles->title, 0, 20);
+                    } else {
+                        $comment->articles->sub_title = Str::words($comment->articles->title, 5, '');
+                    }
+                    return $comment;
+                }) ;
+            $assign = compact('articleCount', 'userCount', 'timeCount', 'commentCount', 'latestComments');
             $view->with($assign);
         });
         //前台Home页面基础数据
-        view()->composer('layouts/home',function ($view)use ($socialiteClients){
+        view()->composer('layouts/home', function ($view) use ($socialiteClients) {
             $category = Category::select('id', 'name', 'slug')->orderBy('sort')->get();
             $tag = Tag::has('articles')->withCount('articles')->get();
-            $topArticle = Articles::select('id', 'title', 'slug','description','views','cover','created_at')
+            $topArticle = Articles::select('id', 'title', 'slug', 'description', 'views', 'cover', 'created_at')
                 ->where('is_top', 1)
                 ->orderBy('created_at', 'desc')
                 ->get();
@@ -84,7 +109,7 @@ class ComonServiceProvider extends ServiceProvider
                 return !empty($socialiteClient->client_id) && !empty($socialiteClient->client_secret);
             });
 
-            $assign = compact('category', 'tag','topArticle','navs','links','socialiteClients');
+            $assign = compact('category', 'tag', 'topArticle', 'navs', 'links', 'socialiteClients');
             $view->with($assign);
         });
         view()->composer(['admin/config/*'], function ($view) use ($config) {
