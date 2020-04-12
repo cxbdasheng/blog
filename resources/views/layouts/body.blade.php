@@ -17,7 +17,7 @@
                 <dl class="layui-nav-child layui-anim layui-anim-upbit">
                     <!-- 二级菜单 -->
                     <dd>
-                        <a href="javascript:logout()">修改密码</a></dd>
+                        <a href="{{url('admin/config/clear')}}">清除缓存</a></dd>
                     <dd>
                         <a href="{{ url('admin/login/logout') }}">注销账号</a></dd>
                 </dl>

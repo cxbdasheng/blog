@@ -27,8 +27,4 @@ class IndexController extends Controller
         return view('admin/index/index', $assign);
     }
 
-    public function test()
-    {
-        return view('admin/test');
-    }
 }
