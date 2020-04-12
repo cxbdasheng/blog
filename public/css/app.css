@@ -5619,3 +5619,18 @@ select {
   float: right;
 }
 
+.w {
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.w li {
+  border-width: 1px 0;
+  margin-bottom: -1px;
+  padding: 10px 0px;
+  border-bottom: solid 1px #eee;
+}
+

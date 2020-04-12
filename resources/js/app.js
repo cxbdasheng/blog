@@ -118,19 +118,19 @@ $(function () {
 
 
     // 固定在顶部
-    $(window).scroll(function(){
-        if($(this).scrollTop() > 1000){
-            var wh=$(window).height();
-            var h=$(this).scrollTop();
-            if (wh < 662) {
-                $('.right-fix').css("top",h-370);
-            }else{
-                $('.right-fix').css("top",h-140);
-            };
-        }else{
-            $('.right-fix').css("top","auto");
-        }
-    });
+    // $(window).scroll(function(){
+    //     if($(this).scrollTop() > 1000){
+    //         var wh=$(window).height();
+    //         var h=$(this).scrollTop();
+    //         if (wh < 662) {
+    //             $('.right-fix').css("top",h-370);
+    //         }else{
+    //             $('.right-fix').css("top",h-140);
+    //         };
+    //     }else{
+    //         $('.right-fix').css("top","auto");
+    //     }
+    // });
     $("img.lazy").lazyload({
         placeholder: "/img/default.png",
         effect: "fadeIn"

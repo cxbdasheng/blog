@@ -128,14 +128,6 @@
                     </ul>
                 </div>
             </div>
-            {{--<div class="message">--}}
-            {{--<h2 class="m-titel">--}}
-            {{--留言墙--}}
-            {{--</h2>--}}
-            {{--<div class="w">--}}
-            {{--</div>--}}
-            {{--<div class="clear" style="margin-top: 20px;"></div>--}}
-            {{--</div>--}}
             <div class="click">
                 <h2 class="c-titel">
                     置顶推荐
@@ -155,6 +147,19 @@
                     @endforeach
                 </ul>
                 <div class="clear"></div>
+            </div>
+            <div class="message">
+                <h2 class="m-titel">
+                    留言墙
+                </h2>
+                <div class="w">
+                    <ul>
+                        @foreach($latestComments as $item)
+                        <li>{{$item->socialiteUser->name}}：<a target="{{config('config.link_type')}}" href="{{$item->articles->url}}">{{ $item->sub_content }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="clear" style="margin-top: 20px;"></div>
             </div>
             <div class="link">
                 <h2 class="l-titel">
