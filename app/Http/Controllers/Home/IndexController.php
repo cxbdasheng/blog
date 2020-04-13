@@ -43,7 +43,7 @@ class IndexController extends Controller
         return view('home.index', $assign);
     }
 
-    public function article(Articles $articles, Request $request, Comment $commentModel)
+    public function article(Articles $articles, Request $request, Comment $commentModel,Praise $praise)
     {
         // 同一个用户访问同一篇文章每天只增加1个访问量  使用 ip+id 作为 key 判别
         $ipAndId = 'article_' . $request->ip() . ':' . $articles->id;
@@ -58,7 +58,7 @@ class IndexController extends Controller
             'description' => config('config.head.description'),
         ];
         // 获取评论
-        $praiseCount = Praise::where('article_id', $articles->id)->count();
+        $praiseCount = $praise->where('article_id', $articles->id)->count();
         $comment = $commentModel->getDataByArticleId($articles->id);
         $assign = compact('articles', 'comment', 'praiseCount');
         return view('home.article', $assign);

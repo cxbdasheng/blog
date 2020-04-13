@@ -123,71 +123,75 @@
                     <div class="clear"></div>
                 </form>
             </div>
-            @foreach($comment as $item)
-                <div class="hf" id="comment-{{$item['id']}}">
-                    <div class="hflc">
-                        <div class="hflc-left">
-                            <img src="{{$item['avatar']}}" class="hfimg" alt="{{$item['name']}}"
-                                 title="{{$item['name']}}">
-                        </div>
-                        <div class="hfmain">
-                            <div class="hfmain-top">
-                                <a href="javascript:;" class="name" title="{{$item['name']}}">{{$item['name']}}</a>
-                                <span class="hfmain-con">
-                                <p>{{$item['content']}}</p>
-                            </span>
+            <div class="comment_foot" >
+                @foreach($comment as $item)
+                    <div class="hf" id="comment-{{$item['id']}}">
+                        <div class="hflc">
+                            <div class="hflc-left">
+                                <img src="{{$item['avatar']}}" class="hfimg" alt="{{$item['name']}}" title="{{$item['name']}}">
                             </div>
-                            <div class="fhtime">
-                                <span class="fhtime-time">{{$item['created_at']}}</span>
-                                <div class="fh-fh">
-                                    <a href="javascript:;" class="reply" id="{{$item['id']}}" name="{{$item['name']}}"
-                                       title="回复">回复</a>
+                            <div class="hfmain">
+                                <div class="hfmain-top">
+                                    <a href="javascript:;" class="name" title="{{$item['name']}}">@if($item['is_admin']==1) <span class="master">站长</span> @endif {{$item['name']}}</a>
+                                    <span class="hfmain-con">
+                                <p>{!! $item['content']!!}</p>
+                            </span>
                                 </div>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="interactive">
-                                @if(!empty($item['child']))
-                                    @foreach($item['child'] as $child)
-                                        <div class="interactive-con" id="comment-{{$child['id']}}">
-                                            <div class="hflc-left">
-                                                <img src="{{$child['avatar']}}" class="hfimg" alt="{{$child['name']}}"
-                                                     title="{{$child['name']}}">
-                                            </div>
-                                            <div class="hfmain">
-                                                <div class="hfmain-top">
-                                                    <a href="javascript:;" class="name">{{$child['name']}}<span
-                                                                class="hfmain-reply">回复</span>
-                                                        {{$child['name']}}</a>
-                                                    <span class="hfmain-con">
-                                <p>{{$child['content']}}</p>
+                                <div class="fhtime">
+                                    <span class="fhtime-time">{{$item['created_at']}}</span>
+                                    <div class="fh-fh">
+                                        <a href="javascript:;" class="reply" id="{{$item['id']}}" name="{{$item['name']}}"
+                                           title="回复">回复</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="interactive">
+                                    @if(!empty($item['child']))
+                                        @foreach($item['child'] as $child)
+                                            <div class="interactive-con" id="comment-{{$child['id']}}">
+                                                <div class="hflc-left">
+                                                    <img src="{{$child['avatar']}}" class="hfimg" alt="{{$child['name']}}" title="{{$child['name']}}">
+                                                </div>
+                                                <div class="hfmain">
+                                                    <div class="hfmain-top">
+                                                        <a href="javascript:;" class="name">@if($child['is_admin']==1) <span class="master">站长</span> @endif{{$child['name']}}<span class="hfmain-reply"> 回复 </span>@if($child['is_admin']==1) <span class="master">站长</span> @endif{{$child['name']}}</a>
+                                                        <span class="hfmain-con">
+                                <p>{!! $child['content'] !!}</p>
                             </span>
-                                                </div>
-                                                <div class="fhtime">
-                                                    <span class="fhtime-time">{{$child['created_at']}}</span>
-                                                    <div class="fh-fh">
-                                                        <a href="javascript:;" class="reply" id="{{$child['id']}}"
-                                                           name="{{$child['name']}}">回复</a>
                                                     </div>
-                                                    <div class="clear"></div>
+                                                    <div class="fhtime">
+                                                        <span class="fhtime-time">{{$child['created_at']}}</span>
+                                                        <div class="fh-fh">
+                                                            <a href="javascript:;" class="reply" id="{{$child['id']}}"
+                                                               name="{{$child['name']}}">回复</a>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
                                                 </div>
+                                                <div class="clear"></div>
                                             </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    @endforeach
-                                @endif
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
+                            <div class="clear"></div>
                         </div>
-                        <div class="clear"></div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection
 @section('js')
+    {{--<script src="{{mix('')}}" type="text/javascript"></script>--}}
     <script type="text/javascript" src="{{asset('lib/layui/layui.all.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/prism.js')}}"></script>
     <script>
+        $('.emotion').qqFace({
+            id : 'facebox',
+            assign:'lytext',
+            path:'/img/arclist/'
+        });
         jsSocialsConfig = {!! config('config.social_share.jssocials_config') !!};
         sharejsConfig = {!! config('config.social_share.sharejs_config') !!};
         $('#share-js').share(sharejsConfig);
@@ -254,7 +258,6 @@
             });
             return false;
         });
-
         $('.body').on('click', '.reply', function () {
             var clas = $(this).attr('class');
             var id = $(this).attr('id');
@@ -281,7 +284,7 @@
                     '                                <p>\n' +
                     '                                    <textarea class="textarea" required lay-verify="required" name="content"\n' +
                     '                                              @if(auth()->guard('socialite')->check()) @else readonly @endif  cols="60"\n' +
-                    '                                              required="" rows="12" id="lytext" placeholder="留下你想对我说的话！"></textarea>\n' +
+                    '                                              required="" rows="12" id="lytext_cli" placeholder="留下你想对我说的话！"></textarea>\n' +
                     '                                </p>\n' +
                     '                                <div class="comment-ctrl">\n' +
                     '                                    <span class="emotion"><img src="/img/em.png" width="20" height="20" alt="">表情</span>\n' +
@@ -306,7 +309,7 @@
                     '                                <p>\n' +
                     '                                    <textarea class="textarea" required lay-verify="required" name="content"\n' +
                     '                                              @if(auth()->guard('socialite')->check()) @else readonly @endif  cols="60"\n' +
-                    '                                              required="" rows="12" id="lytext" placeholder="留下你想对我说的话！"></textarea>\n' +
+                    '                                              required="" rows="12" id="lytext_cli" placeholder="留下你想对我说的话！"></textarea>\n' +
                     '                                </p>\n' +
                     '                                <div class="comment-ctrl">\n' +
                     '                                    <span class="emotion"><img src="/img/em.png" width="20" height="20" alt="">表情</span>\n' +
@@ -317,8 +320,14 @@
                     '                            </div>\n' +
                     '                        </div></form>';
                 @endif
+                $('.comment_foot').find('#ly').remove();
                 $(this).attr('class', 'check reply');
                 $(this).parents('.fh-fh').parents('.fhtime').append(html);
+                $('.emotion').qqFace({
+                    id : 'facebox',
+                    assign:'lytext_cli',
+                    path:'/img/arclist/'
+                });
             } else {
                 $(this).parents('.fh-fh').parents('.fhtime').find('#ly').remove();
                 $(this).removeClass('check');

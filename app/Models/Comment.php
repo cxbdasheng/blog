@@ -44,7 +44,7 @@ class Comment extends Model
             ->get()
             ->toArray();
         foreach ($data as $k => $v) {
-            $data[$k]['content'] = htmlspecialchars_decode($v['content']);
+            $data[$k]['content'] = ubbReplace(htmlspecialchars_decode($v['content']));
 
             // 获取二级评论
             $this->child = [];
@@ -89,6 +89,9 @@ class Comment extends Model
             ->where('comments.pid', $data['id'])
             ->orderBy('created_at', 'desc')
             ->get()
+            ->each(function ($comment){
+                $comment->content=ubbReplace($comment->content);
+            })
             ->toArray();
         if (!empty($child)) {
             foreach ($child as $k => $v) {

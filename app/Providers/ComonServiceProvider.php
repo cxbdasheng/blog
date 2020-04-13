@@ -72,13 +72,15 @@ class ComonServiceProvider extends ServiceProvider
                 ->limit(17)
                 ->get()
                 ->each(function ($comment){
-                    $comment->sub_content = strip_tags($comment->content);
-                    if (mb_strlen($comment->sub_content) > 10) {
+                    $comment->sub_content = ubbReplace(strip_tags($comment->content));
+                    if (mb_strlen($comment->sub_content) > 20) {
                         if (config('app.locale') === 'zh-CN') {
-                            $comment->sub_content = Str::substr($comment->sub_content, 0, 40);
+                            $comment->sub_content = ubbReplace(Str::substr($comment->sub_content, 0, 50));
                         } else {
-                            $comment->sub_content = Str::words($comment->sub_content, 10, '');
+                            $comment->sub_content = ubbReplace(Str::words($comment->sub_content, 10, ''));
                         }
+                    }else{
+                        $comment->sub_content = ubbReplace(strip_tags($comment->content));
                     }
                     if (config('app.locale') === 'zh-CN') {
                         $comment->articles->sub_title = Str::substr($comment->articles->title, 0, 20);

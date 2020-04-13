@@ -281,7 +281,6 @@ span.xshare-title {
 .comments-right {
   width: 89%;
   float: left;
-  overflow: hidden;
   margin-left: 20px;
   margin-bottom: 15px;
 }
@@ -387,6 +386,7 @@ span.xshare-title {
 .hflc-left {
   margin: 10px;
   float: left;
+  position: relative;
 }
 
 .hfimg {
@@ -418,6 +418,11 @@ span.xshare-title {
   overflow: hidden;
 }
 
+.hfmain-con img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .fhtime {
   padding-top: 7px;
 }
@@ -434,6 +439,20 @@ span.xshare-title {
   position: relative;
   overflow: hidden;
   float: right;
+}
+
+.master {
+  display: inline-block;
+  font-size: 14px;
+  width: 40px;
+  text-align: center;
+  height: 20px;
+  background: #eeeeee;
+  color: #ED502E;
+  border-radius: 5px;
+  line-height: 20px;
+  margin-bottom: 0px;
+  margin-right: 4px;
 }
 
 .fh-fh a {
@@ -495,6 +514,26 @@ button:focus {
     width: 100%;
     text-align: center;
   }
+}
+
+.qqFace {
+  margin-top: 4px;
+  background: #fff;
+  padding: 2px;
+  border: 1px #dfe6f6 solid;
+}
+
+.qqFace table td {
+  padding: 0px;
+}
+
+.qqFace table td img {
+  cursor: pointer;
+  border: 1px #fff solid;
+}
+
+.qqFace table td img:hover {
+  border: 1px #0066cc solid;
 }
 
 /*!
@@ -5633,5 +5672,10 @@ select {
   margin-bottom: -1px;
   padding: 10px 0px;
   border-bottom: solid 1px #eee;
+}
+
+.w a img {
+  display: inline-block;
+  vertical-align: middle;
 }
 

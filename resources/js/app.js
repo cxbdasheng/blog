@@ -116,7 +116,6 @@ $(function () {
 
     $('.top-nav-left').one('mouseover', clickHandler);
 
-
     // 固定在顶部
     // $(window).scroll(function(){
     //     if($(this).scrollTop() > 1000){
@@ -131,6 +130,7 @@ $(function () {
     //         $('.right-fix').css("top","auto");
     //     }
     // });
+
     $("img.lazy").lazyload({
         placeholder: "/img/default.png",
         effect: "fadeIn"
@@ -155,4 +155,5 @@ $(function () {
         $('.pop').hide();
         $('.pop-shade').hide();
     });
+
 });

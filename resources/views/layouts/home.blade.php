@@ -155,7 +155,7 @@
                 <div class="w">
                     <ul>
                         @foreach($latestComments as $item)
-                        <li>{{$item->socialiteUser->name}}：<a target="{{config('config.link_type')}}" href="{{$item->articles->url}}">{{ $item->sub_content }}</a></li>
+                        <li>{{$item->socialiteUser->name}}：<a target="{{config('config.link_type')}}" href="{{$item->articles->url}}">{!! $item->sub_content !!}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -252,6 +252,7 @@
 {!! htmlspecialchars_decode(config('config.statistics')) !!}
 <script src="{{mix('js/app.js')}}"></script>
 <script src="{{ asset('js/jquery.lazyload.js') }}"></script>
+<script src="{{ asset('js/jquery.qqFace.js') }}"></script>
 <script>
 </script>
 @yield('js')
