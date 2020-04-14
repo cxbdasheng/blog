@@ -5,7 +5,7 @@
                 <a href="javascript:;">
                     <i class="layui-icon layui-icon-read left-nav-li" lay-tips="文章管理"></i>
                     <!-- <i class="iconfont">&#xe620;</i> -->
-                    <cite>文章管理</cite>
+                    <cite>文章</cite>
                     <i class="iconfont nav_right"></i>
                 </a>
                 <ul class="sub-menu">
@@ -19,7 +19,7 @@
             </li>
             <li>
                 <a href="javascript:;">
-                    <i class="layui-icon layui-icon-user left-nav-li" lay-tips="分类导航"></i>
+                    <i class="layui-icon layui-icon-form left-nav-li" lay-tips="分类导航"></i>
                     <!-- <i class="iconfont">&#xe620;</i> -->
                     <cite>分类导航</cite>
                     <i class="iconfont nav_right"></i>
@@ -41,9 +41,25 @@
             </li>
             <li>
                 <a href="javascript:;">
+                    <i class="layui-icon layui-icon-reply-fill left-nav-li" lay-tips="分类导航"></i>
+                    <!-- <i class="iconfont">&#xe620;</i> -->
+                    <cite>评论</cite>
+                    <i class="iconfont nav_right"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a  url="{{ url('admin/comment/index') }}">
+                            <i class="layui-icon"></i>
+                            <cite>评论管理</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
                     <i class="layui-icon layui-icon-note left-nav-li" lay-tips="标签管理"></i>
                     <!-- <i class="iconfont">&#xe620;</i> -->
-                    <cite>标签管理</cite>
+                    <cite>标签</cite>
                     <i class="iconfont nav_right"></i>
                 </a>
                 <ul class="sub-menu">
@@ -59,7 +75,7 @@
                 <a href="javascript:;">
                     <i class="layui-icon layui-icon-user left-nav-li" lay-tips="用户管理"></i>
                     <!-- <i class="iconfont">&#xe620;</i> -->
-                    <cite>用户管理</cite>
+                    <cite>用户</cite>
                     <i class="iconfont nav_right"></i>
                 </a>
                 <ul class="sub-menu">

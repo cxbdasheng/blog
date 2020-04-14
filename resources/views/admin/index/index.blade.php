@@ -16,29 +16,25 @@
 
                             <blockquote class="layui-elem-quote">
                                 <script type="text/javascript">
-                                    var Hours=new Date().getHours();
-                                    var meg='';
-                                    if (Hours<=6)
-                                    {
-                                        meg="凌晨";
+                                    var Hours = new Date().getHours();
+                                    var meg = '';
+                                    if (Hours <= 6) {
+                                        meg = "凌晨";
                                     }
-                                    else if (Hours <=11)
-                                    {
-                                        meg="早上";
+                                    else if (Hours <= 11) {
+                                        meg = "早上";
                                     }
-                                    else if (Hours <=14)
-                                    {
-                                        meg="中午";
+                                    else if (Hours <= 14) {
+                                        meg = "中午";
                                     }
-                                    else if (Hours <=19)
-                                    {
-                                        meg="下午";
+                                    else if (Hours <= 19) {
+                                        meg = "下午";
                                     }
-                                    else
-                                    {
-                                        meg="晚上";
-                                    };
-                                    document.write('Hi'+meg+'好，现在是：'+new Date().getFullYear() + "年" + (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日" + " " + "星期" + "日一二三四五六".charAt(new Date().getDay()));
+                                    else {
+                                        meg = "晚上";
+                                    }
+                                    ;
+                                    document.write('Hi' + meg + '好，现在是：' + new Date().getFullYear() + "年" + (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日" + " " + "星期" + "日一二三四五六".charAt(new Date().getDay()));
                                 </script>
                                 <span class="x-red"></span>
                             </blockquote>
@@ -95,13 +91,13 @@
                                 </tr>
                                 </thead>
                                 @foreach($socialiteUserData as $item)
-                                <tr>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{ $item->login_times}}</td>
-                                    <td>{{ $item->updated_at }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{$item->name}}</td>
+                                        <td>{{ $item->login_times}}</td>
+                                        <td>{{ $item->updated_at }}</td>
+                                    </tr>
                                 @endforeach
-                        </table>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -119,11 +115,11 @@
                                 </thead>
                                 @foreach($latestComments as $item)
                                     @if($loop->index>4) @break @endif
-                                <tr>
-                                    <td>{{$item->socialiteUser->name}}</td>
-                                    <td>《{{ $item->articles->sub_title }}》</td>
-                                    <td>{{ $item->sub_content }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{$item->socialiteUser->name}}</td>
+                                        <td>《{{ $item->articles->sub_title }}》</td>
+                                        <td>{!! $item->sub_content !!}</td>
+                                    </tr>
                                 @endforeach
                             </table>
                         </div>
@@ -135,8 +131,8 @@
                         <div class="layui-card-body">
                             <table class="layui-table">
                                 <colgroup>
-                                    <col >
-                                    <col >
+                                    <col>
+                                    <col>
                                 </colgroup>
                                 <tr>
                                     <td>服务器地址</td>

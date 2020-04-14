@@ -70,9 +70,10 @@ class ComonServiceProvider extends ServiceProvider
                 ->has('articles')
                 ->orderBy('created_at', 'desc')
                 ->limit(17)
+                ->where('is_audited',1)
                 ->get()
                 ->each(function ($comment){
-                    $comment->sub_content = ubbReplace(strip_tags($comment->content));
+                    $comment->sub_content = strip_tags($comment->content);
                     if (mb_strlen($comment->sub_content) > 20) {
                         if (config('app.locale') === 'zh-CN') {
                             $comment->sub_content = ubbReplace(Str::substr($comment->sub_content, 0, 50));

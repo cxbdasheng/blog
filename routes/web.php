@@ -64,8 +64,19 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('edit/{id}', 'SocialiteClientController@edit');
         Route::put('update/{id}', 'SocialiteClientController@update');
     });
-
-    // 添加外链
+    // 评论管理
+    Route::prefix('comment')->group(function () {
+        Route::get('index', 'CommentController@index');
+        Route::get('create', 'CommentController@create');
+        Route::post('store', 'CommentController@store');
+        Route::get('edit/{id}', 'CommentController@edit');
+        Route::put('update/{id}', 'CommentController@update');
+        Route::post('sort', 'CommentController@sort');
+        Route::get('destroy/{id}', 'CommentController@destroy');
+        Route::get('restore/{id}', 'CommentController@restore');
+        Route::get('forceDelete/{id}', 'CommentController@forceDelete');
+    });
+    // 友链
     Route::prefix('link')->group(function () {
         Route::get('index', 'LinkController@index');
         Route::get('create', 'LinkController@create');
@@ -115,16 +126,11 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     });
     // 管理员
     Route::prefix('user')->group(function () {
-        // 管理员列表
         Route::get('index', 'UserController@index');
-        // 编辑管理员
         Route::get('edit/{id}', 'UserController@edit');
         Route::put('update/{id}', 'UserController@update');
-        // 删除管理员
         Route::get('destroy/{id}', 'UserController@destroy');
-        // 恢复删除的管理员
         Route::get('restore/{id}', 'UserController@restore');
-        // 彻底删除管理员
         Route::get('forceDelete/{id}', 'UserController@forceDelete');
     });
 
