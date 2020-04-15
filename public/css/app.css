@@ -3660,7 +3660,7 @@ img {
 }
 
 .pace .pace-progress {
-  background: red;
+  background: #ED502E;
   position: absolute;
   z-index: 2000;
   top: 0;
