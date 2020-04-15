@@ -267,8 +267,8 @@ class IndexController extends Controller
     public function about(){
         $head = [
             'title' => '关于我',
-            'keywords' => '时间轴,文章归档,小日记',
-            'description' => '文章归档，时间轴',
+            'keywords' => '关于我,陈大剩,Cxb,ChenDasheng',
+            'description' => '我是陈大剩，一个位90后草根站长，一位户外旅行爱好者，一位持续学习者，一名PHP程序猿^_^',
         ];
         $assign = [
             'head' => $head,
