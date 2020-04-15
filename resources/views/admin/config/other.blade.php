@@ -74,6 +74,9 @@
                                class="layui-input" value="{{ $config['config.author'] }}">
                     </div>
                 </div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>图片相关</legend>
+                </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">水印字体大小</label>
                     <div class="layui-input-block">
@@ -98,6 +101,21 @@
                         <div id="test-form"></div>
                     </div>
                 </div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>评论相关</legend>
+                </fieldset>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">评论是否需要审核</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="228" value="true" title="是"
+                               @if($config['config.comment_audit']=='true')checked @endif >
+                        <input type="radio" name="228" value="false" title="否"
+                               @if($config['config.comment_audit']=='false') checked @endif >
+                    </div>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>统计相关</legend>
+                </fieldset>
                 <div class="layui-form-item">
                     <label class="layui-form-label">第三方统计代码</label>
                     <div class="layui-input-block">

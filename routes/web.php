@@ -67,11 +67,8 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     // 评论管理
     Route::prefix('comment')->group(function () {
         Route::get('index', 'CommentController@index');
-        Route::get('create', 'CommentController@create');
-        Route::post('store', 'CommentController@store');
         Route::get('edit/{id}', 'CommentController@edit');
         Route::put('update/{id}', 'CommentController@update');
-        Route::post('sort', 'CommentController@sort');
         Route::get('destroy/{id}', 'CommentController@destroy');
         Route::get('restore/{id}', 'CommentController@restore');
         Route::get('forceDelete/{id}', 'CommentController@forceDelete');
@@ -177,4 +174,5 @@ Route::namespace('Home')->name('home.')->group(function () {
     Route::get('article/{articles}/{slug?}', 'IndexController@article')->name('article');
     Route::post('articles/more','IndexController@more');
     Route::get('time', 'IndexController@time')->name('time');
+    Route::get('about', 'IndexController@about')->name('about');
 });

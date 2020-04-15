@@ -58,19 +58,21 @@ class ComonServiceProvider extends ServiceProvider
                 'services.' . $socialiteClient->name . '.client_secret' => $socialiteClient->client_secret,
             ]);
         });
-        view()->composer(['admin/index/index', 'layouts/home'], function ($view) {
+        view()->composer(['admin/index/index', 'layouts/home','layouts.about'], function ($view) {
             $articleCount = Articles::count('id');
             $userCount = SocialiteUser::count('id');
             $timeCount = Time::count('id');
             $commentCount = Comment::count('id');
             $latestComments = Comment::with(['articles', 'socialiteUser'])
+                ->when(config('config.comment_audit')=='true', function ($query) {
+                    return $query->where('is_audited', 1);
+                })
                 ->whereHas('socialiteUser', function ($query) {
                     $query->where('is_admin', 0);
                 })
                 ->has('articles')
                 ->orderBy('created_at', 'desc')
                 ->limit(17)
-                ->where('is_audited',1)
                 ->get()
                 ->each(function ($comment){
                     $comment->sub_content = strip_tags($comment->content);
@@ -94,7 +96,7 @@ class ComonServiceProvider extends ServiceProvider
             $view->with($assign);
         });
         //前台Home页面基础数据
-        view()->composer('layouts/home', function ($view) use ($socialiteClients) {
+        view()->composer(['layouts/home','layouts.about'], function ($view) use ($socialiteClients) {
             $category = Category::select('id', 'name', 'slug')->orderBy('sort')->get();
             $tag = Tag::has('articles')->withCount('articles')->get();
             $topArticle = Articles::select('id', 'title', 'slug', 'description', 'views', 'cover', 'created_at')

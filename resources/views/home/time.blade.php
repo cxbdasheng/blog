@@ -226,6 +226,7 @@
         }
     </style>
 @endsection
+
 @section('body')
     <div class="main-left">
         <div class="time-line">

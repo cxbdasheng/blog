@@ -15,22 +15,23 @@ return [
     ],
     'is_slug' => '',
     'login' => [
-        'type'=>'',
+        'type' => '',
         'value' => '',
     ],
-    'author'=>'',
-    'icp'=>'',
+    'author' => '',
+    'icp' => '',
     'water' => [
-        'text'=>'',
+        'text' => '',
         'size' => '',
         'color' => '',
     ],
-    'statistics'=>'',
-    'mate'=>'',
-    'link_type'=>'',
+    'statistics' => '',
+    'mate' => '',
+    'link_type' => '',
     'social_share' => [
         'select_plugin' => '',
         'jssocials_config' => '',
         'sharejs_config' => ''
     ],
+    'comment_audit' => '',
 ];

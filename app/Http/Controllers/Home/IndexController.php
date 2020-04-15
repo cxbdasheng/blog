@@ -264,4 +264,15 @@ class IndexController extends Controller
             }
         }
     }
+    public function about(){
+        $head = [
+            'title' => '关于我',
+            'keywords' => '时间轴,文章归档,小日记',
+            'description' => '文章归档，时间轴',
+        ];
+        $assign = [
+            'head' => $head,
+        ];
+        return view('home.about', $assign);
+    }
 }

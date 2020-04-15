@@ -47,7 +47,7 @@
             </div>
             <div class="loginbar fr">
                 @if(auth()->guard('socialite')->check())
-                   欢迎：{{ auth()->guard('socialite')->user()->name }}
+                    欢迎：{{ auth()->guard('socialite')->user()->name }}
                     <a href="{{ url('auth/socialite/logout') }}">退出</a>
                 @else
                     <a id="index-login" href="javascript:;">登录</a>
@@ -59,11 +59,11 @@
         <div class="top-nav">
             <div class="top-nav-left">
                 <a href="/">
-                @if(config('config.login.type')=='img')
-                   <img src="{{config('config.login.value')}}" alt="{{ config('config.head.title') }}">
-                @else
-                   <h1>{{config('config.login.value')}}</h1>
-                @endif
+                    @if(config('config.login.type')=='img')
+                        <img src="{{config('config.login.value')}}" alt="{{ config('config.head.title') }}">
+                    @else
+                        <h1>{{config('config.login.value')}}</h1>
+                    @endif
                 </a>
             </div>
             <div class="top-nav-right">
@@ -108,72 +108,6 @@
 <!-- 内容开始 -->
 <div class="body">
     @yield('body')
-    <div class="main-right">
-        <form action="{{route('home.search')}}" class="search clear" method="get">
-            <input type="text" class="s-content" id="search" name="wd" value="@if(!empty($wd)){{$wd}}@endif" placeholder="">
-            <button class="s-btn">搜索</button>
-        </form>
-        <div class="right-fix">
-            <div class="panel pb10">
-                <h2 class="p-titel">
-                    标签列表
-                </h2>
-                <div class="p-tal" >
-                    <ul>
-                        @foreach($tag as $item)
-                            <li><a href="{{$item->url}}" alt="{{$item->name}}"
-                                   title="{{$item->name}}">{{$item->name}}</a></li>
-                        @endforeach
-                        <div class="clear"></div>
-                    </ul>
-                </div>
-            </div>
-            <div class="click">
-                <h2 class="c-titel">
-                    置顶推荐
-                </h2>
-                <ul>
-                    @foreach($topArticle as $item)
-                        <li><a href="{{$item->url}}" target="{{config('config.link_type')}}" alt="{{$item->title}}" title="{{$item->title}}"><span
-                                        class="c-img">
-                                <img class="lazy" data-original="{{$item->cover}}" alt="{{$item->title}}" title="{{$item->title}}"></span>
-                                <div class="c-right"><span class="text">{{$item->title}}</span>
-                                    <div class="c-foot"><span class="muted">{{$item->created_at}}</span><span
-                                                class="muted-r"><span
-                                                    class="ds-thread-count" data-replace="1">{{$item->views}}
-                                                次阅读</span></span></div>
-                                </div>
-                            </a></li>
-                    @endforeach
-                </ul>
-                <div class="clear"></div>
-            </div>
-            <div class="message">
-                <h2 class="m-titel">
-                    留言墙
-                </h2>
-                <div class="w">
-                    <ul>
-                        @foreach($latestComments as $item)
-                            <li>{{$item->socialiteUser->name}}：<a target="{{config('config.link_type')}}" href="{{$item->articles->url}}">{!! $item->sub_content !!}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="clear" style="margin-top: 20px;"></div>
-            </div>
-            <div class="link">
-                <h2 class="l-titel">
-                    友情链接
-                </h2>
-                <ul>
-                    @foreach($links as $item)
-                        <li><a target="_blank" href="{{$item->url}}">{{$item->name}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
     <div class="clear"></div>
 </div>
 <div class="clear"></div>
@@ -193,8 +127,8 @@
                 <span>站长统计</span>|
                 <span>文章总数[<em>{{$articleCount}}</em>]</span>|
                 <span>评论总数[<em>{{$commentCount}}</em>]</span>|
-               <span>登录用户[<em>{{$userCount}}</em>]</span>|
-               <span>时间点[<em>{{$timeCount}}</em>]</span>
+                <span>登录用户[<em>{{$userCount}}</em>]</span>|
+                <span>时间点[<em>{{$timeCount}}</em>]</span>
             </p>
         </div>
     </div>
