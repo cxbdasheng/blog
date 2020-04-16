@@ -18,5 +18,10 @@ class DatabaseSeeder extends Seeder
          $this->call(ConfigTableSeeder::class);
          $this->call(NavTableSeeder::class);
          $this->call(TimeTableSeeder::class);
+         $this->call(LinkTableSeeder::class);
+         $this->call(ArticleTagsTableSeeder::class);
+         $this->call(SocialiteClientsTableSeeder::class);
+         $this->call(SocialiteUsersTableSeeder::class);
+         $this->call(CommentsTableSeeder::class);
     }
 }

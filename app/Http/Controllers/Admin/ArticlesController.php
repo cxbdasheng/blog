@@ -67,6 +67,7 @@ class ArticlesController extends Controller
         $data = $request->except('_token');
         $tags = $data['tags'];
         unset($data['tags']);
+        $data['keywords']=str_replace("，",",",$data['keywords']);
         $res = $articles->create($data);
         if ($res) {
             // 给文章添加标签
@@ -89,6 +90,7 @@ class ArticlesController extends Controller
         $data = $request->except('_token');
         $tags = $data['tags'];
         unset($data['tags']);
+        $data['keywords']=str_replace("，",",",$data['keywords']);
         $result = $articles->withTrashed()->find($request->id)->update($data);
         if ($result) {
             ArticleTag::where('article_id', $request->id)->forceDelete();
