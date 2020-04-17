@@ -915,7 +915,11 @@ div#last-div ~ div {
   text-align: center;
   border-radius: 5px;
 }
-
+.link ul li:hover a,.link ul li:hover{
+  border-color: #ED502E;
+  background-color: #ED502E;
+  color: #fff;
+}
 /*右边*/
 .main-right {
   float: right;

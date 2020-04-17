@@ -21,7 +21,7 @@ class CommentObserver extends BaseObserver
             $articles = Articles::withTrashed()->find($comment->article_id);
             $socialiteUser = auth()->guard('socialite')->user();
             if ($socialiteUser->is_admin == 0) {
-                Notification::route('mail','851145971@qq.com')
+                Notification::route('mail',config('mail.from.address'))
                     ->notify(new Replied($socialiteUser, $articles, $comment));
             }
             if (intval($comment->pid) !== 0) {

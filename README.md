@@ -1,9 +1,9 @@
-##喜欢记得点个star，您的star将是我最大的鼓励和支持！！！
+### 喜欢记得点个star，您的star将是我最大的鼓励和支持！！！
 
 ## 简介
 * 陈大剩博客Tp5.1改版，基于Laravel、Layui开发。替换了Tp5.1富文编辑器，添加邮件通知、时间轴、图片水印、评论qq表情、第三方登入等新功能;   
 * 本项目采用创作共用版权：[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.z)    
-* 欢迎各位,成为本项目的优秀贡献者;
+* 欢迎各位加入贡献者;
 
 ## 功能介绍
 * 第三方登入
@@ -112,22 +112,24 @@ crontab -e
 记得将`/path-to-your-project`替换为自己的项目目录;
 
 ## 第三方登入
-你可以使用 github、 google、 facebook、 qq、 weibo 登录；  
-名称 | 回调地址
---- | ---
-github | http://c69p.com/auth/oauth/handleProviderCallback/github 
-google | http://c69p.com/auth/oauth/handleProviderCallback/google
-qq | http://c69p.com/auth/oauth/handleProviderCallback/qq
-weibo | http://c69p.com/auth/oauth/handleProviderCallback/weibo
+你可以使用 github、 google、 qq、 weibo 登录；  
 
-##后台管理
+|名称 | 回调地址|
+|:---: | :---:|
+|qq | http://c69p.com/auth/oauth/handleProviderCallback/qq|
+|weibo | http://c69p.com/auth/oauth/handleProviderCallback/weibo  |
+|github | http://c69p.com/auth/oauth/handleProviderCallback/github |
+|google | http://c69p.com/auth/oauth/handleProviderCallback/google|   
+
+把 c69p.com 改成你自己的域名；  
+## 后台管理
 安装配置完成后就可以登录后台进行网站设置了；  
 登录链接： `/admin` ;  
 初始账号： test@test.com  
 初始密码： 123456  
 登录后记得修改密码；  
 
-##分支说明
+## 分支说明
 - dev: 开发分支，我的博客会使用此分支代码先行测试
 - master: 经过测试的的稳定代码
 - feature/*: 用于增加新功能的分支
