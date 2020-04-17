@@ -37217,7 +37217,7 @@ $(function () {
   // });
 
   $("img.lazy").lazyload({
-    placeholder: "/img/default.png",
+    placeholder: "/img/loading.gif",
     effect: "fadeIn"
   }); // 登入弹出框JS
 

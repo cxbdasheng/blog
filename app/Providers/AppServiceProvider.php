@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -36,5 +35,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\SocialiteClient::observe(\App\Observers\SocialiteClientObserver::class);
         \App\Models\Comment::observe(\App\Observers\CommentObserver::class);
         \App\Models\User::observe(\App\Observers\UserObserver::class);
+        ini_set('memory_limit', '512M');
     }
 }

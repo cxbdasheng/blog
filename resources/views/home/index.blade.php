@@ -61,6 +61,10 @@
 @section('js')
     <script>
         $(function () {
+            $("img.lazy").lazyload({
+                placeholder: "/img/loading.gif",
+                effect: "fadeIn"
+            });
             $(window).scroll(function () {
                 if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
                     if ($('.wan-button').length <= 0) {
@@ -120,6 +124,7 @@
                             }
                             $('img.lazy').lazyload({
                                 placeholder: "/img/default.png",
+                                effect: "fadeIn",
                                 threshold: 400
                             });
                             $('.more-loading').hide();

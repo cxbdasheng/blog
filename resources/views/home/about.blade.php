@@ -536,6 +536,5 @@
 @section('js')
     <script>
         document.getElementById("movie").style.height=document.getElementById("movie").scrollWidth*0.6+"px";
-
     </script>
 @endsection

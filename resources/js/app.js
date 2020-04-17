@@ -130,12 +130,10 @@ $(function () {
     //         $('.right-fix').css("top","auto");
     //     }
     // });
-
     $("img.lazy").lazyload({
-        placeholder: "/img/default.png",
+        placeholder: "/img/loading.gif",
         effect: "fadeIn"
     });
-
     // 登入弹出框JS
     $("#index-login").click(function () {
         var display = $('.pop').css("display");

@@ -181,11 +181,11 @@
     <div class="cont">
         <div class="cont-main">
             <p class="fl">
-                <a href="http://c69p.com">关于c69p</a>|
+                <a href="https://github.com/qq851145971/blog">本站由陈大剩博客程序搭建 </a>|
                 <a target="_blank" href="http://www.beian.miit.gov.cn">{{config('config.icp')}}</a>|
                 <span class="copyright">
                     Copyright © 2017 -<script>document.write(new Date().getFullYear());</script>
-                    陈大剩
+                    {{ env('APP_NAME', 'Laravel')}}
                 </span>|
                 <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" target="_blank">本站采用创作共用版权：CC BY-NC 4.0</a>
             </p>
