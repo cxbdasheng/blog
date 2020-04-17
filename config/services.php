@@ -44,5 +44,10 @@ return [
         'client_secret' => env('WEIBO_SECRET'),
         'redirect' => env('APP_URL') . '/auth/oauth/handleProviderCallback/weibo'
     ],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('APP_URL') . '/auth/oauth/handleProviderCallback/goole'
+    ],
 
 ];

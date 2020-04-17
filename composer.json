@@ -24,6 +24,7 @@
         "overtrue/laravel-lang": "^3.0",
         "paquettg/php-html-parser": "^2.2",
         "socialiteproviders/github": "dev-master",
+        "socialiteproviders/google": "^3.0",
         "socialiteproviders/qq": "^3.0",
         "socialiteproviders/weibo": "^3.0",
         "stichoza/google-translate-php": "^4.1"

@@ -63,7 +63,8 @@
         $(function () {
             $("img.lazy").lazyload({
                 placeholder: "/img/loading.gif",
-                effect: "fadeIn"
+                effect: "fadeIn",
+                threshold: 200,
             });
             $(window).scroll(function () {
                 if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
