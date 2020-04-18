@@ -36,7 +36,7 @@
                     <th>序号</th>
                     <th>标签名</th>
                     <th>关键词</th>
-                    <th>描述</th>
+                    <th width="550">描述</th>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>

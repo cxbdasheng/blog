@@ -1,7 +1,7 @@
 ### 喜欢记得点个star，您的star将是我最大的鼓励和支持！！！
 
 ## 简介
-* 陈大剩博客Tp5.1改版，基于Laravel、Layui开发。替换了Tp5.1富文编辑器，添加邮件通知、时间轴、图片水印、评论qq表情、第三方登入等新功能;   
+* [陈大剩博客](https://c69p.com/)Tp5.1改版，基于Laravel、Layui开发。替换了Tp5.1富文编辑器，添加邮件通知、时间轴、图片水印、评论qq表情、第三方登入等新功能;   
 * 本项目采用创作共用版权：[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.z)    
 * 欢迎各位加入贡献者;
 

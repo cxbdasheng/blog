@@ -89,6 +89,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     Route::prefix('tag')->group(function () {
         Route::get('index', 'TagController@index');
         Route::get('create', 'TagController@create');
+        Route::post('store', 'TagController@store');
         Route::get('edit/{id}', 'TagController@edit');
         Route::put('update/{id}', 'TagController@update');
         Route::get('destroy/{id}', 'TagController@destroy');
