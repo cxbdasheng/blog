@@ -2,6 +2,8 @@
 @section('title', $articles->title)
 @section('keywords', $articles->keywords)
 @section('description', $articles->description)
+@section('css')
+@endsection
 @section('body')
     <div class="main-left">
         <div class="text">
@@ -183,7 +185,6 @@
     </div>
 @endsection
 @section('js')
-    {{--<script src="{{mix('')}}" type="text/javascript"></script>--}}
     <script type="text/javascript" src="{{asset('lib/layui/layui.all.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/prism.js')}}"></script>
     <script>
@@ -258,6 +259,7 @@
             });
             return false;
         });
+        emojify.run(document.querySelector('.new-cont'));
         $('.body').on('click', '.reply', function () {
             var clas = $(this).attr('class');
             var id = $(this).attr('id');
@@ -333,5 +335,6 @@
                 $(this).removeClass('check');
             }
         });
+
     </script>
 @endsection

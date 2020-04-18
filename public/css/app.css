@@ -145,7 +145,8 @@ img.jssocials-share-logo {
 }
 
 .tags li a:hover {
-  background: #666;
+  border-color: #ED502E;
+  background-color: #ED502E;
   color: #fff;
 }
 
@@ -5435,9 +5436,44 @@ span.inline-color {
   border-bottom: 1px solid #eee;
 }
 
+.text .new-cont {
+  color: #333;
+}
+
 .text .new-cont h3 {
-  font-size: 1.5em;
   line-height: 1.43;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.text code,
+.text kbd {
+  padding: 2px 4px;
+  font-size: 90%;
+}
+
+.text code {
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+.text code,
+.text kbd,
+.text pre,
+.text samp {
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+}
+
+.text .new-cont blockquote,
+.text .new-cont dl,
+.text .new-cont ol,
+.text .new-cont p,
+.text .new-cont pre,
+.text .new-cont table,
+.text .new-cont ul {
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 .text .new-cont p {

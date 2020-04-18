@@ -160,6 +160,7 @@
                 todoList  : true,
                 placeholder: "请输入内容",
                 toolbarAutoFixed: false,
+                syncScrolling: "single",
                 path      : '{{ asset('/lib/editor/lib') }}/',
                 emoji: true,
                 toolbarIcons : ['undo', 'redo', 'bold', 'del', 'italic', 'quote', 'uppercase', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'list-ul', 'list-ol', 'hr', 'link', 'reference-link', 'image', 'code', 'code-block', 'table', 'emoji', 'html-entities', 'watch', 'preview', 'search', 'fullscreen'],

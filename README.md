@@ -32,7 +32,7 @@
 
 ## 运行环境
 
-- [PHP](https://php.net/) >= 7.25
+- [PHP](https://php.net/) >= 7.2.5
 - [Composer](https://getcomposer.org/) 
 - [Mysql](https://www.mysql.com/) >= 5.7
 - [Nginx](http://nginx.org/) Or  [Apache](https://www.apache.org/)
