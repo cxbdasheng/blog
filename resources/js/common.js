@@ -106,5 +106,3 @@ layui.use(['layer','element','jquery'],function() {
         $(this).hide();
     });
 });
-emojify = require('emojify.js');
-emojify.setConfig({img_dir : '/img/emojis'});

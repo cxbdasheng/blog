@@ -155,3 +155,5 @@ $(function () {
     });
 
 });
+ emojify = require('emojify.js');
+ emojify.setConfig({img_dir : '/img/emojis'});

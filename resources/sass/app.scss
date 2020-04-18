@@ -2113,7 +2113,17 @@ span.inline-color {
 .text .new-cont p {
   margin-bottom: 20px;
 }
-
+.text .new-cont  img {
+  max-width: 100%;
+  vertical-align: middle;
+  box-sizing: border-box;
+  display: inline-block;
+  height: auto;
+}
+.text .new-cont .emoji {
+  width: 24px;
+  height: 24px;
+}
 .text .new-cont {
   line-height: 28px;
 }
