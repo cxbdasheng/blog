@@ -37,6 +37,10 @@
 - [Mysql](https://www.mysql.com/) >= 5.7
 - [Nginx](http://nginx.org/) Or  [Apache](https://www.apache.org/)
 
+
+## 演示站点
+陈大剩博客： [c69p.com](https://c69p.com/)
+![陈大剩博客](https://c69p.com/uploads/images/articles/202004/19/articles_1587302242_qKDD1iHcgi.png "陈大剩博客")
 ## 安装
 
 下载项目
