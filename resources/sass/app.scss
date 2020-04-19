@@ -1134,6 +1134,9 @@ div#last-div ~ div {
 
 .click .text {
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .click .muted {
