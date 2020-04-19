@@ -193,6 +193,7 @@
             assign:'lytext',
             path:'/img/arclist/'
         });
+        $('.new-cont a').attr('target', "{{ config('config.link_target') }}")
         jsSocialsConfig = {!! config('config.social_share.jssocials_config') !!};
         sharejsConfig = {!! config('config.social_share.sharejs_config') !!};
         $('#share-js').share(sharejsConfig);
