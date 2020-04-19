@@ -61,9 +61,11 @@ class ArticleObserver extends BaseObserver
         // 删除文章后同步删除关联表 article_tags 中的数据
         if ($article->isForceDeleting()) {
             ArticleTag::onlyTrashed()->where('article_id', $article->id)->forceDelete();
+            \DB::table('times')->where('article_id',$article->id)->delete();
             push_success('彻底删除成功！');
         } else {
             ArticleTag::where('article_id', $article->id)->delete();
+            \DB::table('times')->where('article_id',$article->id)->update(['deleted_at'=>date("Y:m:d H:s:i")]);
             push_success('删除成功！');
         }
     }
@@ -72,6 +74,7 @@ class ArticleObserver extends BaseObserver
     {
         // 恢复删除的文章后同步恢复关联表 article_tags 中的数据
         ArticleTag::onlyTrashed()->where('article_id', $article->id)->restore();
+        \DB::table('times')->where('article_id',$article->id)->update(['deleted_at'=>null]);
         push_success('恢复成功！');
     }
 }
