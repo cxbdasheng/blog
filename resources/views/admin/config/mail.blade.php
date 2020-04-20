@@ -53,15 +53,15 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">发件人名称</label>
+                    <label class="layui-form-label">发件人邮箱</label>
                     <div class="layui-input-block">
-                        <input type="text" name="226"  class="layui-input" value="{{ $config['mail.from.name'] }}">
+                        <input type="text" name="226"  class="layui-input" value="{{ $config['mail.from.address'] }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">发件人邮箱</label>
+                    <label class="layui-form-label">发件人名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="227"  class="layui-input" value="{{ $config['mail.from.address'] }}">
+                        <input type="text" name="227"  class="layui-input" value="{{ $config['mail.from.name'] }}">
                     </div>
                 </div>
                 <div class="buttons" style="">
