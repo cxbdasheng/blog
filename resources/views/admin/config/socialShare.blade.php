@@ -1,11 +1,11 @@
 @extends('layouts.body')
-@section('title', 'seo设置')
+@section('title', '社会化分析设置')
 @section('content')
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
-                <a href="{{url('admin/config/seo')}}">
-                    <li class="layui-this">seo设置</li>
+                <a href="{{url('admin/config/socialShare')}}">
+                    <li class="layui-this">社会化分析设置</li>
                 </a>
             </ul>
             <div class="layui-tab-content">
