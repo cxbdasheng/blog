@@ -52,7 +52,7 @@ class SocialiteController extends Controller
         // 定义各种第三方登录的type对应的数字
         $type = $this->socialiteClients->pluck('id', 'name');
         // 获取用户资料
-        $user = Socialite::driver($service)->user();
+        $user = Socialite::driver($service)->stateless()->user();
         // 查找此用户是否已经登录过
         $countMap = [
             'socialite_client_id' => $type[$service],
