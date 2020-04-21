@@ -426,7 +426,7 @@
                 关于我
             </h2>
             <div class="herdimg">
-                <img class="lazy" data-original="img/about/head.jpg"  alt="陈大剩头像" title="陈大剩头像" style="opacity: 0.8">
+                <img class="lazy" data-original="img/about/head.jpg"  alt="陈大剩头像" title="陈大剩头像">
             </div>
             <div class="ab-info">
                 <p>陈大剩 | Cxb </p>

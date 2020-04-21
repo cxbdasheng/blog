@@ -156,7 +156,7 @@
                                                 </div>
                                                 <div class="hfmain">
                                                     <div class="hfmain-top">
-                                                        <a href="javascript:;" class="name">@if($child['is_admin']==1) <span class="master">站长</span> @endif{{$child['name']}}<span class="hfmain-reply"> 回复 </span>@if($child['is_admin']==1) <span class="master">站长</span> @endif{{$child['name']}}</a>
+                                                        <a href="javascript:;" class="name">@if($child['is_admin']==1) <span class="master">站长</span> @endif{{$child['name']}}<span class="hfmain-reply"> 回复 </span>@if($child['is_admin']==1) <span class="master">站长</span> @endif{{$child['reply_name']}}</a>
                                                         <span class="hfmain-con">
                                 <p>{!! $child['content'] !!}</p>
                             </span>
@@ -164,8 +164,7 @@
                                                     <div class="fhtime">
                                                         <span class="fhtime-time">{{$child['created_at']}}</span>
                                                         <div class="fh-fh">
-                                                            <a href="javascript:;" class="reply" id="{{$child['id']}}"
-                                                               name="{{$child['name']}}">回复</a>
+                                                            <a href="javascript:;" class="reply" id="{{$child['id']}}" name="{{$child['name']}}">回复</a>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
