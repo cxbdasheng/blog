@@ -110,7 +110,7 @@ if (!function_exists('ubbReplace')) {
         $str = str_replace ( ">", '<;', $str );
         $str = str_replace ( ">", '>;', $str );
         $str = str_replace ( "\n", '>;br/>;', $str );
-        $str = preg_replace ( "[\[em_([0-9]*)\]]", "<img src=\"/img/arclist/$1.gif\" />", $str );
+        $str = preg_replace ( "[\[em_([0-9]*)\]]", "<img src=\"".config('app.url')."/img/arclist/$1.gif\" />", $str );
         return $str;
     }
 };
