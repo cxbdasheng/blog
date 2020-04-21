@@ -74,7 +74,7 @@ class Replied extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject($this->subject)
             ->greeting($this->title)
-            ->line(new HtmlString(ubbReplace($this->comment->content)))
+            ->line(new HtmlString($this->comment->content))
             ->action('点击查看详情',$this->articles->url . '#comment-' . $this->comment->id);
     }
 
