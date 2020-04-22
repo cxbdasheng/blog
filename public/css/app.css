@@ -5451,6 +5451,11 @@ span.inline-color {
   font-size: 90%;
 }
 
+.text .code-toolbar code {
+  padding: 0;
+  background: 0 0;
+}
+
 .text code {
   color: #c7254e;
   background-color: #f9f2f4;
