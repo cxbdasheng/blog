@@ -3,6 +3,7 @@
 @section('keywords', $articles->keywords)
 @section('description', $articles->description)
 @section('css')
+    <link href="{{ asset('css/prism.css') }}" rel="stylesheet">
 @endsection
 @section('body')
     <div class="main-left">
