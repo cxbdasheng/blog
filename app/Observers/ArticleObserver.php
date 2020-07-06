@@ -42,6 +42,17 @@ class ArticleObserver extends BaseObserver
             $article->cover = $image_paths[0] ?? config('app.url') .'/img/default.png';
         }
     }
+    public function updating($article)
+    {
+        if (empty($article->description)) {
+            $content = preg_replace(
+                ['/[~*>#-]*/', '/!?\[.*\]\(.*\)/', '/\[.*\]/'],
+                '',
+                $article->markdown
+            );
+            $article->description = Str::substr($content, 0, 200);
+        }
+    }
     public function created($model)
     {
         \DB::table('times')->insert(['content'=>'《'.$model->title .'》','article_id'=>$model->id,'type'=>'2','created_at'=>date("Y:m:d H:s:i"),'updated_at'=>date("Y:m:d H:s:i")]);

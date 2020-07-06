@@ -97,7 +97,7 @@
                             <div class="layui-form-item layui-form-text">
                                 <label class="layui-form-label">描述</label>
                                 <div class="layui-input-block">
-                                    <textarea name="description" placeholder="请输入内容" class="layui-textarea"  maxlength="180">{{old('description',$data->description)}}</textarea>
+                                    <textarea name="description" placeholder="请输入内容" class="layui-textarea"  maxlength="180">@if(isset($data->description)) {{$data->description}}@else {{old('description',$data->description)}} @endif</textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item layui-form-text">

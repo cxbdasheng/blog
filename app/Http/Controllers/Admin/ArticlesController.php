@@ -68,6 +68,7 @@ class ArticlesController extends Controller
         $tags = $data['tags'];
         unset($data['tags']);
         $data['keywords']=str_replace("，",",",$data['keywords']);
+
         $res = $articles->create($data);
         if ($res) {
             // 给文章添加标签
