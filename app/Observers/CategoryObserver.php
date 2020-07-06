@@ -10,6 +10,9 @@ class CategoryObserver extends BaseObserver
         if ($category->isDirty('name') && empty($category->slug)) {
             $category->slug = generate_english_slug($category->name);
         }
+        if (empty($category->sort) || !is_numeric($category->sort)) {
+            $category->sort = 0;
+        }
     }
     public function deleting($category)
     {

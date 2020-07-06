@@ -48,7 +48,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">排序</label>
                                 <div class="layui-input-block">
-                                    <input type="text" maxlength="3" name="sort" required lay-verify="required|number" placeholder=""
+                                    <input type="text" maxlength="3" name="sort"
                                            autocomplete="off" class="layui-input" value="{{old('sort',$data->sort)}}">
                                 </div>
                             </div>
