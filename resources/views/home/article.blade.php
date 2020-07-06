@@ -135,7 +135,7 @@
                             </div>
                             <div class="hfmain">
                                 <div class="hfmain-top">
-                                    <a href="javascript:;" class="name" title="{{$item['name']}}">@if($item['is_admin']==1) <span class="master">站长</span> @endif {{$item['name']}}</a>
+                                    <a href="javascript:;" class="name" title="{{$item['name']}}">@if($item['is_admin']==1) <span class="master">{{$item['name']}}</span> @else {{$item['name']}} @endif </a>
                                     <span class="hfmain-con">
                                 <p>{!! $item['content']!!}</p>
                             </span>
@@ -149,15 +149,16 @@
                                     <div class="clear"></div>
                                 </div>
                                 <div class="interactive">
+
                                     @if(!empty($item['child']))
-                                        @foreach($item['child'] as $child)
+                                    @foreach($item['child'] as $child)
                                             <div class="interactive-con" id="comment-{{$child['id']}}">
                                                 <div class="hflc-left">
                                                     <img src="{{$child['avatar']}}" class="hfimg" alt="{{$child['name']}}" title="{{$child['name']}}">
                                                 </div>
                                                 <div class="hfmain">
                                                     <div class="hfmain-top">
-                                                        <a href="javascript:;" class="name">@if($child['is_admin']==1) <span class="master">站长</span> @endif{{$child['name']}}<span class="hfmain-reply"> 回复 </span>@if($child['is_admin']==1) <span class="master">站长</span> @endif{{$child['reply_name']}}</a>
+                                                        <a href="javascript:;" class="name">@if($child['is_admin']==1) <span class="master">{{$child['name']}}</span> @else {{$child['name']}} @endif<span class="hfmain-reply"> 回复 </span>@if($child['reply_is_admin']==1) <span class="master">{{$child['reply_name']}}</span>@else {{$child['reply_name']}} @endif</a>
                                                         <span class="hfmain-con">
                                 <p>{!! $child['content'] !!}</p>
                             </span>

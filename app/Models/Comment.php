@@ -66,11 +66,12 @@ class Comment extends Model
                 foreach ($child as $m => $n) {
                     // 获取被评论人id
                     $replyUserId = $this->where('id', $n['pid'])->pluck('socialite_user_id');
-
-                    // 获取被评论人昵称
-                    $child[$m]['reply_name'] = SocialiteUser::where([
+                    $reply=SocialiteUser::where([
                         'id' => $replyUserId,
-                    ])->value('name');
+                    ])->first();
+                    // 获取被评论人昵称
+                    $child[$m]['reply_name'] =$reply['name'];
+                    $child[$m]['reply_is_admin'] =$reply['is_admin'];
                 }
             }
 
