@@ -13,15 +13,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use App\Models\SocialiteUser;
 use App\Models\Articles;
+use Illuminate\Support\Carbon;
 class Comment extends Model
 {
     use SoftDeletes,Cachable;
+    /**
+     * 为数组 / JSON 序列化准备日期。
+     *
+     * @param \DateTimeInterface $date
+     * @return string
+     */
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return Carbon::instance($date)->toDateTimeString();
+    }
+
     protected $table = 'comments';
     protected $fillable = ['socialite_user_id', 'type', 'pid', 'article_id','is_audited','content','content'];
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
+
+
+    public $timestamps = true;
     // 用于递归
     private $child = [];
 
