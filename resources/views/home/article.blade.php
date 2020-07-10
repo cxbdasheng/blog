@@ -35,7 +35,7 @@
                 <ul>
                     <li><i class="iconfont icon-biaoqian"></i>标签:</li>
                     @foreach($articles->tags as $item)
-                        <li><a href="/label/1" alt="{{$item->name}}" title="{{$item->name}}">{{$item->name}}</a></li>
+                        <li><a href="{{$item->url}}" alt="{{$item->name}}" title="{{$item->name}}">{{$item->name}}</a></li>
                     @endforeach
                 </ul>
                 <div class="clear"></div>
