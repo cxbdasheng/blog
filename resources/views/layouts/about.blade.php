@@ -183,11 +183,11 @@
 @endif
 
 <div class="clear"></div>
-{!! htmlspecialchars_decode(config('config.statistics')) !!}
 <script src="{{mix('js/app.js')}}"></script>
 <script src="{{ asset('js/jquery.lazyload.js') }}"></script>
 <script src="{{ asset('js/jquery.qqFace.js') }}"></script>
 <script>
 </script>
 @yield('js')
+{!! htmlspecialchars_decode(config('config.statistics')) !!}
 </html>

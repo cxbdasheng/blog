@@ -21,7 +21,7 @@
             content: ' ';
             display: block;
             width: 8px;
-            height: 90%;
+            height: 95%;
             background-color: rgb(255, 187, 172);
             position: absolute;
             left: 50%;
