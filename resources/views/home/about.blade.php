@@ -586,23 +586,7 @@
                     <img class="lazy" data-original="img/about/cb.png" style="width: 50%;float: left;margin: 20px;"
                          class="img-fw mb-30" alt="Hi，我是陈大剩" title="Hi，我是陈大剩">
                     <p>
-                        　　大学毕业开始入坑，不知不觉已经从事PHP工作
-                        <script type="application/javascript">
-                            var now_year = new Date().getFullYear();
-                            var now_month = new Date().getMonth() + 1;
-                            var pass_year = now_year - 2017;
-                            if (now_month > 6) {
-                                var pass_months = (now_month - 6) / 12;
-                            } else {
-                                var pass_months = (12 + (now_month - 6)) / 12;
-                                pass_year = pass_year - 1;
-                            }
-                            var pass = pass_year + pass_months;
-                            var dom_year = document.getElementById('year');
-                            var newText = document.createTextNode(pass.toFixed(1) + " years+");
-                            dom_year.appendChild(newText);
-                        </script>
-                        年了。但是这对门世界上最好的语言的热爱依然不减，因为它是有趣而强大的，我还有很长的路要走！这二年已经习惯了朝7晚1的生活，也因此做了很多的项目，企业官网，商城，小程序，微信开发等等。有一些进步，但是总体提升的速度还是很缓慢，互联网的知识太多，不学习总感觉自己会退步，一定会加倍努力学习！
+                        　　大学毕业开始入坑，不知不觉已经从事PHP工作三年了。但是这对门世界上最好的语言的热爱依然不减，因为它是有趣而强大的，我还有很长的路要走！这三年已经习惯了朝7晚1的生活，也因此做了很多的项目，企业官网，商城，小程序，微信开发等等。有一些进步，但是总体提升的速度还是很缓慢，互联网的知识太多，不学习总感觉自己会退步，一定会加倍努力学习！
                     </p>
                     <p>
                         　　做这个博客断断续续花了一年多，从设计到前端展示再到后台都是自己亲力亲为，非常感给我博客提前意见的你们，谢谢！希望从现在开始能建立一个比较完整博客系统，并记录工作上遇到的问题和生活的点滴一起和大家分享，共同进步！</p>
