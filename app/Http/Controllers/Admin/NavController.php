@@ -9,18 +9,18 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Navs;
+use App\Models\Nav;
 use App\Http\Requests\NavsRequest;
 class NavController extends Controller
 {
-    public function index(Request $request, Navs $navs){
+    public function index(Request $request, Nav $navs){
         $limit = $request->limit ? $request->limit : 20;
         $name = $request->name ? $request->name : '';
         $data = $navs->withTrashed()->where('name', 'like', '%' . $name . '%')->orderBy('id', 'desc')->paginate($limit);
         return view('admin.navs.index',compact('data','name'));
     }
 
-    public function sort(Request $request, Navs $query)
+    public function sort(Request $request, Nav $query)
     {
         $category = $query->withTrashed()->find($request->id);
         $data = [
@@ -52,35 +52,35 @@ class NavController extends Controller
         return response()->json($data);
     }
 
-    public function create(Navs $data)
+    public function create(Nav $data)
     {
         return view('admin/navs/create_and_edit', compact('data'));
     }
-    public function store(NavsRequest $request, Navs $navs)
+    public function store(NavsRequest $request, Nav $navs)
     {
         $navs->fill($request->except('_token'));
         $navs->save();
         return redirect('admin/nav/index');
     }
-    public function edit($id, Navs $category)
+    public function edit($id, Nav $category)
     {
         $data = $category->withTrashed()->find($id);
         return view('admin.navs.create_and_edit', compact('data'));
     }
-    public function update(NavsRequest $request, Navs $navs,$id)
+    public function update(NavsRequest $request, Nav $navs, $id)
     {
         $navs->withTrashed()->find($id)->update($request->except('_token'));
         return back()->withInput();
     }
-    public function destroy(Navs $navs,$id){
+    public function destroy(Nav $navs, $id){
         $navs->find($id)->delete();
         return redirect('admin/nav/index');
     }
-    public function restore(Navs $navs,$id){
+    public function restore(Nav $navs, $id){
         $navs->onlyTrashed()->find($id)->restore();
         return redirect('admin/nav/index');
     }
-    public function forceDelete(Navs $navs,$id){
+    public function forceDelete(Nav $navs, $id){
         $navs->onlyTrashed()->find($id)->forceDelete();
         return redirect('admin/nav/index');
     }

@@ -7,18 +7,17 @@
  */
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-use App\Models\Articles;
-class Praise extends Model
+
+use App\Models\Article;
+
+class Praise extends BaseModel
 {
-    use SoftDeletes,Cachable;
     protected $table = 'praise';
 
     protected $fillable = ['article_id', 'ip'];
+
     public function Articles()
     {
-        return $this->belongsTo(Articles::class,'article_id');
+        return $this->belongsTo(Article::class, 'article_id');
     }
 }

@@ -8,24 +8,25 @@
 
 namespace App\Observers;
 
+use Illuminate\Database\Eloquent\Model;
 
 class BaseObserver
 {
-    public function created($model)
+    public function created(Model $model)
     {
         push_success('添加成功！');
     }
 
-    public function updated($model)
+    public function updated(Model $model)
     {
-        if($model->isDirty()){
+        if ($model->isDirty()) {
             push_success('更新成功！');
-        }else{
+        } else {
             push_error('没有任何更新！');
         }
     }
 
-    public function deleted($model)
+    public function deleted(Model $model)
     {
         if ($model->isForceDeleting()) {
             push_success('彻底删除成功！');
@@ -34,7 +35,7 @@ class BaseObserver
         }
     }
 
-    public function restored($model)
+    public function restored(Model $model)
     {
         push_success('恢复成功！');
     }

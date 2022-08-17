@@ -154,8 +154,12 @@
                 </h2>
                 <div class="w">
                     <ul>
-                        @foreach($latestComments as $item)
-                            <li>{{$item->socialiteUser->name}}：<a target="{{config('config.link_type')}}" href="{{$item->articles->url}}">{!! $item->sub_content !!}</a></li>
+                    @foreach($latestComments as $item)
+                            <li>
+                                <div title="{{$item->sub_content}}">
+                                    {{$item->socialiteUser->name}}：<a target="{{config('config.link_type')}}" href="{{$item->article->url}}">{!! $item->sub_content !!} </a>
+                                </div>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -209,7 +213,7 @@
 @else
     <div class="pop">
         <div class="pop-left">
-            <img src="{{asset('img/login_left.png')}}" alt="">
+            <img src="{{asset('img/login_left.png')}}" alt="logo">
         </div>
         <div class="pop-right">
             <div class="pop-right-head">

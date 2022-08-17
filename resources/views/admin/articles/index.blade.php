@@ -79,45 +79,47 @@
 @section('js')
     {{ $data->links('layouts.page') }}
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        layui.use('laypage', function () {
-            layer.ready(function () {
-                var laypage = layui.laypage;
-                        @include('shared._error')
-                        @include('shared._messages')
-                var name = "{{old('title')}}";
-                //执行一个laypage实例
-                laypage.render({
-                    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
-                    , count: {{$data->total()}}
-                    , curr:{{$data->currentPage()}}
-                    , limit:{{$data->perPage()}}
-                    , layout: ['prev', 'page', 'next', 'limit', 'count', 'skip']
-                    , jump: function (obj, first) {
-                        if (!first) {
-                            if (name) {
-                                window.location.href = "?page=" + obj.curr + "&limit=" + obj.limit + "&title=" + name;
-                            } else {
-                                window.location.href = "?page=" + obj.curr + "&limit=" + obj.limit;
-                            }
-                        }
-                    }
-                });
-            });
-        });
-        $('a.J-baseAjaxTodo').on("click", function () {
-            var _this = this;
-            layer.confirm(_this.title, {
-                btn: ['确定', '取消']
-                , yes: function (index, layero) {
-                    window.location.href = _this.href;
+        $(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            return false;
+            layui.use('laypage', function () {
+                layer.ready(function () {
+                    var laypage = layui.laypage;
+                    @include('shared._error')
+                    @include('shared._messages')
+                    var name = "{{old('title')}}";
+                    //执行一个laypage实例
+                    laypage.render({
+                        elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+                        , count: {{$data->total()}}
+                        , curr: {{$data->currentPage()}}
+                        , limit: {{$data->perPage()}}
+                        , layout: ['prev', 'page', 'next', 'limit', 'count', 'skip']
+                        , jump: function (obj, first) {
+                            if (!first) {
+                                if (name) {
+                                    window.location.href = "?page=" + obj.curr + "&limit=" + obj.limit + "&title=" + name;
+                                } else {
+                                    window.location.href = "?page=" + obj.curr + "&limit=" + obj.limit;
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+            $('a.J-baseAjaxTodo').on("click", function () {
+                var _this = this;
+                layer.confirm(_this.title, {
+                    btn: ['确定', '取消']
+                    , yes: function (index, layero) {
+                        window.location.href = _this.href;
+                    }
+                });
+                return false;
+            });
         });
     </script>
 @endsection

@@ -1,32 +1,3 @@
- /**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-require('./bootstrap');
-
-// window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 require('jssocials/dist/jssocials.min');
 
 require('social-share.js/dist/js/jquery.share.min');
@@ -55,7 +26,8 @@ $(function () {
             $('.left-nav').hide(400);
             $("#check-nav").removeClass("icon-zhedie1");
             $("#check-nav").addClass("icon-zhedie");
-        };
+        }
+        ;
     });
     $('.mp').click(function () {
         $('.left-nav').hide(400);
@@ -132,10 +104,12 @@ $(function () {
     // });
     $("img.lazy").lazyload({
         placeholder: "/img/loading.gif",
-        effect: "fadeIn"
+        effect: "fadeIn",
+        failure_limit: 10,
     });
+
     // 登入弹出框JS
-    $("#index-login").click(function () {
+    $("#index-login,#comments-login,#lytext").click(function () {
         var display = $('.pop').css("display");
         if (display == "none") {
             $('.pop').show();
@@ -143,8 +117,10 @@ $(function () {
         } else {
             $('.pop').hide();
             $('.pop-shade').hide();
-        };
+        }
     });
+
+
     $('.pop-shade').click(function () {
         $('.pop').hide();
         $(this).hide();
@@ -155,5 +131,5 @@ $(function () {
     });
 
 });
- emojify = require('emojify.js');
- emojify.setConfig({img_dir : '/img/emojis'});
+emojify = require('emojify.js');
+emojify.setConfig({img_dir: '/img/emojis'});

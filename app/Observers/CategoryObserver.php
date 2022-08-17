@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Category;
-use App\Models\Articles;
+use App\Models\Article;
 class CategoryObserver extends BaseObserver
 {
     public function saving(Category $category){
@@ -16,7 +16,7 @@ class CategoryObserver extends BaseObserver
     }
     public function deleting($category)
     {
-        if (Articles::where('category_id', $category->id)->count() !== 0) {
+        if (Article::where('category_id', $category->id)->count() !== 0) {
             push_error('请先删除分类下的文章！');
             return false;
         }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
-use App\Models\Articles;
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\ArticleTag;
@@ -17,10 +17,10 @@ class ArticlesController extends Controller
      * @Author: ChenDasheng
      * @Created: 2020/3/15
      * @param Request $request
-     * @param Articles $articles
+     * @param Article $articles
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request, Articles $articles)
+    public function index(Request $request, Article $articles)
     {
         $limit = $request->limit ? $request->limit : 20;
         $title = $request->title ? $request->title : '';
@@ -28,7 +28,7 @@ class ArticlesController extends Controller
         return view('admin.articles.index', compact('data','title'));
     }
 
-    public function create(Articles $data)
+    public function create(Article $data)
     {
         $category = Category::all();
         $tag = Tag::all();
@@ -63,12 +63,11 @@ class ArticlesController extends Controller
         return $data;
     }
 
-    public function store(ArticleRequest $request, Articles $articles,ImageUploadHandler $uploader){
+    public function store(ArticleRequest $request, Article $articles, ImageUploadHandler $uploader){
         $data = $request->except('_token');
         $tags = $data['tags'];
         unset($data['tags']);
         $data['keywords']=str_replace("，",",",$data['keywords']);
-
         $res = $articles->create($data);
         if ($res) {
             // 给文章添加标签
@@ -78,7 +77,7 @@ class ArticlesController extends Controller
         return redirect('admin/articles/index');
     }
 
-    public function edit($id, Articles $articles){
+    public function edit($id, Article $articles){
         $data = $articles->withTrashed()->find($id);
         $data->tags = ArticleTag::where('article_id', $id)->pluck('tag_id')->toArray();
         $category = Category::all();
@@ -87,7 +86,7 @@ class ArticlesController extends Controller
         return view('admin.articles.create_and_edit', $assign);
     }
 
-    public function update(ArticleRequest $request, Articles $articles,ArticleTag $articleTagMode){
+    public function update(ArticleRequest $request, Article $articles, ArticleTag $articleTagMode){
         $data = $request->except('_token');
         $tags = $data['tags'];
         unset($data['tags']);
@@ -99,16 +98,16 @@ class ArticlesController extends Controller
         }
         return back()->withInput();
     }
-    public function destroy(Articles $articles,$id){
+    public function destroy(Article $articles, $id){
         $articles->find($id)->delete();
         return redirect('admin/articles/index');
     }
-    public function forceDelete($id, Articles $articles)
+    public function forceDelete($id, Article $articles)
     {
         $articles->onlyTrashed()->find($id)->forceDelete();
         return redirect('admin/articles/index');
     }
-    public function restore(Articles $articles,$id)
+    public function restore(Article $articles, $id)
     {
         $articles->onlyTrashed()->find($id)->restore();
         return redirect('admin/articles/index');

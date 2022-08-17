@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // auth
 Route::namespace('Auth')->prefix('auth')->as('auth.')->group(function () {
     // Socialite
@@ -165,15 +164,14 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
 Route::namespace('Home')->name('home.')->group(function () {
     // 首页
     Route::get('/', 'IndexController@index')->name('index');
-    // 分类
     Route::get('category/{category}/{slug?}', 'IndexController@category')->name('category');
     // 标签
     Route::get('tag/{tag}/{slug?}', 'IndexController@tag')->name('tag');
     // 搜索文章
     Route::get('search', 'IndexController@search')->name('search');
     // 文章详情
-    Route::get('article/{articles}/{slug?}', 'IndexController@article')->name('article');
-    Route::post('articles/more','IndexController@more');
+    Route::get('article/{article}/{slug?}', 'IndexController@article')->name('article');
+    Route::post('articles/more', 'IndexController@more');
     Route::get('time', 'IndexController@time')->name('time');
     Route::get('about', 'IndexController@about')->name('about');
 });

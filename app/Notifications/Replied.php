@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Models\Articles;
+use App\Models\Article;
 use App\Models\Comment as CommentModel;
 use App\Models\SocialiteUser;
 use Illuminate\Bus\Queueable;
@@ -21,7 +21,7 @@ class Replied extends Notification implements ShouldQueue
     public $socialiteUser;
 
     /**
-     * @var \App\Models\Articles
+     * @var \App\Models\Article
      */
     public $articles;
 
@@ -37,9 +37,9 @@ class Replied extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(SocialiteUser $socialiteUser, Articles $articles, CommentModel $comment)
+    public function __construct(SocialiteUser $socialiteUser, Article $articles, CommentModel $comment)
     {
-        if (intval($comment->pid) === 0) {
+        if (intval($comment->parent_id) === 0) {
             $this->subject = config('app.name') . '- 评论提示';
             $this->title = $socialiteUser->name.'：'."《{$articles->title}》";
         } else {

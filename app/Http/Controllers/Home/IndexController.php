@@ -5,16 +5,17 @@ namespace App\Http\Controllers\Home;
 use Agent;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Articles;
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\SocialiteUser;
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Tag;
 use Cache;
-use App\Http\Resources\ArticlesResources;
 use App\Models\Time;
 use App\Models\Praise;
+use Illuminate\View\View;
+use Str;
 
 class IndexController extends Controller
 {
@@ -28,7 +29,7 @@ class IndexController extends Controller
     {
         $type = "index";
         // 获取文章列表数据
-        $articles = Articles::select(
+        $articles = Article::select(
             'id', 'category_id', 'title',
             'slug', 'author', 'description',
             'cover', 'is_top', 'created_at'
@@ -43,24 +44,46 @@ class IndexController extends Controller
         return view('home.index', $assign);
     }
 
-    public function article(Articles $articles, Request $request, Comment $commentModel,Praise $praise)
+    public function article(Article $article, Request $request, Comment $commentModel, Praise $praise): View
     {
         // 同一个用户访问同一篇文章每天只增加1个访问量  使用 ip+id 作为 key 判别
-        $ipAndId = 'article_' . $request->ip() . ':' . $articles->id;
+        $ipAndId = 'article_' . $request->ip() . ':' . $article->id;
         if (!Cache::has($ipAndId)) {
             Cache::set($ipAndId, '1', 1440);
             // 文章点击量+1
-            $articles->increment('views');
+            $article->increment('views');
         }
         $head = [
             'title' => config('config.head.title'),
             'keywords' => config('config.head.keywords'),
             'description' => config('config.head.description'),
         ];
+
+        $praiseCount = $praise->where('article_id', $article->id)->count();
         // 获取评论
-        $praiseCount = $praise->where('article_id', $articles->id)->count();
-        $comment = $commentModel->getDataByArticleId($articles->id);
-        $assign = compact('articles', 'comment', 'praiseCount');
+        $comment_flat_tree = Comment::where('article_id', $article->id)
+            ->with('socialiteUser', 'socialiteUser.socialiteClient', 'parentComment', 'parentComment.socialiteUser')
+            ->when(config('config.comment_audit') == 'true', function ($query) {
+                return $query->where('is_audited', 1);
+            })
+            ->withDepth()
+            ->get()
+            ->toFlatTree();
+        $parent_comments = $comment_flat_tree->whereNull('parent_id')
+            ->sortByDesc('created_at')
+            ->values();
+        $children_comments = $comment_flat_tree->whereNotNull('parent_id')->values();
+        $comments = collect([]);
+        foreach ($parent_comments as $parent_comment) {
+            $comments->push($parent_comment);
+
+            foreach ($children_comments as $children_comment) {
+                if ($children_comment->isDescendantOf($parent_comment)) {
+                    $comments->push($children_comment);
+                }
+            }
+        }
+        $assign = compact('article', 'comments', 'praiseCount');
         return view('home.article', $assign);
     }
 
@@ -98,7 +121,7 @@ class IndexController extends Controller
         return view('home.index', $assign);
     }
 
-    public function more(Request $request, Articles $articles, Tag $tag)
+    public function more(Request $request, Article $articles, Tag $tag)
     {
         if (!isset($request->index) || !isset($request->type_id)) {
             $data = [
@@ -163,7 +186,7 @@ class IndexController extends Controller
         return response()->json($data);
     }
 
-    public function search(Request $request, Articles $articles)
+    public function search(Request $request, Article $articles)
     {
         // 禁止蜘蛛抓取搜索页
         if (Agent::isRobot()) {
@@ -215,17 +238,22 @@ class IndexController extends Controller
     {
         // 如果用户输入邮箱；则将邮箱记录入socialite_user表中
         $email = $request->input('email', '');
-        $userId = $request->input('id', '');
+        $userId = $request->input('socialite_user_id', '');
         if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false) {
             // 修改邮箱
             SocialiteUser::where('id', $userId)->update([
                 'email' => $email,
             ]);
         }
-        $data = $request->only('article_id', 'content', 'pid', 'socialite_user_id');
-        // 存储评论
-        $data['is_audited'] = 1;
-        $comment = Comment::create($data);
+        $parent_id = (int)$request->input('parent_id');
+        $new_comment = $request->only('article_id', 'content', 'parent_id', 'socialite_user_id') + [
+                'is_audited' => (config('config.comment_audit') == 'true' ? 0 : 1),
+            ];
+        if ($parent_id === 0) {
+            $comment = Comment::create($new_comment);
+        } else {
+            $comment = Comment::where('id', $parent_id)->firstOrFail()->children()->create($new_comment);
+        }
         if ($comment) {
             $data = [
                 'success' => 1,
@@ -249,22 +277,24 @@ class IndexController extends Controller
     public function praise(Request $request, Praise $praise)
     {
         $id = $request->id ?? 0;
-        $count=$praise->where('article_id','=',$id)->where('ip','=',$request->ip())->count();
-        if ($count){
+        $count = $praise->where('article_id', '=', $id)->where('ip', '=', $request->ip())->count();
+        if ($count) {
             return response()->json('check');
-        }else{
-            $data=[
-                'article_id'=>$id,
-                'ip'=>$request->ip()
+        } else {
+            $data = [
+                'article_id' => $id,
+                'ip' => $request->ip()
             ];
             $praise->fill($data);
-            $res=$praise->save();
-            if ($res){
+            $res = $praise->save();
+            if ($res) {
                 return response()->json('ok');
             }
         }
     }
-    public function about(){
+
+    public function about()
+    {
         $head = [
             'title' => '关于我',
             'keywords' => '关于我,陈大剩,Cxb,ChenDasheng',

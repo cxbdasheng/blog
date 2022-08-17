@@ -8,14 +8,10 @@
 
 namespace App\Models;
 
-
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-class SocialiteClient extends Model
+class SocialiteClient extends BaseModel
 {
-    use SoftDeletes,Cachable;
+
     protected $table = 'socialite_clients';
-    protected $fillable = ['name', 'name', 'client_id','client_secret'];
+    protected $fillable = ['name', 'name', 'client_id', 'client_secret'];
 
 }

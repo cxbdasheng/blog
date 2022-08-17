@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComonServiceProvider::class,
+        App\Providers\ObserveServiceProvider::class,
 
         \SocialiteProviders\Manager\ServiceProvider::class,
     ],

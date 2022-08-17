@@ -111,6 +111,7 @@ class SocialiteController extends Controller
         // 如果session没有存储登录前的页面;则直接返回到首页
         return redirect(session('targetUrl', url('/')));
     }
+
     public function logout()
     {
         Auth::guard('socialite')->logout();

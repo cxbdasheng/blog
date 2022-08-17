@@ -8,12 +8,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-class Config extends Model
+class Config extends BaseModel
 {
-    use SoftDeletes,Cachable;
     protected $table = 'configs';
     protected $fillable = ['name', 'value'];
 }

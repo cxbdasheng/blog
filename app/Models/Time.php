@@ -8,12 +8,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-class Time extends Model
+class Time extends BaseModel
 {
-    use SoftDeletes,Cachable;
     protected $table = 'times';
-    protected $fillable = [ 'content'];
+    protected $fillable = ['content'];
 }

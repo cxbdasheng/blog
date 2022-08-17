@@ -5,28 +5,34 @@
  * Date: 2020/3/11
  * Time: 21:04
  */
+
 use Illuminate\Support\Str;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use PHPHtmlParser\Dom;
 use Intervention\Image\Facades\Image;
+
 if (!function_exists('generate_english_slug')) {
     /**
      * Generate English slug
      *
      * @param $content
      *
+     * @return string
      * @throws ErrorException
      *
-     * @return string
      */
     function generate_english_slug($content)
     {
         $locale = config('app.locale');
         if ('en' !== $locale) {
-            $googleTranslate = new GoogleTranslate();
-            $content  =  $googleTranslate->setUrl('http://translate.google.cn/translate_a/single')->setSource($locale)->translate($content);
+            try {
+                $googleTranslate = new GoogleTranslate();
+                $content = $googleTranslate->setUrl('http://translate.google.cn/translate_a/single')->setSource($locale)->translate($content);
+            } catch (\Exception $exception) {
+                $content = '';
+            }
         }
-        return Str::slug($content);
+        return $content === '' ? '' : Str::slug($content);
     }
 }
 if (!function_exists('push_error')) {
@@ -72,7 +78,10 @@ if (!function_exists('get_image_paths_from_html')) {
         $image_paths = [];
 
         foreach ($image_tags as $image_tag) {
-            $image_paths[] = $image_tag->getAttribute('src');
+            $image_path = $image_tag->getAttribute('src');
+            if ($image_path !== null) {
+                $image_paths[] = $image_path;
+            }
         }
 
         return $image_paths;
@@ -106,11 +115,12 @@ if (!function_exists('add_text_water')) {
     }
 }
 if (!function_exists('ubbReplace')) {
-    function ubbReplace($str) {
-        $str = str_replace ( ">", '<;', $str );
-        $str = str_replace ( ">", '>;', $str );
-        $str = str_replace ( "\n", '>;br/>;', $str );
-        $str = preg_replace ( "[\[em_([0-9]*)\]]", "<img src=\"".config('app.url')."/img/arclist/$1.gif\" />", $str );
+    function ubbReplace($str)
+    {
+//        $str = str_replace(">", '<;', $str);
+//        $str = str_replace(">", '>;', $str);
+//        $str = str_replace("\n", '>;br/>;', $str);
+        $str = preg_replace("[\[em_([0-9]*)\]]", "<img src=\"" . config('app.url') . "/img/arclist/$1.gif\" />", $str);
         return $str;
     }
 };

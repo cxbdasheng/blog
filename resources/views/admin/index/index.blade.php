@@ -117,7 +117,7 @@
                                     @if($loop->index>4) @break @endif
                                     <tr>
                                         <td>{{$item->socialiteUser->name}}</td>
-                                        <td>《{{ $item->articles->sub_title }}》</td>
+                                        <td>《{{ $item->article->sub_title }}》</td>
                                         <td>{!! $item->sub_content !!}</td>
                                     </tr>
                                 @endforeach
