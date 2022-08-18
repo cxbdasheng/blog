@@ -262,7 +262,7 @@
             testEditor = editormd("editor", {
                 autoFocus: false,
                 width: "100%",
-                height: 720,
+                height: 600,
                 toc: true,
                 todoList: true,
                 placeholder: "请输入内容",
