@@ -34,7 +34,7 @@
                                 <label class="layui-form-label">分类名</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="name" required lay-verify="required" placeholder=""
-                                           autocomplete="off" class="layui-input" value="{{old('name',$data->name)}}">
+                                           autocomplete="off" class="layui-input" maxlength="25" value="{{old('name',$data->name)}}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -42,15 +42,7 @@
                                 <div class="layui-input-block">
                                     <input type="text" name="keywords" required lay-verify="required" placeholder=""
                                            autocomplete="off" class="layui-input"
-                                           value="{{old('keywords',$data->keywords)}}">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">描述</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="description" required lay-verify="required" placeholder=""
-                                           autocomplete="off" class="layui-input"
-                                           value="{{old('description',$data->description)}}">
+                                           value="{{old('keywords',$data->keywords)}}" maxlength="255">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -58,6 +50,12 @@
                                 <div class="layui-input-block">
                                     <input type="text" maxlength="3" name="sort"  placeholder=""
                                            autocomplete="off" class="layui-input" value="{{old('sort',$data->sort)}}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">描述</label>
+                                <div class="layui-input-block">
+                                    <textarea name="description" placeholder="" class="layui-textarea" required lay-verify="required" placeholder="" autocomplete="off" maxlength="255">{{old('description',$data->description)}}</textarea>
                                 </div>
                             </div>
                             <div class="buttons" style="">

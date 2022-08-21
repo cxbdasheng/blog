@@ -57,7 +57,7 @@
                                 <label class="layui-form-label">标题</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="title" required lay-verify="required" placeholder=""
-                                           autocomplete="off" class="layui-input" value="{{old('title',$data->title)}}">
+                                           autocomplete="off" maxlength="255" class="layui-input" value="{{old('title',$data->title)}}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -65,7 +65,7 @@
                                 <div class="layui-input-block">
                                     <input type="text" name="author" required lay-verify="required" placeholder=""
                                            autocomplete="off" class="layui-input"
-                                           value="{{old('author',$data->author?$data->author:config('config.author'))}}">
+                                           value="{{old('author',$data->author?$data->author:config('config.author'))}}" maxlength="50">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -74,7 +74,7 @@
                                     <input type="text" name="keywords" required lay-verify="required"
                                            placeholder="用(,)逗号分隔"
                                            autocomplete="off" class="layui-input"
-                                           value="{{old('keywords',$data->keywords)}}">
+                                           value="{{old('keywords',$data->keywords)}}" maxlength="255">
                                 </div>
                             </div>
                             <div class="layui-form-item">

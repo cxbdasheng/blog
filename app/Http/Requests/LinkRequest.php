@@ -26,31 +26,31 @@ class LinkRequest extends FormRequest
         switch ($this->method()) {
             // CREATE
             case 'POST':
-                {
-                    return [
-                        'name' => 'required',
-                        'url' => 'required',
-                    ];
-                }
+            {
+                return [
+                    'name' => 'required|string|max:50|unique:link,name',
+                    'url' => 'required|string|max:255',
+                ];
+            }
             case 'PUT':
-                {
-                    return [
-                        'name' => 'required',
-                        'url' => 'required',
-                    ];
-                }
+            {
+                return [
+                    'name' => 'required|string|max:50|unique:link,name',
+                    'url' => 'required|string|max:255',
+                ];
+            }
             case 'PATCH':
-                {
-                    return [
-                        // UPDATE ROLES
-                    ];
-                }
+            {
+                return [
+                    // UPDATE ROLES
+                ];
+            }
             case 'GET':
             case 'DELETE':
             default:
-                {
-                    return [];
-                }
+            {
+                return [];
+            }
         }
     }
 }

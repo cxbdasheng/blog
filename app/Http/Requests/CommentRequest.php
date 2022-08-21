@@ -9,6 +9,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 class CommentRequest extends FormRequest
 {
     /**
@@ -29,10 +31,10 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'article_id' => 'required|integer',
-            'parent_id'        => 'required|integer',
-            'email'        => 'email',
-            'content'    => 'required',
+            'article_id' => ['required', 'integer', Rule::exists('App\Models\Article', 'id')->whereNull('deleted_at')],
+            'parent_id' => ['required', 'integer', Rule::exists('App\Models\Comment', 'id')->whereNull('deleted_at')],
+            'email' => 'email|string|max:150',
+            'content' => 'required||string',
         ];
     }
 }

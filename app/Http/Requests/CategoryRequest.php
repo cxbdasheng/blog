@@ -26,34 +26,34 @@ class CategoryRequest extends FormRequest
         switch ($this->method()) {
             // CREATE
             case 'POST':
-                {
-                    return [
-                        'name' => 'required|unique:categories,name',
-                        'keywords' => 'required',
-                        'description' => 'required',
-                    ];
-                }
+            {
+                return [
+                    'name' => 'required|unique:categories,name|max:25',
+                    'keywords' => 'required|string|max:255',
+                    'description' => 'required|string|max:255',
+                ];
+            }
             // UPDATE
             case 'PUT':
-                {
-                    return [
-                        'name' => 'required|unique:categories,name,' . $this->route()->id,
-                        'keywords' => 'required',
-                        'description' => 'required',
-                    ];
-                }
+            {
+                return [
+                    'name' => 'required|unique:categories,name,' . $this->route()->id,
+                    'keywords' => 'required|string|max:255',
+                    'description' => 'required|string|max:255',
+                ];
+            }
             case 'PATCH':
-                {
-                    return [
-                        // UPDATE ROLES
-                    ];
-                }
+            {
+                return [
+                    // UPDATE ROLES
+                ];
+            }
             case 'GET':
             case 'DELETE':
             default:
-                {
-                    return [];
-                }
+            {
+                return [];
+            }
         }
     }
 }

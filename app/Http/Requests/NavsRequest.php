@@ -28,15 +28,15 @@ class NavsRequest extends FormRequest
             case 'POST':
                 {
                     return [
-                        'name' => 'required',
-                        'url' => 'required',
+                        'name' => 'required|string|max:150',
+                        'url' => 'required|string|max:255',
                     ];
                 }
             case 'PUT':
                 {
                     return [
-                        'name' => 'required',
-                        'url' => 'required',
+                        'name' => 'required|string|max:150',
+                        'url' => 'required|string|max:255',
                     ];
                 }
             case 'PATCH':

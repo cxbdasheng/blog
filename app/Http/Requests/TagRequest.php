@@ -26,34 +26,34 @@ class TagRequest extends FormRequest
         switch ($this->method()) {
             // CREATE
             case 'POST':
-                {
-                    return [
-                        'name' => 'required|unique:tag,name',
-                        'keywords' => 'required',
-                        'description' => 'required',
-                    ];
-                }
+            {
+                return [
+                    'name' => 'required|unique:tag,name|max:20',
+                    'keywords' => 'required|string|max:100',
+                    'description' => 'required|string|max:255',
+                ];
+            }
             // UPDATE
             case 'PUT':
-                {
-                    return [
-                        'name' => 'required|unique:tag,name,' . $this->route()->id,
-                        'keywords' => 'required',
-                        'description' => 'required',
-                    ];
-                }
+            {
+                return [
+                    'name' => 'required|max:20|unique:tag,name,' . $this->route()->id,
+                    'keywords' => 'required|string|max:100',
+                    'description' => 'required|string|max:255',
+                ];
+            }
             case 'PATCH':
-                {
-                    return [
-                        // UPDATE ROLES
-                    ];
-                }
+            {
+                return [
+                    // UPDATE ROLES
+                ];
+            }
             case 'GET':
             case 'DELETE':
             default:
-                {
-                    return [];
-                }
+            {
+                return [];
+            }
         }
     }
 }

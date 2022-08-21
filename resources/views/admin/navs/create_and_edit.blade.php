@@ -34,7 +34,7 @@
                                 <label class="layui-form-label">导航名</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="name" required lay-verify="required" placeholder=""
-                                           autocomplete="off" class="layui-input" value="{{old('name',$data->name)}}">
+                                           autocomplete="off" class="layui-input" value="{{old('name',$data->name)}}" maxlength="150">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -42,7 +42,7 @@
                                 <div class="layui-input-block">
                                     <input type="text" name="url" required lay-verify="required" placeholder=""
                                            autocomplete="off" class="layui-input"
-                                           value="{{old('URL',$data->url)}}">
+                                           value="{{old('URL',$data->url)}}" maxlength="255">
                                 </div>
                             </div>
                             <div class="layui-form-item">

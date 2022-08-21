@@ -26,29 +26,29 @@ class TimeRequest extends FormRequest
         switch ($this->method()) {
             // CREATE
             case 'POST':
-                {
-                    return [
-                        'content' => 'required',
-                    ];
-                }
+            {
+                return [
+                    'content' => 'required|string|max:300',
+                ];
+            }
             case 'PUT':
-                {
-                    return [
-                        'content' => 'required',
-                    ];
-                }
+            {
+                return [
+                    'content' => 'required|string|max:300',
+                ];
+            }
             case 'PATCH':
-                {
-                    return [
-                        // UPDATE ROLES
-                    ];
-                }
+            {
+                return [
+                    // UPDATE ROLES
+                ];
+            }
             case 'GET':
             case 'DELETE':
             default:
-                {
-                    return [];
-                }
+            {
+                return [];
+            }
         }
     }
 }

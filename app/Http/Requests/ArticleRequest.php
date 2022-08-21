@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ArticleRequest extends FormRequest
 {
@@ -24,12 +25,13 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required',
-            'title'       => 'required',
-            'author'      => 'required',
-            'keywords'    => 'required',
-            'tags'     => 'required',
-            'markdown'    => 'required',
+            'category_id' => ['required', 'integer', Rule::exists('App\Models\Category', 'id')->whereNull('deleted_at')],
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:50',
+            'keywords' => 'required|string|max:255',
+            'tags' => ['required', 'array'],
+            'tags.*' => ['required', 'integer', Rule::exists('App\Models\Tag', 'id')->whereNull('deleted_at')],
+            'markdown' => 'required|string',
         ];
     }
 }
