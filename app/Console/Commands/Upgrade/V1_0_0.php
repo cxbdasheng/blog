@@ -8,10 +8,10 @@ use Illuminate\Database\Schema\Blueprint;
 use Schema;
 use App\Models\Comment;
 
-class V8_0_0 extends Command
+class V1_0_0 extends Command
 {
-    protected $signature = 'upgrade:v8.0.0';
-    protected $description = 'Upgrade to v8.0.0';
+    protected $signature = 'upgrade:v1.0.0';
+    protected $description = 'Upgrade to v1.0.0';
     /**
      * @var array<int,array<string,mixed>>
      */

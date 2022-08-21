@@ -239,6 +239,38 @@ class ConfigTableSeeder extends Seeder
                 'updated_at' => '2020-03-27 01:03:22',
                 'deleted_at' => null,
             ],
+            [
+                'id' => 229,
+                'name' => 'services.tencent_cloud.secret_id',
+                'value' => '',
+                'created_at' => '2020-03-27 01:03:22',
+                'updated_at' => '2020-03-27 01:03:22',
+                'deleted_at' => null,
+            ],
+            [
+                'id' => 230,
+                'name' => 'services.tencent_cloud.secret_key',
+                'value' => '',
+                'created_at' => '2020-03-27 01:03:22',
+                'updated_at' => '2020-03-27 01:03:22',
+                'deleted_at' => null,
+            ],
+            [
+                'id' => 231,
+                'name' => 'services.tencent_cloud.region',
+                'value' => '',
+                'created_at' => '2020-03-27 01:03:22',
+                'updated_at' => '2020-03-27 01:03:22',
+                'deleted_at' => null,
+            ],
+            [
+                'id' => 232,
+                'name' => 'services.tencent_cloud.project_id',
+                'value' => '',
+                'created_at' => '2020-03-27 01:03:22',
+                'updated_at' => '2020-03-27 01:03:22',
+                'deleted_at' => null,
+            ],
         ]);
     }
 }

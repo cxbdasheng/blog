@@ -5,7 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\GenerateSitemap;
-use App\Console\Commands\Upgrade\V8_0_0;
+use App\Console\Commands\Upgrade\V1_0_0;
+use App\Console\Commands\Upgrade\V2_0_0;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         GenerateSitemap::class,
-        V8_0_0::class
+        V1_0_0::class,
+        V2_0_0::class
     ];
 
     /**

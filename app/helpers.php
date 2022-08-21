@@ -7,9 +7,9 @@
  */
 
 use Illuminate\Support\Str;
-use Stichoza\GoogleTranslate\GoogleTranslate;
 use PHPHtmlParser\Dom;
 use Intervention\Image\Facades\Image;
+use App\Support\TencentTranslate;
 
 if (!function_exists('generate_english_slug')) {
     /**
@@ -24,14 +24,16 @@ if (!function_exists('generate_english_slug')) {
     function generate_english_slug($content)
     {
         $locale = config('app.locale');
+
         if ('en' !== $locale) {
             try {
-                $googleTranslate = new GoogleTranslate();
-                $content = $googleTranslate->setUrl('http://translate.google.cn/translate_a/single')->setSource($locale)->translate($content);
-            } catch (\Exception $exception) {
+                $tencent_translate = app()->make(TencentTranslate::class);
+                $content = $tencent_translate->toEnglish($content);
+            } catch (Exception $exception) {
                 $content = '';
             }
         }
+
         return $content === '' ? '' : Str::slug($content);
     }
 }
@@ -74,7 +76,7 @@ if (!function_exists('get_image_paths_from_html')) {
         $dom = new Dom();
         $dom->loadStr($html);
         /** @var \PHPHtmlParser\Dom\HtmlNode[] $image_tags */
-        $image_tags  = $dom->find('img');
+        $image_tags = $dom->find('img');
         $image_paths = [];
 
         foreach ($image_tags as $image_tag) {

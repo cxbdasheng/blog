@@ -169,12 +169,17 @@ return [
         /*
          * Application Service Providers...
          */
+        /**
+         * assign data
+         */
+        App\Providers\ComonServiceProvider::class,
+
+
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\ComonServiceProvider::class,
         App\Providers\ObserveServiceProvider::class,
 
         \SocialiteProviders\Manager\ServiceProvider::class,

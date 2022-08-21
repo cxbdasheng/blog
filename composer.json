@@ -25,7 +25,8 @@
         "socialiteproviders/google": "^4.0",
         "socialiteproviders/qq": "^4.0",
         "socialiteproviders/weibo": "^4.0",
-        "stichoza/google-translate-php": "^4.1"
+        "tencentcloud/cvm": "^3.0",
+        "tencentcloud/tmt": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
