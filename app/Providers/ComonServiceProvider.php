@@ -103,7 +103,7 @@ class ComonServiceProvider extends ServiceProvider
             $assign = compact('category', 'tag', 'topArticle', 'navs', 'links', 'socialiteClients');
             $view->with($assign);
         });
-        view()->composer(['admin/config/*'], function ($view) use ($config) {
+        view()->composer(['admin/config/*', 'admin/services/*'], function ($view) use ($config) {
             $assign = compact('config');
             $view->with($assign);
         });

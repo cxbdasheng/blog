@@ -142,6 +142,10 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('restore/{id}', 'TimeController@restore');
         Route::get('forceDelete/{id}', 'TimeController@forceDelete');
     });
+    // 云服务设置
+    Route::prefix('services')->group(function () {
+        Route::get('tencent', 'ServiceController@tencent');
+    });
     // 系统设置
     Route::prefix('config')->group(function () {
         Route::get('other', 'ConfigController@other');

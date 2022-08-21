@@ -26,13 +26,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a  url="{{ url('admin/category/index') }}">
+                        <a url="{{ url('admin/category/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 分类管理</cite>
                         </a>
                     </li>
                     <li>
-                        <a  url="{{ url('admin/nav/index') }}">
+                        <a url="{{ url('admin/nav/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 导航管理</cite>
                         </a>
@@ -48,7 +48,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a  url="{{ url('admin/comment/index') }}">
+                        <a url="{{ url('admin/comment/index') }}">
                             <i class="layui-icon"></i>
                             <cite>评论管理</cite>
                         </a>
@@ -64,7 +64,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a  url="{{ url('admin/tag/index') }}">
+                        <a url="{{ url('admin/tag/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 标签管理</cite>
                         </a>
@@ -80,13 +80,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a  url="{{ url('admin/user/index') }}">
+                        <a url="{{ url('admin/user/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 管理员管理</cite>
                         </a>
                     </li>
                     <li>
-                        <a  url="{{ url('admin/socialiteUser/index') }}">
+                        <a url="{{ url('admin/socialiteUser/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 第三方登入用户</cite>
                         </a>
@@ -102,7 +102,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a  url="{{ url('admin/link/index') }}">
+                        <a url="{{ url('admin/link/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 外链管理</cite>
                         </a>
@@ -118,9 +118,25 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a  url="{{ url('admin/time/index') }}">
+                        <a url="{{ url('admin/time/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 时间轴管理</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-website left-nav-li" lay-tips="系统设置"></i>
+                    <!-- <i class="iconfont">&#xe620;</i> -->
+                    <cite>云服务</cite>
+                    <i class="iconfont nav_right"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a url="{{ url('admin/services/tencent') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 腾讯云</cite>
                         </a>
                     </li>
                 </ul>
@@ -134,31 +150,31 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a  url="{{ url('admin/config/seo') }}">
+                        <a url="{{ url('admin/config/seo') }}">
                             <i class="layui-icon"></i>
                             <cite> seo</cite>
                         </a>
                     </li>
                     <li>
-                        <a  url="{{ url('admin/config/other') }}">
+                        <a url="{{ url('admin/config/other') }}">
                             <i class="layui-icon"></i>
                             <cite>其他设置</cite>
                         </a>
                     </li>
                     <li>
-                        <a  url="{{ url('admin/config/mail') }}">
+                        <a url="{{ url('admin/config/mail') }}">
                             <i class="layui-icon"></i>
                             <cite>邮箱设置</cite>
                         </a>
                     </li>
                     <li>
-                        <a  url="{{ url('admin/socialiteClient/index') }}">
+                        <a url="{{ url('admin/socialiteClient/index') }}">
                             <i class="layui-icon"></i>
                             <cite>第三方登入</cite>
                         </a>
                     </li>
                     <li>
-                        <a  url="{{ url('admin/config/socialShare') }}">
+                        <a url="{{ url('admin/config/socialShare') }}">
                             <i class="layui-icon"></i>
                             <cite>社会化分享</cite>
                         </a>
