@@ -4,21 +4,33 @@ namespace App\Observers;
 
 use App\Models\Category;
 use App\Models\Article;
+use Artisan;
+
 class CategoryObserver extends BaseObserver
 {
-    public function saving(Category $category){
+    public function created($category): void
+    {
+        Artisan::queue('generate-sitemap');
+    }
+
+    public function saving($category): void
+    {
         if ($category->isDirty('name') && empty($category->slug)) {
             $category->slug = generate_english_slug($category->name);
         }
-        if (empty($category->sort) || !is_numeric($category->sort)) {
-            $category->sort = 0;
-        }
     }
-    public function deleting($category)
+
+    public function deleting($category): void
     {
         if (Article::where('category_id', $category->id)->count() !== 0) {
-            push_error('请先删除分类下的文章！');
-            return false;
+            abort(403, translate('Please delete articles with this category first'));
+        }
+    }
+
+    public function deleted($category): void
+    {
+        if (!$category->isForceDeleting()) {
+            Artisan::queue('generate-sitemap');
         }
     }
 }

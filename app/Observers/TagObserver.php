@@ -24,7 +24,7 @@ class TagObserver extends BaseObserver
     public function deleting($tag): void
     {
         if (ArticleTag::where('tag_id', $tag->id)->count() !== 0) {
-            abort(403, "删除失败~");
+            abort(403, translate('Please delete articles with this tags first'));
         }
     }
 

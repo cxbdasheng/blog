@@ -28,7 +28,11 @@ if (!function_exists('generate_english_slug')) {
         if ('en' !== $locale) {
             try {
                 $tencent_translate = app()->make(TencentTranslate::class);
-                $content = $tencent_translate->toEnglish($content);
+                if ($tencent_translate->isOpen()) {
+                    $content = $tencent_translate->toEnglish($content);
+                } else {
+                    $content = '';
+                }
             } catch (Exception $exception) {
                 $content = '';
             }
@@ -116,13 +120,21 @@ if (!function_exists('add_text_water')) {
         }
     }
 }
-if (!function_exists('ubbReplace')) {
-    function ubbReplace($str)
+
+if (!function_exists('translate')) {
+    /**
+     * Translate the given message, only return string (for PHPStan).
+     *
+     * @param array<string,string> $replace
+     */
+    function translate(string $key, $replace = [], string $locale = null): string
     {
-//        $str = str_replace(">", '<;', $str);
-//        $str = str_replace(">", '>;', $str);
-//        $str = str_replace("\n", '>;br/>;', $str);
-        $str = preg_replace("[\[em_([0-9]*)\]]", "<img src=\"" . config('app.url') . "/img/arclist/$1.gif\" />", $str);
-        return $str;
+        $result = __($key, $replace, $locale);
+
+        if (is_array($result)) {
+            throw new InvalidArgumentException('Only supports string translation, if you need to return an array, please use the __() method');
+        }
+
+        return $result ?? '';
     }
-};
+}

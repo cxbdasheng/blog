@@ -12,9 +12,14 @@ class TencentTranslate
 {
     private int $project_id;
     private TmtClient $tmt_client;
+    private $status = false;
 
-    public function __construct(string $secret_id, string $secret_key, string $region, int $project_id)
+    public function __construct($secret_id, $secret_key, $region, $project_id)
     {
+        if (!$secret_id || !$secret_key || !$region || !$project_id) {
+            $this->status = false;
+            return $this;
+        }
         $this->project_id = $project_id;
 
         $credential = new Credential(
@@ -29,6 +34,7 @@ class TencentTranslate
         $client_profile->setHttpProfile($http_profile);
 
         $this->tmt_client = new TmtClient($credential, $region, $client_profile);
+        $this->status = true;
     }
 
     /**
@@ -50,5 +56,10 @@ class TencentTranslate
         );
 
         return $this->tmt_client->TextTranslate($request)->TargetText;
+    }
+
+    public function isOpen()
+    {
+        return $this->status;
     }
 }

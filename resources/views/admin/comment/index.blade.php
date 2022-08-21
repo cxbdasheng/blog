@@ -44,8 +44,8 @@
                 @foreach ($data as $index => $items)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$items->content}}</td>
-                        <td>《{{$items->articles->title}}》</td>
+                        <td>{!! $items->content !!}</td>
+                        <td>《{{$items->article->title}}》</td>
                         <td>{{$items->socialiteUser->name}}</td>
                         <td>{{$items->created_at}}</td>
                         <td>

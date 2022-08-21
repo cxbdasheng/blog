@@ -16,7 +16,7 @@ class CommentController extends Controller
         $limit = $request->limit ? $request->limit : 20;
         $content = $request->content ? $request->content : '';
         $data = $links->withTrashed()->with([
-            'articles' => function ($query) {
+            'article' => function ($query) {
                 return $query->select('id', 'title');
             },
             'socialiteUser' => function ($query) {
