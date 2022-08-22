@@ -34,20 +34,23 @@ $(function () {
         $("#check-nav").removeClass("icon-zhedie1");
         $("#check-nav").addClass("icon-zhedie");
     });
-    var pathname = window.location.href;
-    var nav = window.location.pathname;
-    $(".top-nav-right a").each(function () {
+    var pathname = window.location.pathname;
+    $(".top-nav-right a,.mnav a").each(function () {
         var href = $(this).attr('href');
+        var hrefArray = href.split('\/');
+        if (hrefArray.length > 0 && (hrefArray[0] == 'https:' || hrefArray[0] == 'http:')) {
+            href = '';
+            for (var i = 0; hrefArray.length > i; i++) {
+                if (i < 3) {
+                    continue;
+                }
+                href = href + '/' + hrefArray[i];
+            }
+        }
         if (pathname == href) $(this).addClass('active');
-        if (nav == href) $(this).addClass('active');
     });
     if (pathname == "/") $('#nav').eq(0).addClass('active');
-    $(".mnav a").each(function () {
-        var href = $(this).attr('href');
-        if (pathname == href) $(this).addClass('selected');
-        if (nav == href) $(this).addClass('selected');
-    });
-    if (pathname == "/") $('#left-nav').eq(0).addClass('selected');
+    if (pathname == "/") $('#left-nav').eq(0).addClass('selected'); // 顶部导航吸顶
 
     // 顶部导航吸顶
     var moun;//定义全局变量
