@@ -1318,7 +1318,7 @@ button:focus {
 @font-face {
   font-family: "FontAwesome";
   src: url(/fonts/fontawesome-webfont.eot?03605b2467d43a9f4c63fc0b684ed3b8);
-  src: url(/fonts/fontawesome-webfont.eot?03605b2467d43a9f4c63fc0b684ed3b8) format("embedded-opentype"), url(/fonts/fontawesome-webfont.woff2?fb685a7c7e4aae2d4d7117d94e573329) format("woff2"), url(/fonts/fontawesome-webfont.woff?c589f72df384e3ef078b259426c062e1) format("woff"), url(/fonts/fontawesome-webfont.ttf?45f9f92a5bfbad4be12f704e8ab9c128) format("truetype"), url(/fonts/fontawesome-webfont.svg?fd7873675ac92feb54ea5e077edd658d) format("svg");
+  src: url(/fonts/fontawesome-webfont.eot?03605b2467d43a9f4c63fc0b684ed3b8) format("embedded-opentype"), url(/fonts/fontawesome-webfont.woff2?fb685a7c7e4aae2d4d7117d94e573329) format("woff2"), url(/fonts/fontawesome-webfont.woff?c589f72df384e3ef078b259426c062e1) format("woff"), url(/fonts/fontawesome-webfont.ttf?45f9f92a5bfbad4be12f704e8ab9c128) format("truetype"), url(/fonts/fontawesome-webfont.svg?d0ba16d89d53283e819bf3dc790b23ac) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -3656,7 +3656,7 @@ button:focus {
 @font-face {
   font-family: "editormd-logo";
   src: url(/fonts/editormd-logo.eot?8f1f4d7c8f4e219c5a54b11dcc2cd606);
-  src: url(/fonts/editormd-logo.eot?8f1f4d7c8f4e219c5a54b11dcc2cd606) format("embedded-opentype"), url(/fonts/editormd-logo.woff?765d894af12f1dbedf6a17f39a127d2a) format("woff"), url(/fonts/editormd-logo.ttf?96915366fe90f6df5bce43ba33fc9551) format("truetype"), url(/fonts/editormd-logo.svg?aa8d0406a14af4a73e5b4d84e04de94b) format("svg");
+  src: url(/fonts/editormd-logo.eot?8f1f4d7c8f4e219c5a54b11dcc2cd606) format("embedded-opentype"), url(/fonts/editormd-logo.woff?765d894af12f1dbedf6a17f39a127d2a) format("woff"), url(/fonts/editormd-logo.ttf?96915366fe90f6df5bce43ba33fc9551) format("truetype"), url(/fonts/editormd-logo.svg?e638971d8f59d2deda372e6c3ac1fb9a) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -4406,7 +4406,7 @@ button:focus {
   text-align: left;
   font-size: 14px;
   line-height: 1.6;
-  padding: 20px;
+  padding: 0px;
   overflow: auto;
   width: 100%;
   background-color: #fff;
