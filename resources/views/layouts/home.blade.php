@@ -181,28 +181,7 @@
     <div class="clear"></div>
 </div>
 <div class="clear"></div>
-<div class="foot">
-    <div class="cont">
-        <div class="cont-main">
-            <p class="fl">
-                <a href="https://github.com/qq851145971/blog">本站由陈大剩博客程序搭建 </a>|
-                <a target="_blank" href="http://www.beian.miit.gov.cn">{{config('config.icp')}}</a>|
-                <span class="copyright">
-                    Copyright © 2017 -<script>document.write(new Date().getFullYear());</script>
-                    {{ env('APP_NAME', 'Laravel')}}
-                </span>|
-                <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" target="_blank">本站采用创作共用版权：CC BY-NC 4.0</a>
-            </p>
-            <p class="fr">
-                <span>站长统计</span>|
-                <span>文章总数[<em>{{$articleCount}}</em>]</span>|
-                <span>评论总数[<em>{{$commentCount}}</em>]</span>|
-               <span>登录用户[<em>{{$userCount}}</em>]</span>|
-               <span>时间点[<em>{{$timeCount}}</em>]</span>
-            </p>
-        </div>
-    </div>
-</div>
+@include('layouts.foot')
 <div class="return">
     <div class="returntop">
         <i class="iconfont icon-dingbu"></i>
