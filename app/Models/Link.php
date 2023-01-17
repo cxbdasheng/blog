@@ -11,5 +11,6 @@ namespace App\Models;
 class Link extends BaseModel
 {
     protected $table = 'links';
+
     protected $fillable = ['name', 'url', 'sort'];
 }

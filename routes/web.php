@@ -73,7 +73,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('forceDelete/{id}', 'CommentController@forceDelete');
     });
     // 友链
-    Route::prefix('link')->group(function () {
+    Route::prefix('links')->group(function () {
         Route::get('index', 'LinkController@index');
         Route::get('create', 'LinkController@create');
         Route::post('store', 'LinkController@store');

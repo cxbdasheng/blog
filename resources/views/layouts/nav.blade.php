@@ -102,7 +102,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a url="{{ url('admin/link/index') }}">
+                        <a url="{{ url('admin/links/index') }}">
                             <i class="layui-icon"></i>
                             <cite> 外链管理</cite>
                         </a>

@@ -7,7 +7,7 @@
                 <a href="javascript:void(0)">
                     <li class="layui-this">链接管理</li>
                 </a>
-                <a href="{{url('admin/link/create')}}">
+                <a href="{{url('admin/links/create')}}">
                     <li class="">新增链接</li>
                 </a>
             </ul>
@@ -24,7 +24,7 @@
                                        value="{{$name}}" maxlength="50"></div>
                         </div>
                         <div class="layui-inline">
-                            <a href="{{url('admin/link/index')}}" class="layui-btn">重置</a>
+                            <a href="{{url('admin/links/index')}}" class="layui-btn">重置</a>
                             <button id="btnSubmit" type="submit" class="layui-btn">查询</button>
                         </div>
                     </div>
@@ -57,15 +57,15 @@
                             @endif
                         </td>
                         <td>
-                            <a class="layui-btn layui-btn-xs" href="{{url('admin/link/edit/'.$items->id)}}">修改</a>
+                            <a class="layui-btn layui-btn-xs" href="{{url('admin/links/edit/'.$items->id)}}">修改</a>
                             @if(is_null($items->deleted_at))
                                 <a class="layui-btn layui-btn-xs layui-btn-normal J-baseAjaxTodo"
-                                   href="{{url('admin/link/destroy/'.$items->id)}}" title="你确定要删除吗？">删除</a>
+                                   href="{{url('admin/links/destroy/'.$items->id)}}" title="你确定要删除吗？">删除</a>
                             @else
                                 <a class="layui-btn layui-btn-xs layui-btn-warm J-baseAjaxTodo"
-                                   href="{{url('admin/link/restore/'.$items->id)}}" title="你确定要删除吗？">恢复</a>
+                                   href="{{url('admin/links/restore/'.$items->id)}}" title="你确定要删除吗？">恢复</a>
                                 <a class="layui-btn layui-btn-xs layui-btn-danger J-baseAjaxTodo"
-                                   href="{{url('admin/link/forceDelete/'.$items->id)}}" title="你确定要删除吗？">彻底删除</a>
+                                   href="{{url('admin/links/forceDelete/'.$items->id)}}" title="你确定要删除吗？">彻底删除</a>
                             @endif
                         </td>
                     </tr>
@@ -111,7 +111,7 @@
         $(".category-sort").blur(function () {
             var _this = $(this);
             var id = _this.attr('name');
-            $.post("{{url('admin/link/sort')}}", {id: id, sort: _this.val(),}, function (res) {
+            $.post("{{url('admin/links/sort')}}", {id: id, sort: _this.val(),}, function (res) {
                 if (res.success == "1") {
                     layer.msg("修改成功！", {icon: 1});
                 } else {

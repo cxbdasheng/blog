@@ -8,7 +8,7 @@
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
-                <a href="{{url('admin/link/index')}}">
+                <a href="{{url('admin/links/index')}}">
                     <li>链接管理</li>
                 </a>
                 <a href="javascript:void(0)">
@@ -23,11 +23,11 @@
         </div>
         <div class="layui-col-md5  mt-10">
             @if($data->id)
-                <form action="{{url('admin/link/update',$data->id)}}" method="POST" class="layui-form "
+                <form action="{{url('admin/links/update',$data->id)}}" method="POST" class="layui-form "
                       accept-charset="UTF-8">
                     <input type="hidden" name="_method" value="PUT">
                     @else
-                        <form action="{{url('admin/link/store')}}" method="post" class="layui-form ">
+                        <form action="{{url('admin/links/store')}}" method="post" class="layui-form ">
                             @endif
                             @csrf
                             <div class="layui-form-item">

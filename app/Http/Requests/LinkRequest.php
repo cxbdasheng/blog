@@ -28,14 +28,14 @@ class LinkRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'name' => 'required|string|max:50|unique:link,name',
+                    'name' => 'required|string|max:50|unique:App\Models\Link,name',
                     'url' => 'required|string|max:255',
                 ];
             }
             case 'PUT':
             {
                 return [
-                    'name' => 'required|string|max:50|unique:link,name',
+                    'name' => 'required|string|max:50|unique:App\Models\Link,name,' . $this->route()->id,
                     'url' => 'required|string|max:255',
                 ];
             }
