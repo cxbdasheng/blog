@@ -620,7 +620,7 @@
                         <p>　　以下是我去过的一些地方剪辑，希望大家喜欢 ↓</p>
                         <div class="tv">
                             <iframe id="movie" height="100%" allowfullscreen="true" width="100%"
-                                    src='http://player.youku.com/embed/XMjcyNzQ5NTM1Mg==' frameborder=0
+                                    src='https://player.youku.com/embed/XMjcyNzQ5NTM1Mg==' frameborder=0
                             'allowfullscreen'></iframe></div>
                     </div>
                 </div>
