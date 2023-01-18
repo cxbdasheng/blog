@@ -164,6 +164,26 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     });
 });
 
+Route::get('test', function () {
+//    $key = 'cxbdasheng';
+//    $secret = 'I8NAM0zn9ZX8PdJWZcArck4CHQKsRzrJ';
+//    $uri = '/v1/apps/';
+//    $method = 'GET';
+//    $date = gmdate('D, d M Y H:i:s \G\M\T');
+//    $md = md5($secret);
+//    echo $md . "\n";
+//    echo $date . "\n";
+//
+//    $elems = array();
+//    foreach (array($method, $uri, $date,null,null) as $v) {
+//        if ($v) {
+//            $elems[] = $v;
+//        }
+//    }
+//    $value = implode('&', $elems);
+//    $sign = base64_encode(hash_hmac('sha1', $value, md$secret, true));
+//    echo 'UPYUN ' . $key . ':' . $sign;
+});
 // Home 模块
 Route::namespace('Home')->name('home.')->group(function () {
     // 首页
