@@ -54,11 +54,7 @@ if (!function_exists('generate_english_slug')) {
         if ('en' !== $locale) {
             try {
                 $tencent_translate = app()->make(TencentTranslate::class);
-                if ($tencent_translate->isOpen()) {
-                    $content = $tencent_translate->toEnglish($content);
-                } else {
-                    $content = '';
-                }
+                $content           = $tencent_translate->toEnglish($content);
             } catch (Exception $exception) {
                 $content = '';
             }
