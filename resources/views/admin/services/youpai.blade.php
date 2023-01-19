@@ -1,11 +1,11 @@
 @extends('layouts.body')
-@section('title', '腾讯云设置')
+@section('title', '又拍云储存设置')
 @section('content')
     <div class="layui-body">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
-                <a href="{{url('admin/services/tencent')}}">
-                    <li class="layui-this">腾讯云设置</li>
+                <a href="{{url('admin/services/youpai')}}">
+                    <li class="layui-this">又拍云储存设置</li>
                 </a>
             </ul>
             <div class="layui-tab-content">
@@ -17,31 +17,31 @@
                   class="layui-form">
                 {{ csrf_field() }}
                 <div class="layui-form-item">
-                    <label class="layui-form-label">secret_id</label>
+                    <label class="layui-form-label">加速域名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="229" class="layui-input"
-                               value="{{ $config['services.tencent_cloud.secret_id'] }}">
+                        <input type="text" name="236" class="layui-input"
+                               value="{{ $config['services.youpai.host'] }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">secret_key</label>
+                    <label class="layui-form-label">服务名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="230" class="layui-input"
-                               value="{{ $config['services.tencent_cloud.secret_key'] }}">
+                        <input type="text" name="233" class="layui-input"
+                               value="{{ $config['services.youpai.bucket'] }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">region</label>
+                    <label class="layui-form-label">操作员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="231" class="layui-input"
-                               value="{{ $config['services.tencent_cloud.region'] }}">
+                        <input type="text" name="234" class="layui-input"
+                               value="{{ $config['services.youpai.username'] }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">project_id</label>
+                    <label class="layui-form-label">操作员密码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="232" class="layui-input"
-                               value="{{ $config['services.tencent_cloud.project_id'] }}">
+                        <input type="text" name="235" class="layui-input"
+                               value="{{ $config['services.youpai.password'] }}">
                     </div>
                 </div>
                 <div class="buttons" style="">

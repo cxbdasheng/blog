@@ -10,4 +10,9 @@ class ServiceController extends Controller
     {
         return view('admin.services.tencent');
     }
+
+    public function youpai()
+    {
+        return view('admin.services.youpai');
+    }
 }

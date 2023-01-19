@@ -139,6 +139,12 @@
                             <cite> 腾讯云</cite>
                         </a>
                     </li>
+                    <li>
+                        <a url="{{ url('admin/services/youpai') }}">
+                            <i class="layui-icon"></i>
+                            <cite> 又拍云储存设置 </cite>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>

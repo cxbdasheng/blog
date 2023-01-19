@@ -10,6 +10,32 @@ use Illuminate\Support\Str;
 use PHPHtmlParser\Dom;
 use Intervention\Image\Facades\Image;
 use App\Support\TencentTranslate;
+use App\Support\YoupaiOss;
+
+if (!function_exists('youpai_oss_upload')) {
+    /**
+     * Upload pictures to oss
+     * @param string $path path
+     * @param string $content File stream
+     * @param string $mime mime type
+     * @return string
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    function youpai_oss_upload(string $path, string $content, string $mime)
+    {
+        if (!config('services.youpai.host') || !config('services.youpai.bucket') || !config('services.youpai.username') || !config('services.youpai.password')) {
+            return '';
+        }
+        $youpaiOss = app()->make(YoupaiOss::class);
+        try {
+            $url = $youpaiOss->upload($path, $content, $mime);
+        } catch (Exception $exception) {
+            $url = '';
+        }
+
+        return $url === '' ? '' : $url;
+    }
+}
 
 if (!function_exists('generate_english_slug')) {
     /**

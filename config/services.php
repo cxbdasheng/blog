@@ -59,4 +59,10 @@ return [
         'image_id' => env('TENCENT_CLOUD_IMAGE_ID'),
         'host_name' => env('TENCENT_CLOUD_HOST_NAME', 'development'),
     ],
+    'youpai' => [
+        'host' => '',
+        'bucket' => '',
+        'username' => '',
+        'password' => '',
+    ]
 ];

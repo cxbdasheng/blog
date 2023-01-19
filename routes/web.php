@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,6 +146,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     // 云服务设置
     Route::prefix('services')->group(function () {
         Route::get('tencent', 'ServiceController@tencent');
+        Route::get('youpai', 'ServiceController@youpai');
     });
     // 系统设置
     Route::prefix('config')->group(function () {
@@ -164,25 +166,30 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     });
 });
 
-Route::get('test', function () {
-//    $key = 'cxbdasheng';
-//    $secret = 'I8NAM0zn9ZX8PdJWZcArck4CHQKsRzrJ';
-//    $uri = '/v1/apps/';
-//    $method = 'GET';
-//    $date = gmdate('D, d M Y H:i:s \G\M\T');
-//    $md = md5($secret);
-//    echo $md . "\n";
-//    echo $date . "\n";
-//
-//    $elems = array();
-//    foreach (array($method, $uri, $date,null,null) as $v) {
-//        if ($v) {
-//            $elems[] = $v;
-//        }
-//    }
-//    $value = implode('&', $elems);
-//    $sign = base64_encode(hash_hmac('sha1', $value, md$secret, true));
-//    echo 'UPYUN ' . $key . ':' . $sign;
+Route::get('/test', function () {
+    $localpath = 'upyun_logo.png';
+    $savepath = '/default.jpg';
+    $bucketname = 'www-it927-upyun';
+    $username = 'cxbdasheng';
+    $password = 'I8NAM0zn9ZX8PdJWZcArck4CHQKsRzrJ';
+    $uri = "/{$bucketname}$savepath";
+    $date = gmdate('D, d M Y H:i:s \G\M\T');
+//    $fsize = filesize($localpath);
+    $signature = base64_encode(hash_hmac("sha1", "PUT&$uri&$date", md5("{$password}"), true));
+//    $header = array("Authorization:UPYUN {$username}:$signature", "Date:$date");
+    $header = [
+        'Authorization' => "UPYUN {$username}:$signature",
+        "Date" => $date
+    ];
+    $photo = file_get_contents($localpath);
+    $response = Http::withBody(
+        $photo, mime_content_type($localpath)
+    )->withHeaders($header)->PUT('http://v0.api.upyun.com' . $uri);
+//    )->withHeaders($header)->PUT('http://blog.c69p.com.test/puta');
+    dd($response, $header, $photo, $response);
+});
+Route::put('/puta', function () {
+    \Illuminate\Support\Facades\Log::info('111', [request()->all(), request()->file(), request()->getContent()]);
 });
 // Home 模块
 Route::namespace('Home')->name('home.')->group(function () {

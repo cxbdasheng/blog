@@ -42,21 +42,21 @@ class MigrateImages extends Command
 
         $oldDomainName = $this->ask('Please enter the old domain name？');
         $newDomainName = $this->ask('Please enter the new domain name？');
-        $this->comment('========= start migrate =========');
-        $this->error("========= 迁移旧域名为：{$oldDomainName} =========");
-        $this->error("========= 迁移旧域名为：{$newDomainName} =========");
+        $this->comment('========= Start migrate =========');
+        $this->error("========= Migrate the old domain name：{$oldDomainName} =========");
+        $this->error("========= Migrate the new domain name：：{$newDomainName} =========");
         $i = 0;
-        Article::where('cover', 'like', $oldDomainName . '%')->chunk(100, function ($articles) use ($oldDomainName, $newDomainName, $i) {
+        Article::withTrashed()->where('cover', 'like', $oldDomainName . '%')->chunk(100, function ($articles) use ($oldDomainName, $newDomainName, $i) {
             foreach ($articles as $article) {
                 $oldCover = $article->cover;
                 $newCover = str_replace($oldDomainName, $newDomainName, $oldCover);
                 $article->cover = $newCover;
                 $article->save();
                 $i++;
-                $this->comment("========= 已成功迁移 {$i} 条数据 =========");
+                $this->comment("=========  {$i} pieces of data have been migrated.  =========");
             }
         });
-        $this->comment('========= end migrate =========');
+        $this->comment('========= End migrate =========');
         return 0;
     }
 }
