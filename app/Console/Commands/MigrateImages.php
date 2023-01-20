@@ -46,14 +46,24 @@ class MigrateImages extends Command
         $this->error("========= Migrate the old domain name：{$oldDomainName} =========");
         $this->error("========= Migrate the new domain name：：{$newDomainName} =========");
         $i = 0;
-        Article::withTrashed()->where('cover', 'like', $oldDomainName . '%')->chunk(100, function ($articles) use ($oldDomainName, $newDomainName, $i) {
+        Article::withTrashed()->chunk(100, function ($articles) use ($oldDomainName, $newDomainName, $i) {
             foreach ($articles as $article) {
                 $oldCover = $article->cover;
                 $newCover = str_replace($oldDomainName, $newDomainName, $oldCover);
-                $article->cover = $newCover;
-                $article->save();
-                $i++;
-                $this->comment("=========  {$i} pieces of data have been migrated.  =========");
+
+                $oldHtml = $article->html;
+                $newHtml = str_replace($oldDomainName, $newDomainName, $oldHtml);
+
+                $oldMarkdown = $article->markdown;
+                $newMarkdown = str_replace($oldDomainName, $newDomainName, $oldMarkdown);
+                if ($newCover != $article->cover || $newHtml != $article->html || $newMarkdown != $article->markdown) {
+                    $article->cover = $newCover;
+                    $article->html = $newHtml;
+                    $article->markdown = $newMarkdown;
+                    $article->save();
+                    $i++;
+                    $this->comment("=========  {$i} pieces of data have been migrated.  =========");
+                }
             }
         });
         $this->comment('========= End migrate =========');
