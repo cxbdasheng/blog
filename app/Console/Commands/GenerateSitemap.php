@@ -68,7 +68,7 @@ class GenerateSitemap extends Command
             $url_block .= $this->generateUrl(url('nav', $nav->id), $nav->updated_at);
         }
 
-        File::put(public_path('sitemap.xml'), str_replace('{url_block}', rtrim($url_block), rtrim(File::get(app_path('Console/Commands/stubs/sitemap.stub')))));
+        File::put(public_path('sitemap.xml'), str_replace('{url_block}', rtrim($url_block), rtrim(File::get(app_path('Console/Commands/Stubs/sitemap.stub')))));
 
         $this->info('Generating the sitemap completed.');
         $this->info('Path: ' . public_path('sitemap.xml'));
@@ -79,6 +79,6 @@ class GenerateSitemap extends Command
     private function generateUrl(string $url, ?CarbonInterface $carbo): string
     {
         $date = $carbo === null ? Date::now()->format(DateTime::ATOM) : $carbo->format(DateTime::ATOM);
-        return str_replace(['{url}', '{date}'], [$url, $date], File::get(app_path('Console/Commands/stubs/sitemap-url.stub')));
+        return str_replace(['{url}', '{date}'], [$url, $date], File::get(app_path('Console/Commands/Stubs/sitemap-url.stub')));
     }
 }

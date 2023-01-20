@@ -165,19 +165,19 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::put('update/{id}', 'SocialiteUserController@update');
     });
 });
-
+\
 // Home 模块
 Route::namespace('Home')->name('home.')->group(function () {
-    // 首页
-    Route::get('/', 'IndexController@index')->name('index');
-    Route::get('category/{category}/{slug?}', 'IndexController@category')->name('category');
-    // 标签
-    Route::get('tag/{tag}/{slug?}', 'IndexController@tag')->name('tag');
-    // 搜索文章
-    Route::get('search', 'IndexController@search')->name('search');
-    // 文章详情
-    Route::get('article/{article}/{slug?}', 'IndexController@article')->name('article');
-    Route::post('articles/more', 'IndexController@more');
-    Route::get('time', 'IndexController@time')->name('time');
-    Route::get('about', 'IndexController@about')->name('about');
-});
+        // 首页
+        Route::get('/', 'IndexController@index')->name('index');
+        Route::get('category/{category}/{slug?}', 'IndexController@category')->name('category');
+        // 标签
+        Route::get('tag/{tag}/{slug?}', 'IndexController@tag')->name('tag');
+        // 搜索文章
+        Route::get('search', 'IndexController@search')->name('search');
+        // 文章详情
+        Route::get('article/{article}/{slug?}', 'IndexController@article')->name('article');
+        Route::post('articles/more', 'IndexController@more');
+        Route::get('time', 'IndexController@time')->name('time');
+        Route::get('about', 'IndexController@about')->name('about');
+    });

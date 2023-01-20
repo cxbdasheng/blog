@@ -4,6 +4,9 @@ namespace App\Support;
 
 use Illuminate\Support\Facades\Http;
 
+/**
+ * 又拍云上传
+ */
 class YoupaiOss
 {
 

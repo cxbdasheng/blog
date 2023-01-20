@@ -34,4 +34,5 @@ return [
         'sharejs_config' => ''
     ],
     'comment_audit' => '',
+    'baidu_site_url' => '',
 ];

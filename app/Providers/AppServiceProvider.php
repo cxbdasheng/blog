@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Support\TencentTranslate;
+use App\Support\BaiduPushApi;
 use App\Support\YoupaiOss;
 use Illuminate\Container\ContextualBindingBuilder;
 use Illuminate\Support\ServiceProvider;
@@ -32,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
 
         $contextual_binding_builder = $this->app->when(TencentTranslate::class);
         $youpaiyun_binding_builder = $this->app->when(YoupaiOss::class);
+        $this->app->when(BaiduPushApi::class);
 
         assert($contextual_binding_builder instanceof ContextualBindingBuilder);
         $contextual_binding_builder->needs('$secret_id')->giveConfig('services.tencent_cloud.secret_id', '');
@@ -42,6 +44,5 @@ class AppServiceProvider extends ServiceProvider
         $youpaiyun_binding_builder->needs('$bucket')->giveConfig('services.youpai.bucket', 0);
         $youpaiyun_binding_builder->needs('$username')->giveConfig('services.youpai.username', 0);
         $youpaiyun_binding_builder->needs('$password')->giveConfig('services.youpai.password', 0);
-
     }
 }

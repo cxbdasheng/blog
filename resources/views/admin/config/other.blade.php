@@ -40,7 +40,7 @@
                         </div>
                     @else
                         <div class="" id="login_value">
-                            <input type="hidden" name="208" lay-verify="required" id="inputimgurl"  placeholder="图片地址"
+                            <input type="hidden" name="208" lay-verify="required" id="inputimgurl" placeholder="图片地址"
                                    value="{{$config['config.login.value']}}" class="layui-input">
                             <div class="layui-input-inline layui-btn-container" style="width: auto;">
                                 <a class="layui-btn layui-btn-primary" id="editimg">上传图片</a>
@@ -80,7 +80,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">水印字体大小</label>
                     <div class="layui-input-block">
-                        <input type="text" name="212" required maxlength="2" lay-verify="required|number" placeholder="" autocomplete="off"
+                        <input type="text" name="212" required maxlength="2" lay-verify="required|number" placeholder=""
+                               autocomplete="off"
                                class="layui-input" value="{{ $config['config.water.size'] }}">
                     </div>
                 </div>
@@ -116,6 +117,13 @@
                 <fieldset class="layui-elem-field layui-field-title">
                     <legend>统计相关</legend>
                 </fieldset>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">百度推送site提交链接</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="237" placeholder=""
+                               class="layui-input" value="{{ $config['config.baidu_site_url'] }}">
+                    </div>
+                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">第三方统计代码</label>
                     <div class="layui-input-block">
