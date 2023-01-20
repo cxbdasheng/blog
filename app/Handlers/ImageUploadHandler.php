@@ -9,13 +9,14 @@
 namespace App\Handlers;
 
 use Str;
+use Intervention\Image\Facades\Image;
 
 class ImageUploadHandler
 {
     // 只允许以下后缀名的图片文件上传
     protected $allowed_ext = ["png", "jpg", "gif", 'jpeg', 'ico'];
 
-    public function save($file, $folder, $file_prefix)
+    public function save($file, $folder, $file_prefix, $type = 'editormd-image-file')
     {
         // 构建存储的文件夹规则，值如：uploads/images/avatars/201709/21/
         $folder_name = "uploads/images/$folder/" . date("Ym/d", time());
@@ -29,9 +30,10 @@ class ImageUploadHandler
         if (!in_array($extension, $this->allowed_ext)) {
             return false;
         }
+        $image = $this->addTextWater($file->getContent(), config('config.water.text'), config('config.water.color'), $type);
         // 将图片移动到我们的目标存储路径中
-        $url = youpai_oss_upload('/blog/' . $folder_name . '/' . $filename, $file->getContent(), $file->getMimeType());
-        $file->move($upload_path, $filename);
+        $url = youpai_oss_upload('/blog/' . $folder_name . '/' . $filename, $image->stream()->getContents(), $image->mime());
+        $image->save($upload_path . '/' . $filename);
         if ($url != '') {
             return [
                 'path' => $url
@@ -42,4 +44,19 @@ class ImageUploadHandler
         ];
     }
 
+    public function addTextWater($content, $text, $color = '#0B94C1', $type = 'editormd-image-file')
+    {
+        $image = Image::make($content);
+        if ($image->mime() == 'image/gif' || $type != 'editormd-image-file') {
+            return $image;
+        }
+        $image->text($text, $image->width() - 20, $image->height() - 30, function ($font) use ($color) {
+            $font->file(public_path('fonts/msyh.ttf'));
+            $font->size(config('config.water.size'));
+            $font->color($color);
+            $font->align('right');
+            $font->valign('bottom');
+        });
+        return $image;
+    }
 }

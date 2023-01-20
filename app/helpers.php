@@ -54,7 +54,7 @@ if (!function_exists('generate_english_slug')) {
         if ('en' !== $locale) {
             try {
                 $tencent_translate = app()->make(TencentTranslate::class);
-                $content           = $tencent_translate->toEnglish($content);
+                $content = $tencent_translate->toEnglish($content);
             } catch (Exception $exception) {
                 $content = '';
             }
@@ -97,6 +97,17 @@ if (!function_exists('mail_is_configured')) {
     }
 }
 if (!function_exists('get_image_paths_from_html')) {
+    /**
+     *
+     * @param $html
+     * @return array
+     * @throws \PHPHtmlParser\Exceptions\ChildNotFoundException
+     * @throws \PHPHtmlParser\Exceptions\CircularException
+     * @throws \PHPHtmlParser\Exceptions\ContentLengthException
+     * @throws \PHPHtmlParser\Exceptions\LogicalException
+     * @throws \PHPHtmlParser\Exceptions\NotLoadedException
+     * @throws \PHPHtmlParser\Exceptions\StrictException
+     */
     function get_image_paths_from_html($html)
     {
         $dom = new Dom();
@@ -129,6 +140,7 @@ if (!function_exists('add_text_water')) {
     function add_text_water($file, $text, $color = '#0B94C1')
     {
         $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
         if ($extension != 'gif') {
             $image = Image::make($file);
             $image->text($text, $image->width() - 20, $image->height() - 30, function ($font) use ($color) {
@@ -158,5 +170,20 @@ if (!function_exists('translate')) {
         }
 
         return $result ?? '';
+    }
+}
+
+if (!function_exists('get_default_img')) {
+    /**
+     * 获取文章默认图片
+     * @return string
+     */
+    function get_default_img()
+    {
+        if (!config('services.youpai.host') || !config('services.youpai.bucket') || !config('services.youpai.username') || !config('services.youpai.password')) {
+            return config('app.url') . '/img/default.png';
+        }
+
+        return config('services.youpai.host') . '/img/default.png';
     }
 }

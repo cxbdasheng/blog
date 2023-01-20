@@ -166,31 +166,6 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     });
 });
 
-Route::get('/test', function () {
-    $localpath = 'upyun_logo.png';
-    $savepath = '/default.jpg';
-    $bucketname = 'www-it927-upyun';
-    $username = 'cxbdasheng';
-    $password = 'I8NAM0zn9ZX8PdJWZcArck4CHQKsRzrJ';
-    $uri = "/{$bucketname}$savepath";
-    $date = gmdate('D, d M Y H:i:s \G\M\T');
-//    $fsize = filesize($localpath);
-    $signature = base64_encode(hash_hmac("sha1", "PUT&$uri&$date", md5("{$password}"), true));
-//    $header = array("Authorization:UPYUN {$username}:$signature", "Date:$date");
-    $header = [
-        'Authorization' => "UPYUN {$username}:$signature",
-        "Date" => $date
-    ];
-    $photo = file_get_contents($localpath);
-    $response = Http::withBody(
-        $photo, mime_content_type($localpath)
-    )->withHeaders($header)->PUT('http://v0.api.upyun.com' . $uri);
-//    )->withHeaders($header)->PUT('http://blog.c69p.com.test/puta');
-    dd($response, $header, $photo, $response);
-});
-Route::put('/puta', function () {
-    \Illuminate\Support\Facades\Log::info('111', [request()->all(), request()->file(), request()->getContent()]);
-});
 // Home 模块
 Route::namespace('Home')->name('home.')->group(function () {
     // 首页

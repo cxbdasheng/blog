@@ -53,7 +53,7 @@ class ArticlesController extends Controller
         // 判断是否有上传文件，并赋值给 $file
         if ($file = $request->file($filename)) {
             // 保存图片到本地
-            $result = $uploader->save($file, 'articles', 'articles');
+            $result = $uploader->save($file, 'articles', 'articles', $filename);
             // 图片保存成功的话
             if ($result) {
                 $data['url'] = $result['path'];

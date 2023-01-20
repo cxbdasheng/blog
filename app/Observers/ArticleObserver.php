@@ -44,15 +44,8 @@ class ArticleObserver extends BaseObserver
             $article->slug = generate_english_slug($article->title);
         }
         $image_paths = get_image_paths_from_html($article->html);
-        foreach ($image_paths as $image_path) {
-            $image_path = str_replace(config('app.url'), '', $image_path);
-            $image_path = public_path($image_path);
-            if (file_exists($image_path)) {
-                add_text_water($image_path, config('config.water.text'), config('config.water.color'));
-            }
-        }
         if (empty($article->cover)) {
-            $article->cover = $image_paths[0] ?? config('app.url') . '/img/default.png';
+            $article->cover = $image_paths[0] ?? get_default_img();
         }
     }
 
