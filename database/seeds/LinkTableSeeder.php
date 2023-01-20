@@ -16,7 +16,7 @@ class LinkTableSeeder extends Seeder
             [
                 'id'         => 1,
                 'name'       => '陈大剩博客',
-                'url'        => 'http://c69p.com',
+                'url'        => 'https://www.it927.com',
                 'sort'       => 1,
                 'created_at' => '2018-08-04 12:41:26',
                 'updated_at' => '2018-08-04 12:41:26',

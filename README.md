@@ -1,7 +1,7 @@
 ### 喜欢记得点个star，您的star将是我最大的鼓励和支持！！！
 
 ## 简介
-* [陈大剩博客](https://c69p.com/)Tp5.1改版，基于Laravel、Layui开发。替换了Tp5.1富文编辑器，添加邮件通知、时间轴、图片水印、评论qq表情、第三方登入等新功能;   
+* [陈大剩博客](https://www.it927.com/)Tp5.1改版，基于Laravel、Layui开发。替换了Tp5.1富文编辑器，添加邮件通知、时间轴、图片水印、评论qq表情、第三方登入等新功能;   
 * 本项目采用创作共用版权：[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.z)    
 * 欢迎各位加入贡献者;
 
@@ -39,8 +39,8 @@
 
 
 ## 演示站点
-陈大剩博客： [c69p.com](https://c69p.com/)
-![陈大剩博客](https://c69p.com/uploads/images/articles/202004/19/articles_1587302242_qKDD1iHcgi.png "陈大剩博客")
+陈大剩博客： [www.it927.com](https://www.it927.com/)
+![陈大剩博客](https://img.it927.com/blog/uploads/images/articles/202004/19/articles_1587302242_qKDD1iHcgi.png "陈大剩博客")
 ## 安装
 
 下载项目
@@ -61,7 +61,7 @@ vim .env
 ```  
 我们需要改成自己的实际配置；  
 APP_NAME 就是自己的项目名称比如我的陈大剩博客；  
-APP_URL 就是我们的项目链接比如说我的 http://www.c69p.com；  
+APP_URL 就是我们的项目链接比如说我的 https://www.it927.com；  
 DB_DATABASE 就是我们的数据库名比如说 blog；  
 DB_USERNAME 数据库用户名比如说 blog ；  
 DB_PASSWORD 数据库密码比如说 \*\*\* ；  
@@ -120,12 +120,12 @@ crontab -e
 
 |名称 | 回调地址|
 |:---: | :---:|
-|qq | http://c69p.com/auth/oauth/handleProviderCallback/qq|
-|weibo | http://c69p.com/auth/oauth/handleProviderCallback/weibo  |
-|github | http://c69p.com/auth/oauth/handleProviderCallback/github |
-|google | http://c69p.com/auth/oauth/handleProviderCallback/google|   
+|qq | https://www.it927.com/auth/oauth/handleProviderCallback/qq|
+|weibo | https://www.it927.com/auth/oauth/handleProviderCallback/weibo  |
+|github | https://www.it927.com/auth/oauth/handleProviderCallback/github |
+|google | https://www.it927.com/auth/oauth/handleProviderCallback/google|   
 
-把 c69p.com 改成你自己的域名；  
+把 www.it927.com 改成你自己的域名；  
 ## 后台管理
 安装配置完成后就可以登录后台进行网站设置了；  
 登录链接： `/admin` ;  
@@ -139,7 +139,7 @@ crontab -e
 - feature/*: 用于增加新功能的分支
 
 ## 链接
-- 博客：[http://c69p.com](http://c69p.com)   
+- 博客：[https://www.it927.com](https://www.it927.com)   
 - github：[https://github.com/qq851145971/blog](https://github.com/qq851145971/blog)   
 - 码云：[https://gitee.com/CXBZY/ChenDashengblog](https://gitee.com/CXBZY/ChenDashengblog)    
 
