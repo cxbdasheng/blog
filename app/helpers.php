@@ -6,6 +6,7 @@
  * Time: 21:04
  */
 
+use App\Support\BaiduPushApi;
 use Illuminate\Support\Str;
 use PHPHtmlParser\Dom;
 use Intervention\Image\Facades\Image;
@@ -185,5 +186,25 @@ if (!function_exists('get_default_img')) {
         }
 
         return config('services.youpai.host') . '/img/default.png';
+    }
+}
+if (!function_exists('push_baidu_urls')) {
+    /**
+     * 推送链接给百度站长平台
+     * @param array $urls 需要推送的域名
+     * @return bool
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    function push_baidu_urls(array $urls)
+    {
+        $baiduPushApi = app()->make(BaiduPushApi::class);
+        if (!$baiduPushApi->isOpen() || empty($urls)) {
+            return false;
+        }
+        $res = $baiduPushApi->push($urls);
+        if ($res) {
+            return true;
+        }
+        return false;
     }
 }

@@ -14,6 +14,7 @@ class ArticleObserver extends BaseObserver
     {
         \DB::table('times')->insert(['content' => '《' . $model->title . '》', 'article_id' => $model->id, 'type' => '2', 'created_at' => date("Y:m:d H:s:i"), 'updated_at' => date("Y:m:d H:s:i")]);
         Artisan::queue('generate-sitemap');
+        push_baidu_urls([url('article', $model->id)]);
     }
 
     public function creating($article): void

@@ -27,11 +27,6 @@ class PushBaiduSite extends Command
 
     public function handle(): int
     {
-        $baiduPushApi = app()->make(BaiduPushApi::class);
-        if (!$baiduPushApi->isOpen()) {
-            $this->error('Please enter the push address');
-            return 0;
-        }
         $articles = Article::select('id', 'updated_at')
             ->latest('updated_at')
             ->get();
@@ -62,8 +57,7 @@ class PushBaiduSite extends Command
         foreach ($navs as $nav) {
             $urls[] = url('nav', $nav->id);
         }
-        $res = $baiduPushApi->push($urls);
-        if ($res) {
+        if (push_baidu_urls($urls)) {
             $this->info('Successful push ' . count($urls) . ' number');
             return 0;
         }
