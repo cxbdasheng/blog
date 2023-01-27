@@ -57,7 +57,8 @@
                                 <label class="layui-form-label">标题</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="title" required lay-verify="required" placeholder=""
-                                           autocomplete="off" maxlength="255" class="layui-input" value="{{old('title',$data->title)}}">
+                                           autocomplete="off" maxlength="255" class="layui-input"
+                                           value="{{old('title',$data->title)}}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -65,7 +66,8 @@
                                 <div class="layui-input-block">
                                     <input type="text" name="author" required lay-verify="required" placeholder=""
                                            autocomplete="off" class="layui-input"
-                                           value="{{old('author',$data->author?$data->author:config('config.author'))}}" maxlength="50">
+                                           value="{{old('author',$data->author?$data->author:config('config.author'))}}"
+                                           maxlength="50">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -256,8 +258,8 @@
             });
             editormd.urls.atLinkBase = "https://github.com/";
             editormd.katexURL = {
-                js: "/lib/editor/lib/katex/katex.min",  // default: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min
-                css: "/lib/editor/lib/katex/katex.min"   // default: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min
+                js: "{{cdn_asset("/lib/editor/lib/katex/katex.min")}}",  // default: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min
+                css: "{{cdn_asset("/lib/editor/lib/katex/katex.min")}}"  // default: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min
             };
             editor = editormd("editor", {
                 autoFocus: false,
@@ -282,8 +284,8 @@
                 ],
                 imageUpload: true,
                 imageUploadURL: '{{ url('admin/articles/upload_image') }}',
-                htmlDecode : "style,script,iframe|on*",
-                saveHTMLToTextarea : true,
+                htmlDecode: "style,script,iframe|on*",
+                saveHTMLToTextarea: true,
             });
         });
     </script>
