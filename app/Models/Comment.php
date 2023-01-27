@@ -59,7 +59,7 @@ class Comment extends BaseModel
         // 循环生成img标签
         for ($i = 1; $i <= $count; $i++) {
             $ubbArray = explode(',', $ubb[$i - 1]);
-            $image[] = '<img src="' . asset('img/gif/' . $ubbArray[0] . '.gif') . '" title="' . $ubbArray[1] . '" alt="' . config('app.name') . '"/>';
+            $image[] = '<img src="' . cdn_asset('img/gif/' . $ubbArray[0] . '.gif') . '" title="' . $ubbArray[1] . '" alt="' . config('app.name') . '"/>';
             $search[] = "[:{$ubbArray[1]}]";
         }
         return str_replace($search, $image, $content);

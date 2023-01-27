@@ -10371,4 +10371,8 @@ select {
   vertical-align: middle;
 }
 
+.table-wrapper table {
+  display: table;
+}
+
 

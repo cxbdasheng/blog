@@ -420,4 +420,8 @@ select:focus {
   height: auto;
 }
 
+.markdown-body .table-wrapper table {
+  display: table;
+}
+
 

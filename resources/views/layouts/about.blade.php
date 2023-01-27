@@ -12,9 +12,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ config('config.head.icon') }}" type="image/x-icon">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('ico/iconfont.css') }}" rel="stylesheet">
-    <script src="{{asset('lib/layui/jquery.min.js')}}"></script>
-    <script src="{{asset('js/pace.min.js')}}"></script>
+    <link href="{{ cdn_asset('ico/iconfont.css') }}" rel="stylesheet">
+    <script src="{{cdn_asset('lib/layui/jquery.min.js')}}"></script>
+    <script src="{{cdn_asset('js/pace.min.js')}}"></script>
     @yield('css')
 </head>
 <body>
@@ -122,7 +122,7 @@
 @else
     <div class="pop">
         <div class="pop-left">
-            <img src="{{asset('img/login_left.png')}}" alt="">
+            <img src="{{cdn_asset('img/login_left.png')}}" alt="">
         </div>
         <div class="pop-right">
             <div class="pop-right-head">
@@ -163,8 +163,8 @@
 
 <div class="clear"></div>
 <script src="{{mix('js/app.js')}}"></script>
-<script src="{{ asset('js/jquery.lazyload.js') }}"></script>
-<script src="{{ asset('js/jquery.qqFace.js') }}"></script>
+<script src="{{ cdn_asset('js/jquery.lazyload.js') }}"></script>
+<script src="{{ cdn_asset('js/jquery.qqFace.js') }}"></script>
 <script>
 </script>
 @yield('js')

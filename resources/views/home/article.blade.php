@@ -3,15 +3,15 @@
 @section('keywords', $article->keywords)
 @section('description', $article->description)
 @section('css')
-    <link rel="stylesheet" href="{{ asset('lib/editor/lib/katex/katex.min.css') }}"
+    <link rel="stylesheet" href="{{ cdn_asset('lib/editor/lib/katex/katex.min.css') }}"
           integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
-    <script defer src="{{ asset('lib/editor/lib/katex/katex.min.js') }}"
+    <script defer src="{{ cdn_asset('lib/editor/lib/katex/katex.min.js') }}"
             integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja"
             crossorigin="anonymous"></script>
-    <script defer src="{{ asset('lib/editor/lib/katex/contrib/auto-render.min.js') }}"
+    <script defer src="{{ cdn_asset('lib/editor/lib/katex/contrib/auto-render.min.js') }}"
             integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
             onload="renderMathInElement(document.body);"></script>
-    <link href="{{ asset('css/prism.css') }}" rel="stylesheet">
+    <link href="{{ cdn_asset('css/prism.css') }}" rel="stylesheet">
 @endsection
 @section('body')
     <div class="main-left">
@@ -252,8 +252,8 @@
     </div>
 @endsection
 @section('js')
-    <script type="text/javascript" src="{{asset('lib/layui/layui.all.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/prism.js')}}"></script>
+    <script type="text/javascript" src="{{cdn_asset('lib/layui/layui.all.js')}}"></script>
+    <script type="text/javascript" src="{{cdn_asset('js/prism.js')}}"></script>
     <script>
         $(function () {
             $.qqface({

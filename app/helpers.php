@@ -181,11 +181,7 @@ if (!function_exists('get_default_img')) {
      */
     function get_default_img()
     {
-        if (!config('services.youpai.host') || !config('services.youpai.bucket') || !config('services.youpai.username') || !config('services.youpai.password')) {
-            return config('app.url') . '/img/default.png';
-        }
-
-        return config('services.youpai.host') . '/img/default.png';
+        return cdn_asset('/img/default.png');
     }
 }
 if (!function_exists('push_baidu_urls')) {
@@ -206,5 +202,21 @@ if (!function_exists('push_baidu_urls')) {
             return true;
         }
         return false;
+    }
+}
+
+if (!function_exists('cdn_asset')) {
+    /**
+     * 获取 cdn 静态资源
+     * @param $path 路径
+     * @return string
+     * @author chendashengpc
+     */
+    function cdn_asset($path)
+    {
+        if (!config('services.youpai.host') || !config('services.youpai.bucket') || !config('services.youpai.username') || !config('services.youpai.password')) {
+            return asset($path);
+        }
+        return config('services.youpai.host') . '/blog/' . trim($path, '/');
     }
 }

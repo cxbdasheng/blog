@@ -38,7 +38,7 @@
             <h2 class="name" style="color: red;">错误提示</h2>
         </div>
         <div class="left-content">
-            <img src="{{ asset('img/kfz.gif') }}" alt="404错误" title="404错误">
+            <img src="{{ cdn_asset('img/kfz.gif') }}" alt="404错误" title="404错误">
             <p>将在 <span id="mes">5</span> 秒钟后返回<a href="/">{{ config('app.name') }}</a>首页</p>
             <p class="hint">非常抱歉 - 您可能输入了错误的网址，或者该网页已删除或移动</p>
         </div>

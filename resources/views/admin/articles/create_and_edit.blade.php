@@ -5,7 +5,7 @@
     @section('title', '新增文章')
 @endif
 @section('css')
-    <link rel="stylesheet" href="{{ asset('lib/editor/css/editormd.min.css') }}">
+    <link rel="stylesheet" href="{{ cdn_asset('lib/editor/css/editormd.min.css') }}">
     <style>
         #editor {
             z-index: 1000;
@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input name="html" id="html" type="hidden"/>
+                            <input name="html" id="body_html" type="hidden"/>
                             <div class="buttons" style="">
                                 <button class="layui-btn" lay-submit="" lay-filter="submit">提交</button>
                                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -134,10 +134,10 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('lib/editor/editormd.min.js') }}"></script>
+    <script src="{{ cdn_asset('lib/editor/editormd.diy.js') }}"></script>
     <script>
-        var testEditor;
         $(function () {
+            var editor;
             layui.use(['layer', 'form', 'upload'], function () {
                 var $ = layui.jquery
                     , upload = layui.upload;
@@ -160,106 +160,106 @@
                         layer.msg('上传失败', {icon: 2});
                     }
                 });
-                layui.form.on('submit(submit)', function (data) {
-                    markdownDoc = new String(testEditor.getMarkdown());
-                    var defaults = {
-                        gfm: true,
-                        toc: true,
-                        tocm: false,
-                        tocStartLevel: 1,
-                        tocTitle: "目录",
-                        tocDropdown: false,
-                        tocContainer: "",
-                        markdown: "",
-                        markdownSourceCode: false,
-                        htmlDecode: false,
-                        autoLoadKaTeX: true,
-                        pageBreak: true,
-                        atLink: true,    // for @link
-                        emailLink: true,    // for mail address auto link
-                        tex: false,
-                        taskList: false,   // Github Flavored Markdown task lists
-                        emoji: false,
-                        flowChart: false,
-                        sequenceDiagram: false,
-                        previewCodeHighlight: true
-                    };
-
-                    var options = {
-                        htmlDecode: "style,script,iframe",  // you can filter tags decode
-                        emoji: true,
-                        taskList: true,
-                        tex: true,  // 默认不解析
-                        // flowChart: true,  // 默认不解析
-                        sequenceDiagram: true,  // 默认不解析
-                    }
-                    var settings = $.extend(true, defaults, options || {});
-
-                    var rendererOptions = {
-                        toc: settings.toc,
-                        tocm: settings.tocm,
-                        tocStartLevel: settings.tocStartLevel,
-                        taskList: settings.taskList,
-                        emoji: settings.emoji,
-                        tex: settings.tex,
-                        pageBreak: settings.pageBreak,
-                        atLink: settings.atLink,           // for @link
-                        emailLink: settings.emailLink,        // for mail address auto link
-                        flowChart: settings.flowChart,
-                        sequenceDiagram: settings.sequenceDiagram,
-                        previewCodeHighlight: settings.previewCodeHighlight,
-                    };
-                    var markedOptions = {
-                        renderer: editormd.markedRenderer([], rendererOptions),
-                        gfm: true,
-                        tables: true,
-                        breaks: true,
-                        pedantic: false,
-                        sanitize: true, // 是否忽略HTML标签，即是否开启HTML标签解析，为了安全性，默认不开启
-                        smartLists: true,
-                        smartypants: true
-                    };
-                    var markdownParsed = marked(markdownDoc, markedOptions);
-                    markdownParsed = editormd.filterHTMLTags(markdownParsed, settings.htmlDecode);
-                    div = $(document.createElement("div"));
-                    div.addClass("markdown-body editormd-preview-container").append(markdownParsed);
-                    if (settings.previewCodeHighlight) {
-                        div.find("pre").addClass("prettyprint linenums");
-                        prettyPrint();
-                    }
-                    if (!editormd.isIE8) {
-                        if (settings.sequenceDiagram) {
-                            // div.find(".sequence-diagram").sequenceDiagram({theme: "simple"});
-                        }
-                    }
-                    if (settings.tex) {
-                        var katexHandle = function () {
-                            div.find("." + editormd.classNames.tex).each(function () {
-                                var tex = $(this);
-                                katex.render(tex.html().replace(/&lt;/g, "<").replace(/&gt;/g, ">"), tex[0]);
-                                tex.find(".katex").css("font-size", "1.6em");
-                            });
-                        };
-
-                        if (settings.autoLoadKaTeX && !editormd.$katex && !editormd.kaTeXLoaded) {
-                            editormd.loadKaTeX(function () {
-                                editormd.$katex = katex;
-                                editormd.kaTeXLoaded = true;
-                                katexHandle();
-                            });
-                        } else {
-                            katexHandle();
-                        }
-                    }
-                    $('#html').val('<div class="markdown-body editormd-html-preview">' + div.html() + '</div>');
-                });
+                // layui.form.on('submit(submit)', function (data) {
+                //     markdownDoc = new String(editor.getMarkdown());
+                //     var defaults = {
+                //         gfm: true,
+                //         toc: true,
+                //         tocm: false,
+                //         tocStartLevel: 1,
+                //         tocTitle: "目录",
+                //         tocDropdown: false,
+                //         tocContainer: "",
+                //         markdown: "",
+                //         markdownSourceCode: false,
+                //         htmlDecode: false,
+                //         autoLoadKaTeX: true,
+                //         pageBreak: true,
+                //         atLink: true,    // for @link
+                //         emailLink: true,    // for mail address auto link
+                //         tex: false,
+                //         taskList: false,   // Github Flavored Markdown task lists
+                //         emoji: false,
+                //         flowChart: false,
+                //         sequenceDiagram: false,
+                //         previewCodeHighlight: true
+                //     };
+                //
+                //     var options = {
+                //         htmlDecode: "style,script,iframe",  // you can filter tags decode
+                //         emoji: true,
+                //         taskList: true,
+                //         tex: true,  // 默认不解析
+                //         // flowChart: true,  // 默认不解析
+                //         sequenceDiagram: true,  // 默认不解析
+                //     }
+                //     var settings = $.extend(true, defaults, options || {});
+                //
+                //     var rendererOptions = {
+                //         toc: settings.toc,
+                //         tocm: settings.tocm,
+                //         tocStartLevel: settings.tocStartLevel,
+                //         taskList: settings.taskList,
+                //         emoji: settings.emoji,
+                //         tex: settings.tex,
+                //         pageBreak: settings.pageBreak,
+                //         atLink: settings.atLink,           // for @link
+                //         emailLink: settings.emailLink,        // for mail address auto link
+                //         flowChart: settings.flowChart,
+                //         sequenceDiagram: settings.sequenceDiagram,
+                //         previewCodeHighlight: settings.previewCodeHighlight,
+                //     };
+                //     var markedOptions = {
+                //         renderer: editormd.markedRenderer([], rendererOptions),
+                //         gfm: true,
+                //         tables: true,
+                //         breaks: true,
+                //         pedantic: false,
+                //         sanitize: true, // 是否忽略HTML标签，即是否开启HTML标签解析，为了安全性，默认不开启
+                //         smartLists: true,
+                //         smartypants: true
+                //     };
+                //     var markdownParsed = marked(markdownDoc, markedOptions);
+                //     markdownParsed = editormd.filterHTMLTags(markdownParsed, settings.htmlDecode);
+                //     div = $(document.createElement("div"));
+                //     div.addClass("markdown-body editormd-preview-container").append(markdownParsed);
+                //     if (settings.previewCodeHighlight) {
+                //         div.find("pre").addClass("prettyprint linenums");
+                //         prettyPrint();
+                //     }
+                //     if (!editormd.isIE8) {
+                //         if (settings.sequenceDiagram) {
+                //             // div.find(".sequence-diagram").sequenceDiagram({theme: "simple"});
+                //         }
+                //     }
+                //     if (settings.tex) {
+                //         var katexHandle = function () {
+                //             div.find("." + editormd.classNames.tex).each(function () {
+                //                 var tex = $(this);
+                //                 katex.render(tex.html().replace(/&lt;/g, "<").replace(/&gt;/g, ">"), tex[0]);
+                //                 tex.find(".katex").css("font-size", "1.6em");
+                //             });
+                //         };
+                //
+                //         if (settings.autoLoadKaTeX && !editormd.$katex && !editormd.kaTeXLoaded) {
+                //             editormd.loadKaTeX(function () {
+                //                 editormd.$katex = katex;
+                //                 editormd.kaTeXLoaded = true;
+                //                 katexHandle();
+                //             });
+                //         } else {
+                //             katexHandle();
+                //         }
+                //     }
+                //     $('#body_html').val('<div class="markdown-body editormd-html-preview">' + div.html() + '</div>');
+                // });
             });
             editormd.urls.atLinkBase = "https://github.com/";
             editormd.katexURL = {
                 js: "/lib/editor/lib/katex/katex.min",  // default: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min
                 css: "/lib/editor/lib/katex/katex.min"   // default: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min
             };
-            testEditor = editormd("editor", {
+            editor = editormd("editor", {
                 autoFocus: false,
                 width: "100%",
                 height: 600,
@@ -269,7 +269,7 @@
                 toolbarAutoFixed: false,
                 taskList: true,
                 syncScrolling: "single",
-                path: '{{ asset('/lib/editor/lib') }}/',
+                path: '{{ cdn_asset('/lib/editor/lib') }}/',
                 emoji: true,
                 tex: true,
                 toolbarIcons: [
@@ -282,8 +282,9 @@
                 ],
                 imageUpload: true,
                 imageUploadURL: '{{ url('admin/articles/upload_image') }}',
+                htmlDecode : "style,script,iframe|on*",
+                saveHTMLToTextarea : true,
             });
-
         });
     </script>
 @endsection

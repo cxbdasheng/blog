@@ -67,6 +67,9 @@ class ArticlesController extends Controller
     public function store(ArticleRequest $request, Article $articles, ImageUploadHandler $uploader)
     {
         $data = $request->except('_token');
+        $data['html'] = '<div class="markdown-body editormd-html-preview">';
+        $data['html'] .= $data['editor-html-code'];
+        $data['html'] .= '</div>';
         $tags = $data['tags'];
         unset($data['tags']);
         $data['keywords'] = str_replace("，", ",", $data['keywords']);
@@ -81,6 +84,7 @@ class ArticlesController extends Controller
 
     public function edit($id, Article $articles)
     {
+        dd(cdn_asset('lib/editor/editormd.diy.js'),asset('lib/editor/editormd.diy.js'),app('url'));
         $data = $articles->withTrashed()->find($id);
         $data->tags = ArticleTag::where('article_id', $id)->pluck('tag_id')->toArray();
         $category = Category::all();
@@ -92,6 +96,9 @@ class ArticlesController extends Controller
     public function update(ArticleRequest $request, Article $articles, ArticleTag $articleTagMode)
     {
         $data = $request->except('_token');
+        $data['html'] = '<div class="markdown-body editormd-html-preview">';
+        $data['html'] .= $data['editor-html-code'];
+        $data['html'] .= '</div>';
         $tags = $data['tags'];
         unset($data['tags']);
         $data['keywords'] = str_replace("，", ",", $data['keywords']);
