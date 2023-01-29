@@ -283,8 +283,9 @@
                     "watch", "preview", "fullscreen", "help"
                 ],
                 imageUpload: true,
+                imageFormats : ["jpg", "jpeg", "gif", "png","webp"],
                 imageUploadURL: '{{ url('admin/articles/upload_image') }}',
-                htmlDecode: "style,script,iframe|on*",
+                htmlDecode: true,
                 saveHTMLToTextarea: true,
             });
         });
