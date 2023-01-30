@@ -1891,7 +1891,7 @@
 
             marked.setOptions(markedOptions);
 
-            var newMarkdownDoc = editormd.$marked(cmValue, markedOptions);
+            var newMarkdownDoc = editormd.$marked.parse(cmValue, markedOptions);
 
             //console.info("cmValue", cmValue, newMarkdownDoc);
 
