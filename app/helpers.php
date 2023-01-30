@@ -220,3 +220,29 @@ if (!function_exists('cdn_asset')) {
         return config('services.youpai.host') . '/blog/' . trim($path, '/');
     }
 }
+
+if (!function_exists('mk_dir')) {
+    /**
+     * 递归创建目录
+     * @param $path 路径
+     * @return bool
+     * @author chendashengpc
+     */
+    function mk_dir($path)
+    {
+        //第1种情况，该目录已经存在
+        if (is_dir($path)) {
+            return true;
+        }
+        //第2种情况，父目录存在，本身不存在
+        if (is_dir(dirname($path))) {
+            mkdir($path);
+        }
+        //第3种情况，父目录不存在
+        if (!is_dir(dirname($path))) {
+            mk_dir(dirname($path));//创建父目录
+            mkdir($path);
+        }
+        return true;
+    }
+}

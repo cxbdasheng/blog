@@ -22,6 +22,7 @@ class ImageUploadHandler
         $folder_name = "uploads/images/$folder/" . date("Ym/d", time());
         // 文件具体存储的物理路径，`public_path()` 获取的是 `public` 文件夹的物理路径。
         $upload_path = public_path() . '/' . $folder_name;
+        mk_dir($upload_path);
         // 获取文件的后缀名，因图片从剪贴板里黏贴时后缀名为空，所以此处确保后缀一直存在
         $extension = strtolower($file->getClientOriginalExtension()) ?: 'png';
         // 拼接文件名，加前缀是为了增加辨析度，前缀可以是相关数据模型的 ID
@@ -48,6 +49,7 @@ class ImageUploadHandler
     {
         $image = Image::make($content);
         if ($image->mime() == 'image/gif' || $type != 'editormd-image-file') {
+            $image->resize(256, 165);
             return $image;
         }
         $image->text($text, $image->width() - 20, $image->height() - 30, function ($font) use ($color) {
