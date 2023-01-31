@@ -8,9 +8,6 @@
     <script defer src="{{ cdn_asset('lib/editor/lib/katex/katex.min.js') }}"
             integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja"
             crossorigin="anonymous"></script>
-    <script defer src="{{ cdn_asset('lib/editor/lib/katex/contrib/auto-render.min.js') }}"
-            integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
-            onload="renderMathInElement(document.body);"></script>
     <link href="{{ cdn_asset('css/prism.css') }}" rel="stylesheet">
 @endsection
 @section('body')
@@ -256,6 +253,41 @@
     <script type="text/javascript" src="{{cdn_asset('js/prism.js')}}"></script>
     <script>
         $(function () {
+            var  r = '{{ cdn_asset('lib/editor/lib/katex/katex.min') }}',
+                l = {
+                    js: [
+                    ],
+                    css: [
+                    ]
+                },
+            d = {
+                initLaTeX: function () {
+                    var e = this,
+                        n = $('.editormd-tex');
+                    0 != n.length && (-1 == $.inArray(r, l.js) ? e.loadScript(r, (function () {
+                        e.renderKatex(n)
+                    })) : e.renderKatex(n))
+                }, renderKatex: function (e) {
+                    'undefined' != typeof katex && e.each((function () {
+                        var e = $(this);
+                        katex.render(e.text(), e[0])
+                    }))
+                }, loadScript: function (t, e, n) {
+                    l.js.push(t),
+                        n = n || 'head',
+                        e = e || function () {
+                        };
+                    var i = null;
+                    (i = document.createElement('script')).id = t.replace(/[\./]+/g, '-'),
+                        i.type = 'text/javascript',
+                        i.src = t + '.js',
+                        i.onload = function () {
+                            e()
+                        },
+                        'head' === n ? document.getElementsByTagName('head') [0].appendChild(i) : document.body.appendChild(i)
+                },
+            };
+            d.initLaTeX();
             $.qqface({
                 imgPath: '/img/gif/',
                 textarea: $('#lytext'),
