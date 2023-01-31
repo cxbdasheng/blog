@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('queue:work --stop-when-empty')->everyMinute();
         $schedule->command('generate-sitemap')->daily()->at('03:00');
+        $schedule->command('push-baidu-urls')->daily()->at('02:00');
     }
 
     /**
