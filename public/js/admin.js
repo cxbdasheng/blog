@@ -27,8 +27,8 @@ $(document).ready(function () {
 layui.use(['layer', 'element', 'jquery'], function () {
   layer = layui.layer;
   element = layui.element;
-  $ = layui.jquery; // 左侧缩小提示
-
+  $ = layui.jquery;
+  // 左侧缩小提示
   var left_tips_index = null;
   $('.left-nav #nav').on('mouseenter', '.left-nav-li', function (event) {
     if ($('.left-nav').css('width') != '220px') {
@@ -38,8 +38,8 @@ layui.use(['layer', 'element', 'jquery'], function () {
   });
   $('.left-nav #nav').on('mouseout', '.left-nav-li', function (event) {
     layer.close(left_tips_index);
-  }); //左侧菜单
-
+  });
+  //左侧菜单
   $('.left-nav #nav').on('click', 'li', function (event) {
     if ($('.left-nav').css('width') == '60px') {
       $('.left-nav').animate({
@@ -59,14 +59,11 @@ layui.use(['layer', 'element', 'jquery'], function () {
       $('.logo span').show();
       $('.logo i').hide();
     }
-
     if ($(window).width() < 768) {
       $('.page-content-bg').show();
     }
-
     $('.left-nav').find('a').removeClass('active');
     $(this).children('a').addClass('active');
-
     if ($(this).children('.sub-menu').length) {
       if ($(this).hasClass('open')) {
         $(this).removeClass('open');
@@ -82,10 +79,9 @@ layui.use(['layer', 'element', 'jquery'], function () {
         $(this).siblings().removeClass('open');
       }
     }
-
     event.stopPropagation();
-  }); // 隐藏左侧
-
+  });
+  // 隐藏左侧
   $('.layui-easy .left_open i').click(function (event) {
     if ($('.left-nav').css('width') == '220px') {
       $('.left-nav .open').click();
@@ -123,13 +119,12 @@ layui.use(['layer', 'element', 'jquery'], function () {
       $('.logo span').show();
       $('.logo i').hide();
       $('.left-nav cite,.left-nav .nav_right').show();
-
       if ($(window).width() < 768) {
         $('.page-content-bg').show();
       }
     }
-  }); // 背景虚化
-
+  });
+  // 背景虚化
   $('.page-content-bg').click(function (event) {
     $('.left-nav .open').click();
     $('.left-nav i').css('font-size', '18px');

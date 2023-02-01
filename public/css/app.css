@@ -1184,7 +1184,7 @@ button:focus {
 .editormd-form .editormd-btn,
 .editormd-dialog-container .editormd-btn,
 .editormd-dialog-footer .editormd-btn {
-  padding: 5px 8px 4px\0;
+  padding: 5px 8px 4px \0;
 }
 
 .editormd-form .editormd-btn + .editormd-btn,
@@ -1235,7 +1235,7 @@ button:focus {
   position: absolute;
   top: 35px;
   right: 0;
-  right: -1px\0;
+  right: -1px \0;
   overflow: auto;
   line-height: 1.6;
   display: none;
@@ -1407,23 +1407,11 @@ button:focus {
 }
 
 .fa-spin {
-  -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
 }
 
 .fa-pulse {
-  -webkit-animation: fa-spin 1s infinite steps(8);
   animation: fa-spin 1s infinite steps(8);
-}
-
-@-webkit-keyframes fa-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(359deg);
-  }
 }
 
 @keyframes fa-spin {
@@ -5156,6 +5144,10 @@ hr.editormd-page-break {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.text .new-cont ol li {
+  list-style: demical !important;
+}
+
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -5273,23 +5265,11 @@ hr.editormd-page-break {
 }
 
 .fa-spin {
-  -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
 }
 
 .fa-pulse {
-  -webkit-animation: fa-spin 1s infinite steps(8);
   animation: fa-spin 1s infinite steps(8);
-}
-
-@-webkit-keyframes fa-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(359deg);
-  }
 }
 
 @keyframes fa-spin {
@@ -8311,18 +8291,7 @@ img {
   border-top-color: #000;
   border-left-color: #000;
   border-radius: 10px;
-  -webkit-animation: pace-spinner 0.4s linear infinite;
   animation: pace-spinner 0.4s linear infinite;
-}
-
-@-webkit-keyframes pace-spinner {
-  0% {
-    transform: rotate(0);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes pace-spinner {
@@ -9377,28 +9346,6 @@ a:hover {
 
 .mounting .top-nav-right li .active {
   border-top: 4px #f9f9f9 solid;
-}
-
-@-webkit-keyframes tada {
-  0% {
-    -webkit-transform: scale(1);
-  }
-
-  10%, 20% {
-    -webkit-transform: scale(0.9) rotate(-3deg);
-  }
-
-  30%, 50%, 70%, 90% {
-    -webkit-transform: scale(1.2) rotate(3deg);
-  }
-
-  40%, 60%, 80% {
-    -webkit-transform: scale(1.2) rotate(-3deg);
-  }
-
-  100% {
-    -webkit-transform: scale(1) rotate(0);
-  }
 }
 
 .onmouseover {

@@ -424,4 +424,12 @@ select:focus {
   display: table;
 }
 
+.markdown-body ul li {
+  list-style: disc;
+}
+
+.markdown-body ol li {
+  list-style: demical;
+}
+
 
