@@ -6,10 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 class User extends Authenticatable
 {
-    use Notifiable,SoftDeletes,Cachable;
+    use Notifiable,SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
