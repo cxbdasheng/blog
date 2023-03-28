@@ -45,7 +45,7 @@
 
 下载项目
 ```bash
-git clone https://github.com/qq851145971/blog.git
+git clone https://github.com/cxbdasheng/blog.git
 ```
 进入站点；  
 ```bash  

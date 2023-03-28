@@ -165,7 +165,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::put('update/{id}', 'SocialiteUserController@update');
     });
 });
-\
+
 // Home 模块
 Route::namespace('Home')->name('home.')->group(function () {
         // 首页
