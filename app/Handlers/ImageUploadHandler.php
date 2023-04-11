@@ -49,7 +49,8 @@ class ImageUploadHandler
     {
         $image = Image::make($content);
         if ($image->mime() == 'image/gif' || $type != 'editormd-image-file') {
-            $image->resize(256, 165);
+            $image->widen(530);
+            $image->resizeCanvas(null,330);
             return $image;
         }
         $image->text($text, $image->width() - 20, $image->height() - 30, function ($font) use ($color) {
